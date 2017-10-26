@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="home2">
     <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
       <div class="titleMid"><span>自评</span></div>
@@ -12,7 +12,7 @@
       <div class="prompt2"></div>
       <mt-field label="姓名" placeholder="请输入姓名" type="text" v-model="username" @input="inputname()"
                 class="informationBorder"></mt-field>
-      <mt-field label="身份证号" placeholder="请输入身份证号" type="text" v-model="idcard" @input="inputIdcard()"
+      <mt-field label="身份证号" placeholder="请输入身份证号" type="text" v-model="idcard" @blur="inputIdcard()"
                 class="informationBorder"></mt-field>
       <mt-popup
         v-model="popupVisible"
@@ -26,7 +26,7 @@
         <div @click="popupVisible = false">取消</div>
       </mt-popup>
       <mt-field label="婚姻状态" @click.native="popupVisible = true" placeholder=">" v-model="marryState"
-                readonly="true" class="informationBorder"></mt-field>
+                :readonly="readonly" class="informationBorder"></mt-field>
       <mt-popup
         v-model="popupVisible2"
         position="bottom" class="box">
@@ -40,7 +40,7 @@
       </mt-popup>
       <!--<mt-cell title="配偶职业" @click.native="popupVisible2 = true" is-link></mt-cell>-->
       <mt-field label="配偶职业" v-show='objectshow' @click.native="popupVisible2 = true" placeholder=">"
-                v-model="objectState" readonly="true" class="informationBorder"></mt-field>
+                v-model="objectState" :readonly="readonly" class="informationBorder"></mt-field>
       <mt-popup
         v-model="popupVisible3"
         position="bottom" class="box">
@@ -52,7 +52,7 @@
         <div @click="popupVisible3 = false">取消</div>
       </mt-popup>
       <mt-field label="子女职业" v-show="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
-                v-model="childrenState" class="informationBorder" readonly="true"></mt-field>
+                v-model="childrenState" class="informationBorder" :readonly="readonly"></mt-field>
       <mt-field class="homeCharge informationBorder" label="家庭月收支 " placeholder="月收入-月支出(元)" type="number" v-model="pay"
       ></mt-field>
     </div>
@@ -65,11 +65,12 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import {evaluate} from '../../api/api'
+
   export default {
     name: 'HelloWorld',
     data() {
       return {
-//      msg: 'Welcome to Your Vue.js App',
+        readonly: true,
         mobile: '',
         accountTel: '',
         username: '',
@@ -93,13 +94,13 @@
         objectStateValue: '',
         childrenStateValue: '',
         scoreshow: false,
-        circleshow: false,
+//        circleshow: false,
         objectshow: true,
         childrenshow: true,
         noobject: true,
         Reappraisal: false,
         selfShow2: false,
-        together: false,
+        together: true,
         money: null,
         currentYear: ''
       }
@@ -134,13 +135,7 @@
           this.transferdeg = 235 + needtransdeg;
           this.selfShow2 = true;//授信
           this.scoreshow = true;//分数
-          this.circleshow = true;//旋转圆
-          //有过自评6小时定时监测
-          setInterval(function () {
-            if ((new Date().getTime() - objprase.time) >= 6 * 60 * 60 * 1000) {
-              self.Reappraisal = true;
-            }
-          }, 1000)
+//          this.circleshow = true;//旋转
         }
       }
     },
@@ -200,8 +195,9 @@
           this.objectStateValue = 2
         }
         else if (state == '共同经营') {
-          this.objectStateValue = 4}
-          else {
+          this.objectStateValue = 4
+        }
+        else {
           this.objectStateValue = 3
         }
       },
@@ -255,84 +251,60 @@
       },
       //身份证号正则
       inputIdcard() {
-//        let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-//      if(reg.test(this.idcard)){
-//         /*this.idcard = this.idcard.replace()*/
-//      };
+        console.log(1111)
+        let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        console.log(this.idcard)
+        console.log(reg.test(this.idcard))
+        if (reg.test(this.idcard)) {
+          console.log('reg.test')
+          Toast('111')
+          /*this.idcard = this.idcard.replace()*/
+        } else {
+
+        }
       },
       transfer() {
         if (this.accountTel) {
-          let params = {
-            mobile: this.accountTel,
-            name: this.username,
-            identityNo: this.idcard,
-            marriage: parseInt(this.marryStateValue),
-            spouseOCP: parseInt(this.objectStateValue),
-            childOCP: parseInt(this.childrenStateValue),
-            fmSaving: this.pay
-          }
-          let config = {
-            headers: {
-              'Content-Type': 'application/json'
+          let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+          if (reg.test(this.idcard)) {
+            let params = {
+              mobile: this.accountTel,
+              name: this.username,
+              identityNo: this.idcard,
+              marriage: parseInt(this.marryStateValue),
+              spouseOCP: parseInt(this.objectStateValue),
+              childOCP: parseInt(this.childrenStateValue),
+              fmSaving: this.pay
             }
-          }
-          const self = this;
-          axios.post('/zsf/selfeval/evaluate', params, config).then(res => {
-            const response = res.data;
-            console.log(res)
-            if (res.status == 200 && response.code == 1000 && response.data.score) {
-              const score = response.data.score.toFixed(1);//自评分
-              const deg = 360 - this.initialdeg * 2;
-              const eachscore = this.allscore / deg;
-              const needtransdeg = score / eachscore;
-              this.$router.push(`/repeatscore?accountTel=${this.accountTel}&idcard=${this.idcard}&username=${this.username}&marryStateValue=${this.marryStateValue}
-              &objectStateValue=${this.objectStateValue}&childrenStateValue=${this.childrenStateValue}&pay=${this.pay}`)
-              this.circleshow = true;
-              this.score = response.data.score.toFixed(0);
-              this.money = response.data.quota;//授信money
-              //重评归0
-              if (self.Reappraisal) {
-                this.transferdeg = 235;
-                self.scoreshow = false;
-                self.Reappraisal = false;
+            let config = {
+              headers: {
+                'Content-Type': 'application/json'
               }
-              setInterval(function () {
-                if (self.transferdeg >= (235 + needtransdeg)) {
-                  self.scoreshow = true;
-                  self.selfShow2 = true;//授信金额出现
-                  return;
-                }
-                self.transferdeg++;
-              }, 20)
-              // 本地评分
-              const nowdate = new Date();
-              const obj = {"time": nowdate.getTime(), "score": this.score, "money": this.money};
-              if (window.localStorage) {
-                window.localStorage.setItem("storescore", JSON.stringify(obj));
-              }
-              // 第一次自评6小时定时监测
-              setInterval(function () {
-                console.log(nowdate.getTime(), new Date().getTime())
-                if ((nowdate.getTime() + 6 * 60 * 60 * 1000) < new Date().getTime()) {
-                  self.Reappraisal = true;
-                }
-              }, 1000)
             }
-//            else if (res.status == 200 && response.code == 1101) {
-//              this.$router.push(`/repeatscore?accountTel=${this.accountTel}&idcard=${this.idcard}&username=${this.username}&marryStateValue=${this.marryStateValue}
-//              &objectStateValue=${this.objectStateValue}&childrenStateValue=${this.childrenStateValue}&pay=${this.pay}`)
-//
-//              Toast('6小时内您无法重新自评')
-//              return false;
-//            }
-            else if (res.status == 200 && response.code == 1100) {
+            const self = this;
+            axios.post('/zsf/selfeval/evaluate', params, config).then(res => {
+              const response = res.data;
+              console.log(res)
+              if (res.status == 200 && response.code == 1000 && response.data.score) {
+                this.score = response.data.score.toFixed(0);
+                this.money = response.data.quota;//授信money
+//                const score = response.data.score.toFixed(1);//自评分
+//                const deg = 360 - this.initialdeg * 2;
+//                const eachscore = this.allscore / deg;
+//                const needtransdeg = score / eachscore;
+                this.$router.push(`/repeatscore?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}`)
+              }
+              else if (res.status == 200 && response.code == 1100) {
 //              this.popupVisible6 = true;
-              Toast('您输入的信息有误')
-              return false;
-            }
-          }).catch(res => {
-            Toast(res)
-          })
+                Toast('您输入的信息有误')
+                return false;
+              }
+            }).catch(res => {
+              Toast(res)
+            })
+          } else {
+            Toast('身份证有误')
+          }
         } else {
           Toast('没有接收到accountTel参数')
         }
@@ -340,9 +312,7 @@
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss">
   body {
     margin: 0;
     padding: 0;
@@ -350,206 +320,136 @@
     width: 100%
   }
 
-  /*.content{height:100%;width:100%}*/
-  .title {
-    height: 47px;
-    background-color: #2D6DEB;
-    position: relative
+  .home2 {
+    .title {
+      height: 47px;
+      background-color: #2D6DEB;
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    img {
+      height: 100%;
+      widht: 100%
+    }
+
+    .titleLeft {
+      height: 17px;
+      width: 9px;
+      position: absolute;
+      left: 15px;
+      bottom: 14px
+    }
+
+    .titleMid {
+      height: 17px;
+      width: 89px;
+      margin: 0 auto;
+      line-height: 50px;
+      color: #ffffff;
+      font-size: 17px
+    }
+
+    .prompt {
+      height: 40px;
+      width: 100%;
+      background-color: #F2F2F2;
+      font-size: 13px;
+      color: darkgray;
+      line-height: 45px;
+      border-bottom: 1px solid lightgray;
+      margin-top: 44px;
+    }
+
+    .prompt2 {
+      height: 8px;
+      background-color: #F2F2F2;
+      border-bottom: 1px solid lightgray;
+    }
+
+    .prompt span {
+      position: absolute;
+      left: 3%
+    }
+
+    .mint-cell-wrapper {
+      height: 44px;
+      font-size: 15px;
+    }
+
+    .informationBorder {
+      border-bottom: 1px solid lightgray;
+      box-sizing: border-box;
+    }
+
+    .mint-cell-text {
+      float: left;
+    }
+
+    .mint-field-core {
+      text-align: right;
+      font-size: 15px;
+    }
+
+    #lastField input {
+      width: 50px
+    }
+
+    .box {
+      width: 100%;
+      background-color: #BDBDBD
+    }
+
+    .box div {
+      height: 35px;
+      border-bottom: 1px solid lightgray;
+      line-height: 35px;
+      font-size: 15px;
+      background-color: #fff
+    }
+
+    #boxBlank {
+      height: 20px;
+      background-color: #BDBDBD
+    }
+    .homeCharge .mint-cell-text {
+      width: 150px;
+      float: left;
+      text-align: left;
+    }
+
+    .homeCharge .mint-cell-title {
+      width: 150px;
+      float: left;
+      text-align: left;
+    }
+
+    .promote {
+      height: 38px;
+      width: 130px;
+      background-color: #00917F;
+      position: absolute;
+      top: 140px;
+      right: -88px;
+      font-size: 15px;
+      text-align: center;
+      line-height: 38px;
+      color: white;
+      border-radius: 50px
+    }
+
+    .yes {
+      height: 40px;
+      width: 160px;
+      background-color: #00917E;
+      border-radius: 50px;
+      margin: 50px auto;
+      color: white;
+      font-size: 17px;
+      line-height: 40px
+    }
   }
-
-  img {
-    height: 100%;
-    widht: 100%
-  }
-
-  .titleLeft {
-    height: 17px;
-    width: 9px;
-    position: absolute;
-    left: 15px;
-    bottom: 14px
-  }
-
-  .titleMid {
-    height: 17px;
-    width: 89px;
-    margin: 0 auto;
-    line-height: 50px;
-    color: #ffffff;
-    font-size: 17px
-  }
-
-  .titleRight {
-    height: 34px;
-    width: 23px;
-    position: absolute;
-    bottom: 10px;
-    right: 15px
-  }
-
-  .prompt {
-    height: 40px;
-    width: 100%;
-    background-color: #F2F2F2;
-    font-size: 13px;
-    color: darkgray;
-    line-height: 45px;
-    position: relative;
-    border-bottom: 1px solid lightgray;
-  }
-
-  .prompt2 {
-    height: 8px;
-    background-color: #F2F2F2;
-    border-bottom: 1px solid lightgray;
-  }
-
-  .prompt span {
-    position: absolute;
-    left: 3%
-  }
-
-  .mint-cell-wrapper {
-    height: 44px;
-    font-size: 15px;
-  }
-
-  .informationBorder {
-    border-bottom: 1px solid lightgray;
-    box-sizing: border-box;
-  }
-
-  .mint-cell-text {
-    float: left;
-  }
-
-  .mint-field-core {
-    text-align: right;
-    font-size: 15px;
-  }
-
-  #lastField input {
-    width: 50px
-  }
-
-  .box {
-    width: 100%;
-    background-color: #BDBDBD
-  }
-
-  .box div {
-    height: 35px;
-    border-bottom: 1px solid lightgray;
-    line-height: 35px;
-    font-size: 15px;
-    background-color: #fff
-  }
-
-  #boxBlank {
-    height: 20px;
-    background-color: #BDBDBD
-  }
-
-  /*.boxtext {*/
-  /*height: 150px;*/
-  /*width: 250px;*/
-  /*border-radius: 5px;*/
-  /*position: relative*/
-  /*}*/
-
-  /*.boxtextTop {*/
-  /*height: 60px;*/
-  /*width: 100%;*/
-  /*border-bottom: 1px solid gainsboro;*/
-  /*position: absolute;*/
-  /*top: 50px;*/
-  /*}*/
-
-  /*.boxtextBottom {*/
-  /*position: absolute;*/
-  /*bottom: 3px;*/
-  /*left: 110px*/
-  /*}*/
-
-  /*.boxtext1 {*/
-  /*border-radius: 10px*/
-  /*}*/
-
-  /*.boxtext2 {*/
-  /*height: 150px;*/
-  /*width: 250px;*/
-  /*border-radius: 10px;*/
-  /*}*/
-
-  /*.boxtext2Top {*/
-  /*height: 60px;*/
-  /*border-bottom: 1px solid gainsboro;*/
-  /*width: 100%;*/
-  /*position: absolute;*/
-  /*top: 50px;*/
-  /*}*/
-
-  /*.boxtext2Bottom {*/
-  /*position: absolute;*/
-  /*bottom: 15px;*/
-  /*left: 110px;*/
-  /*}*/
-
-  /*.boxtext3 {*/
-  /*height: 150px;*/
-  /*width: 250px;*/
-  /*border-radius: 10px;*/
-  /*}*/
-
-  /*.boxtext3Top {*/
-  /*height: 60px;*/
-  /*border-bottom: 1px solid gainsboro;*/
-  /*width: 100%;*/
-  /*position: absolute;*/
-  /*top: 50px;*/
-  /*}*/
-
-  /*.boxtext3Bottom {*/
-  /*position: absolute;*/
-  /*bottom: 15px;*/
-  /*left: 110px;*/
-  /*}*/
-  .homeCharge .mint-cell-text {
-    width: 150px;
-    float: left;
-    text-align: left;
-  }
-
-  .homeCharge .mint-cell-title {
-    width: 150px;
-    float: left;
-    text-align: left;
-  }
-
-  .promote {
-    height: 38px;
-    width: 130px;
-    background-color: #00917F;
-    position: absolute;
-    top: 140px;
-    right: -88px;
-    font-size: 15px;
-    text-align: center;
-    line-height: 38px;
-    color: white;
-    border-radius: 50px
-  }
-
-  .yes {
-    height: 40px;
-    width: 160px;
-    background-color: #00917E;
-    border-radius: 50px;
-    margin: 50px auto;
-    color: white;
-    font-size: 17px;
-    line-height: 40px
-  }
-
-
 </style>

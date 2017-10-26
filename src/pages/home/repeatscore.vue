@@ -2,7 +2,7 @@
   <div class="">
     <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
-      <div class="titleMid"><span>融资中心</span></div>
+      <div class="titleMid"><span>信用中心</span></div>
       <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
     </div>
     <div class="topciycle">
@@ -15,6 +15,10 @@
           </div>
           <div class="transfer"
                v-bind:style="{transform:'rotate(' +transferdeg+'deg)',WebkitTransform:'rotate(' +transferdeg+'deg)'}"></div>
+          <div class="transfer"
+               v-bind:style="{transform:'rotate(' +transferdega+'deg)',WebkitTransform:'rotate(' +transferdega+'deg)'}"></div>
+          <div class="transfer"
+               v-bind:style="{transform:'rotate(' +transferdegb+'deg)',WebkitTransform:'rotate(' +transferdegb+'deg)'}"></div>
         </div>
         <!--<div class="circleinner" v-show="selfShow">自评</div>-->
         <div class="circleinner2" v-show="selfShow2"><span>授信额度</span>
@@ -24,7 +28,7 @@
              v-bind:style="{transform:'rotate(' +(transferdeg-2)+'deg)',WebkitTransform:'rotate(' +(transferdeg-2)+'deg)'}">
           <div class="transfer-circle"
                v-bind:style="{transform:'rotate(-' +transferdeg+'deg)',WebkitTransform:'rotate(-' +transferdeg+'deg)'}">
-            <div class="transfer-score" v-show="scoreshow">{{score}}</div>
+            <div class="transfer-score" v-show="scoreshow" :class="{'rightscore':rightscore}">{{score}}</div>
           </div>
         </div>
         <div class="circlebiginner-left">0</div>
@@ -48,9 +52,9 @@
     <div class="prompt2"></div>
     <div class="message">
       <div class="message-top"><span>|&#x3000;融资信息</span><img src="../../assets/right.png" alt=""></div>
-      <div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>
-      <div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>
-      <div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>
+      <div class="message-mid"><span>暂无数据</span><span></span></div>
+      <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
+      <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
       <!--<div class="message-bottom2" v-show="messageshow" @click="notmore()"><span>收起</span></div>-->
       <!--<div class="message-bottom" v-show="moreshow" @click="more()">查看更多</div>-->
     </div>
@@ -80,12 +84,6 @@
           <div class="play-table-count">共{{item.repayTotalTimes}}期</div>
         </div>
         <div class="play-table-noRecords" v-show="noRecords">暂无数据</div>
-        <!--<div class="play-table">-->
-          <!--<div class="play-table-name">臻e贷</div>-->
-          <!--<div class="play-table-money">1000元</div>-->
-          <!--<div class="play-table-date">2017-09-09</div>-->
-          <!--<div class="play-table-count">第5期</div>-->
-        <!--</div>-->
       </div>
     </div>
   </div>
@@ -97,6 +95,7 @@
   import {Toast} from 'mint-ui'
   import {currentBorrowAmount, borrowRecord, recentRepaymentPlan} from '../../api/index'
   import {getDate, dateAddHorizontal} from '../../common/js/times'
+
   export default {
     name: 'HelloWorld',
     data() {
@@ -120,6 +119,9 @@
         initialdeg: 55,//初始化半角度
         allscore: 1000,//总分值
         transferdeg: 235,
+        transferdega:235,
+        transferdegb:235,
+        rightscore:true,
         score: null,
         marryStateValue: '',
         objectStateValue: '',
@@ -129,12 +131,10 @@
         objectshow: true,
         childrenshow: true,
         Reappraisal: true,
-        selfShow2: false,
+        selfShow2: true,
         money: null,
         noRecords: false,
         currentYear: '',
-//        messageshow: false,
-//        moreshow: true,
         borrowMoney: '',
         atborrowMoney: '',
         records: [],
@@ -142,26 +142,11 @@
         amount: ''
       }
     },
-//    watch: {
-//      'idcard': function (val) {
-//        if (val.length >= 18) {
-//          if (this.childrenStateValue == 1 || this.childrenStateValue == 2) {
-//            var date = new Date;
-//            this.currentYear = date.getFullYear() - val.substr(6, 4);
-//            if (this.currentYear >= 24 && this.currentYear <= 40) {
-////              this.popupVisible4 = true;
-//              Toast('请输入准确信息')
-//            }
-//            ;
-//          }
-//        }
-//      }
-//    },
     filters: {
-      _getDate(t){
+      _getDate(t) {
         return getDate(t)
       },
-      _dateAddHorizontal(t){
+      _dateAddHorizontal(t) {
         return dateAddHorizontal(t)
       }
     },
@@ -173,31 +158,32 @@
       this.childrenStateValue = this.$route.query.childrenStateValue;
       this.pay = this.$route.query.pay;
       this.username = this.$route.query.username;
-      //本地存储评分
-      const self = this;
-      if (window.localStorage) {
-        const objprase = JSON.parse(window.localStorage.getItem("storescore"));
-        if (objprase && objprase.time) {
-          const deg = 360 - this.initialdeg * 2;
-          const eachscore = this.allscore / deg;
-          const nowdate = new Date().getTime();
-          this.score = objprase.score;
-          this.money = objprase.money;
-          const needtransdeg = this.score / eachscore;
-          this.transferdeg = 235 + needtransdeg;
-          this.selfShow2 = true;//授信
-          this.scoreshow = true;//分数
-          this.circleshow = true;//旋转圆
-          //有过自评6小时定时监测
-          setInterval(function () {
-            if ((new Date().getTime() - objprase.time) >= 6 * 60 * 60 * 1000) {
-              self.Reappraisal = true;
-//              this.$router.push(`/home?accountTel=${this.accountTel}`)
-            }
-          }, 1000)
-        }
+      this.showScore = parseInt(this.$route.query.score);
+      this.showMoney = this.$route.query.money;
+      this.loans = this.$route.query.loans;
+      this.score = this.showScore;
+      this.money = this.showMoney;
+      const deg = 360 - this.initialdeg * 2;
+      const eachscore = this.allscore / deg;
+      const needtransdeg = Math.floor(this.score / eachscore);
+      this.score>this.allscore/2?this.rightscore=true:this.rightscore=false;
+      if(needtransdeg>180){
+         this.transferdega = this.transferdega + 90;
+         this.transferdegb = this.transferdegb + 180;
+         this.transferdeg = this.transferdeg+needtransdeg;
+      }else if(needtransdeg>90){
+         this.transferdega = this.transferdega + 90;
+         this.transferdegb = this.transferdegb + needtransdeg;
+         this.transferdeg = this.transferdegb;
+      }else{
+         this.transferdeg = this.transferdeg+needtransdeg;
+      };
+
+      this.selfShow2 = true;//授信
+      this.scoreshow = true;//分数
+      this.circleshow = true;//旋转圆
         this.recentRepaymentPlan()
-      }
+     // }
       let params = {
         mobile: this.accountTel
       }
@@ -213,24 +199,24 @@
           mobile: this.accountTel
         }
         borrowRecord(params).then(res => {
-          if(res.code === 0 && res.list.length !==0){
+          if (res.code === 0 && res.list.length !== 0) {
             console.log(res.list.length)
             this.records = res.list;
-          }else {
-            this.noRecords=true
+          } else {
+            this.noRecords = true
           }
-      })
+        })
       },
-      //还款计划
+      // 最近还款计划
       recentRepaymentPlan() {
         let params = {
           mobile: this.accountTel
         }
         recentRepaymentPlan(params).then(res => {
-          if(res.code === 0 && res.list.length !==0){
+          if (res.code === 0 && res.list.length !== 0) {
             this.playRecords = res.list;
-          }else {
-            this.noRecords=true
+          } else {
+            this.noRecords = true
           }
         })
       },
@@ -316,7 +302,7 @@
         if (/iphone|ipad|ipod/.test(ua)) {
           popToViewController()
         } else if (/android/.test(ua)) {
-          htmlToJava. popToViewController()
+          htmlToJava.popToViewController()
         }
         window.history.back();
 //        let ua = navigator.userAgent.toLowerCase()
@@ -332,21 +318,12 @@
       },
       //身份证号正则
       inputIdcard() {
-//        let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-//      if(reg.test(this.idcard)){
-//         /*this.idcard = this.idcard.replace()*/
-//      };
+        let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        if (reg.test(this.idcard)) {
+          Toast('111')
+          /*this.idcard = this.idcard.replace()*/
+        }
       },
-//      点击查看更多
-//      more() {
-//        this.messageshow = true;
-////        this.moreshow = false
-//      },
-//      notmore() {
-//        this.messageshow = false;
-////        this.moreshow = true
-//      },
-
 //      transfer() {
 //        if (this.accountTel) {
 //          let params = {
@@ -454,6 +431,7 @@
         }
       },
       goStages() {
+        console.log(this.atborrowMoney)
         var asd = JSON.stringify({"atborrowMoney": this.atborrowMoney});
         let ua = navigator.userAgent.toLowerCase()
         if (/iphone|ipad|ipod/.test(ua)) {
@@ -461,7 +439,6 @@
         } else if (/android/.test(ua)) {
           htmlToJava.gotoInstallment(asd)
         }
-        Toast('已调用gotoInstallment接口')
       },
       tableClass1() {
         this.isActive1 = true;
@@ -483,5 +460,5 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "./repeatScore.scss";
+  @import "./repeatScore.scss";
 </style>

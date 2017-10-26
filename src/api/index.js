@@ -12,7 +12,7 @@ export const selfQuery = (params) => {
 export const doubleSelf = (params) => {
   return http.fetchPost(zyd + '/selfeval/reEvaluate.json', params)
 }
-const aa = '/tzyd'
+const aa = '/zyd'
 // 融资接口（当前在借总金额）
 export const currentBorrowAmount = (params) => {
   return http.fetchPost(aa + '/apishow/currentBorrowAmount.json', params)
