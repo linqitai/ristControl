@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import home from '@/pages/home/home'
-import repeatScore from '@/pages/home/repeatscore'
+import selfEvaluation from '@/pages/home/selfEvaluation'
+import writeSelfEvaInfo from '@/pages/home/writeSelfEvaInfo'
+import repeatEvaluation from '@/pages/home/repeatEvaluation'
 
 Vue.use(Router)
 
@@ -10,18 +10,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: HelloWorld
+      name: 'selfEvaluation',
+      component: selfEvaluation
     },
     {
-      path: '/home',
-      name: 'home',
-      component: home
+      path: '/selfEvaluation',
+      name: 'selfEvaluation',
+      component: selfEvaluation
     },
     {
-      path: '/repeatScore',
-      name: 'repeatScore',
-      component: repeatScore
+      path: '/writeSelfEvaInfo',
+      name: 'writeSelfEvaInfo',
+      component: writeSelfEvaInfo
+    },
+    {
+      path: '/repeatEvaluation',
+      name: 'repeatEvaluation',
+      component: repeatEvaluation
     }
   ]
 })

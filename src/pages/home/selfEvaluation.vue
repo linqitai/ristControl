@@ -1,9 +1,9 @@
 <template>
   <div class="home1">
     <div class="title">
-      <div class="titleLeft" @click="back()"><img src="../assets/nav_btn_back@2x.png" alt=""></div>
+      <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
       <div class="titleMid"><span>信用中心</span></div>
-      <div class="titleRight"><img src="../assets/logo_zs@2x.png" alt=""></div>
+      <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
     </div>
     <div class="header">完成自评后才会有授信额度哦</div>
     <div class="topciycle">
@@ -32,7 +32,7 @@
 <script scoped="scoped1">
   import axios from 'axios'
   import {Toast} from 'mint-ui'
-  import {evaluate, query} from '../api/api'
+  import {evaluate, query} from '../../api/api'
 
   export default {
     name: 'HelloWorld',
@@ -155,34 +155,12 @@
         }
         window.history.back();
       },
-//     姓名正则
-      inputname() {
-        this.username = this.username.replace()
-      },
-      //身份证号正则
-      inputIdcard() {
-      },
       select() {
-        if (this.accountTel) {
-          let params = {
-            mobile: this.accountTel,
-            pageInfo: {size: 1, page: 1}
-          }
-          let config = {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }
-          axios.post('/zsf/selfeval/query', params, config).then(res => {
-            const response = res.data;
-            if (res.status == 200 && response.data.size == '') {
-              this.$router.push(`/home?accountTel=${this.accountTel}`)
-            } else {
-              this.$router.push(`/repeatscore?accountTel=${this.accountTel}`)
-            }
-          })
+        this.accountTel = this.$route.query.accountTel;
+        if(this.accountTel){
+          this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
         }
-      },
+      }
     }
   }
 </script>
@@ -265,7 +243,7 @@
     .bgimg {
       width: 134px;
       height: 134px;
-      background: url(../assets/123.png);
+      background: url(../../assets/123.png);
       background-size: 100% 100%;
       z-index: 1;
     }
@@ -276,7 +254,7 @@
       height: 128px;
       top: 3px;
       left: 3px;
-      background: url(../assets/line.png);
+      background: url(../../assets/line.png);
       background-size: 100% 100%;
       background-color: #F2F2F2;
       border-radius: 50%;
@@ -365,7 +343,7 @@
       right: 67px;
       margin-right: -11px;
       line-height: 20px;
-      background: url(../assets/transfercircle.png);
+      background: url(../../assets/transfercircle.png);
       background-size: 100% 100%;
       margin-right: -11px
     }

@@ -305,18 +305,12 @@
           htmlToJava.popToViewController()
         }
         window.history.back();
-//        let ua = navigator.userAgent.toLowerCase()
-//        if (/iphone|ipad|ipod/.test(ua)) {
-//          popToViewController()
-//        } else if (/android/.test(ua)) {
-//          htmlToJava.popToViewController()
-//        }
       },
 //     姓名正则
       inputname() {
         this.username = this.username.replace()
       },
-      //身份证号正则
+      // 身份证号正则
       inputIdcard() {
         let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
         if (reg.test(this.idcard)) {
@@ -408,7 +402,7 @@
           }
           axios.post('/zsf/selfeval/reEvaluate', params, config).then(res => {
             if (res.data === true) {
-              this.$router.push(`/home?accountTel=${this.accountTel}`)
+              this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
             }
             else {
               Toast('6小时内您无法重新自评')

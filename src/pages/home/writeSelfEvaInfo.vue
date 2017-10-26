@@ -292,7 +292,7 @@
 //                const deg = 360 - this.initialdeg * 2;
 //                const eachscore = this.allscore / deg;
 //                const needtransdeg = score / eachscore;
-                this.$router.push(`/repeatscore?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}`)
+                this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}`)
               }
               else if (res.status == 200 && response.code == 1100) {
 //              this.popupVisible6 = true;
