@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  height: 47px;
+  background-color: #2D6DEB;
+  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+img {
+  height: 100%;
+  widht: 100%
+
+}
+.titleLeft {
+  height: 17px;
+  width: 9px;
+  position: absolute;
+  left: 15px;
+  bottom: 14px
+
+}
+
+.titleMid {
+  height: 17px;
+  width: 150px;
+  margin: 0 auto;
+  line-height: 50px;
+  color: #ffffff;
+  font-size: 17px
+
+}
+
+.titleRight {
+  height: 28px;
+  width: 20px;
+  position: absolute;
+  bottom: 18px;
+  right: 15px
+
+}
+.main{
+  height:100%;
+  padding-top: 47px;
+}
+.table-infor{
+  height:44px;
+  width:100%;
+  border-bottom: 1px solid lightgrey;
+}

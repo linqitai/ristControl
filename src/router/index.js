@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import selfEvaluation from '@/pages/home/selfEvaluation'
 import writeSelfEvaInfo from '@/pages/home/writeSelfEvaInfo'
 import repeatEvaluation from '@/pages/home/repeatEvaluation'
+import organizingData from '@/pages/drawMoney/organizingData'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/repeatEvaluation',
       name: 'repeatEvaluation',
       component: repeatEvaluation
+    },
+    {
+      path: '/organizingData',
+      name: 'organizingData',
+      component: organizingData
     }
   ]
 })

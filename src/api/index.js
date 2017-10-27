@@ -1,6 +1,7 @@
 import http from './public'
 // 自评接口
 const zyd = '/zsf'
+// const zyd = '/rz'
 export const self = (params) => {
   return http.fetchPost(zyd + '/selfeval/evaluate.json', params)
 }
@@ -11,6 +12,10 @@ export const selfQuery = (params) => {
 // 重评接口
 export const doubleSelf = (params) => {
   return http.fetchPost(zyd + '/selfeval/reEvaluate.json', params)
+}
+// 动作接口
+export const action = (params) => {
+  return http.fetchPost(zyd + '/selfeval/actionRecord', params)
 }
 const aa = '/zyd'
 // 融资接口（当前在借总金额）

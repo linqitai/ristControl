@@ -6,7 +6,7 @@
       <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
     </div>
     <div class="topciycle">
-      <div class="yesmoney">可用额度:{{atborrowMoney}}元</div>
+      <div class="yesmoney">可用信用额度:{{atborrowMoney}}元</div>
       <div class="ciycle">
         <div class="outCiycle">
           <!--<div style="position:absolute;z-index:9999;margin-left:50%; transform: translateX(-50%)">10000元 </div>-->
@@ -21,7 +21,7 @@
                v-bind:style="{transform:'rotate(' +transferdegb+'deg)',WebkitTransform:'rotate(' +transferdegb+'deg)'}"></div>
         </div>
         <!--<div class="circleinner" v-show="selfShow">自评</div>-->
-        <div class="circleinner2" v-show="selfShow2"><span>授信额度</span>
+        <div class="circleinner2" v-show="selfShow2"><span>信用额度</span>
           <div>{{money}}元</div>
         </div>
         <div class="transfer-block" v-show="circleshow"
@@ -32,11 +32,10 @@
           </div>
         </div>
         <div class="circlebiginner-left">0</div>
-        <div class="circlebiginner-mid" v-show="Reappraisal">|</div>
         <div class="circlebiginner-right">1000分</div>
-        <div class="apply"><img v-show="Reappraisal" src="../../assets/promote.png" alt=""><span @click="transfer1()">重新自评</span>
+        <div class="apply"><span @click="transfer1()">重自评</span>
         </div>
-        <div class="promote"><img src="../../assets/repeat.png" alt="">去提额</div>
+        <div class="promote">去提额</div>
       </div>
     </div>
     <div class="borrowMoney">
@@ -51,7 +50,7 @@
     </div>
     <div class="prompt2"></div>
     <div class="message">
-      <div class="message-top"><span>|&#x3000;融资信息</span><img src="../../assets/right.png" alt=""></div>
+      <div class="message-top"><span>| 融资信息</span><img src="../../assets/right.png" alt=""></div>
       <div class="message-mid"><span>暂无数据</span><span></span></div>
       <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
       <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
@@ -95,7 +94,8 @@
   import {Toast} from 'mint-ui'
   import {currentBorrowAmount, borrowRecord, recentRepaymentPlan} from '../../api/index'
   import {getDate, dateAddHorizontal} from '../../common/js/times'
-
+//  const root = '/rz' // 线上
+  const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
     data() {
@@ -130,7 +130,6 @@
         circleshow: false,
         objectshow: true,
         childrenshow: true,
-        Reappraisal: true,
         selfShow2: true,
         money: null,
         noRecords: false,
@@ -400,9 +399,9 @@
               'Content-Type': 'application/json'
             }
           }
-          axios.post('/zsf/selfeval/reEvaluate', params, config).then(res => {
+          axios.post(root + '/selfeval/reEvaluate', params, config).then(res => {
             if (res.data === true) {
-              this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
+              this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
             }
             else {
               Toast('6小时内您无法重新自评')
@@ -420,7 +419,7 @@
               'Content-Type': 'application/json'
             },
           }
-          axios.post('/zsf/selfeval/financing', params, config).then(res => {
+          axios.post(root + '/selfeval/financing', params, config).then(res => {
           })
         }
       },

@@ -5,7 +5,7 @@
       <div class="titleMid"><span>信用中心</span></div>
       <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
     </div>
-    <div class="header">完成自评后才会有授信额度哦</div>
+    <div class="header">完成自评后才会有信用额度哦</div>
     <div class="topciycle">
       <div class="ciycle">
         <div class="outCiycle">
@@ -15,7 +15,7 @@
           <div class="transfer"
                v-bind:style="{transform:'rotate(' +transferdeg+'deg)',WebkitTransform:'rotate(' +transferdeg+'deg)'}"></div>
         </div>
-        <div class="circleinner2" v-show="selfShow2"><span>授信额度</span>
+        <div class="circleinner2" v-show="selfShow2"><span>信用额度</span>
           <div class="">0元</div>
         </div>
         <div class="transfer-block" v-show="circleshow"
@@ -25,15 +25,17 @@
         <div class="circlebiginner-right">1000分</div>
       </div>
     </div>
-    <div class="yes" @click="select()">自评</div>
+    <div class="yes" @click="select()">去自评</div>
   </div>
 </template>
 
 <script scoped="scoped1">
   import axios from 'axios'
   import {Toast} from 'mint-ui'
-  import {evaluate, query} from '../../api/api'
-
+  import {evaluate, query, actionRecord} from '../../api/api'
+//  import {action} from '../../api/index'
+//  const root = '/rz' // 线上
+  const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
     data() {
@@ -68,8 +70,7 @@
       }
     },
     methods: {
-
-//点击婚姻状态
+      //点击婚姻状态
       selectState: function (state) {
         this.marryState = state;
         this.popupVisible = false;
@@ -134,7 +135,6 @@
               var date = new Date;
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
               if (this.currentYear >= 24 && this.currentYear <= 40) {
-//                this.popupVisible4 = true;
                 Toast('请输入准确信息')
               }
             }
@@ -143,7 +143,7 @@
           this.childrenStateValue = 3
         }
       },
-      //        app点击返回
+      // app点击返回
       back() {
         // Toast('返回')
         window.history.back();
@@ -157,8 +157,30 @@
       },
       select() {
         this.accountTel = this.$route.query.accountTel;
-        if(this.accountTel){
-          this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
+        if (this.accountTel) {
+          let params = {
+            mobile: this.accountTel,
+            action: 0
+          }
+          let config = {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+          axios.post(root + '/selfeval/addRecord', params, config).then(res => {})
+          // this.action()
+//           this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
+//          let params = {
+//            mobile: this.accountTel,
+//            action: 0
+//          }
+//          let config = {
+//            headers: {
+//              'Content-Type': 'application/json'
+//            }
+//          }
+//          axios.post('/zsf/selfeval/addRecord', params, config).then(res => {
+//          })
         }
       }
     }
@@ -166,6 +188,7 @@
 </script>
 
 <style lang="scss">
+  @import "../../common/scss/common.scss";
   body {
     margin: 0;
     padding: 0;
@@ -182,7 +205,8 @@
 
     .title {
       height: 47px;
-      background-color: #2D6DEB;
+      /*background-color: #2D6DEB;*/
+      background-color: $mainColorBlue;
       position: fixed;
       left: 0;
       top: 0;
@@ -361,7 +385,7 @@
       width: 160px;
       background-color: #00917E;
       color: white;
-      border-radius: 50px;
+      border-radius: 10px;
       line-height: 40px;
       margin: 58px auto
     }
