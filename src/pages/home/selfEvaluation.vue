@@ -181,7 +181,7 @@
     }
 
     .title {
-      height: 47px;
+      height: 44px;
       background-color: #2D6DEB;
       position: fixed;
       left: 0;

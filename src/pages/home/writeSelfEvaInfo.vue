@@ -94,7 +94,6 @@
         objectStateValue: '',
         childrenStateValue: '',
         scoreshow: false,
-//        circleshow: false,
         objectshow: true,
         childrenshow: true,
         noobject: true,
@@ -112,7 +111,6 @@
             var date = new Date();
             this.currentYear = date.getFullYear() - val.substr(6, 4);
             if (this.currentYear >= 24 && this.currentYear <= 40) {
-//              this.popupVisible4 = true;
               Toast('请输入准确信息')
             }
           }
@@ -121,7 +119,7 @@
     },
     created() {
       this.accountTel = this.$route.query.accountTel
-      //本地存储评分
+      // 本地存储评分
       const self = this;
       if (window.localStorage) {
         const objprase = JSON.parse(window.localStorage.getItem("storescore"));
@@ -133,14 +131,14 @@
           this.money = objprase.money;
           const needtransdeg = this.score / eachscore;
           this.transferdeg = 235 + needtransdeg;
-          this.selfShow2 = true;//授信
-          this.scoreshow = true;//分数
-//          this.circleshow = true;//旋转
+          this.selfShow2 = true;// 授信
+          this.scoreshow = true;// 分数
+          // this.circleshow = true;//旋转
         }
       }
     },
     methods: {
-      //点击婚姻状态
+      // 点击婚姻状态
       selectState: function (state) {
         this.marryState = state;
         this.popupVisible = false;
@@ -183,7 +181,7 @@
           this.marryStateValue = 3
         }
       },
-      //点击配偶职业
+      // 点击配偶职业
       selectState2: function (state) {
         this.objectState = state;
         this.popupVisible2 = false;
@@ -201,7 +199,7 @@
           this.objectStateValue = 3
         }
       },
-      //点击子女职业
+      // 点击子女职业
       selectState3: function (state) {
         this.childrenState = state;
         this.popupVisible3 = false;
@@ -212,8 +210,7 @@
           if (this.idcard) {
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-            if (this.currentYear >= 24 && this.currentYear <= 40) {
-//              this.popupVisible4 = true;
+            if (this.currentYear >= 24 && this.currentYear <= 40) { 
               Toast('请输入准确信息')
             }
           }
@@ -224,8 +221,7 @@
             if (this.idcard) {
               var date = new Date();
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-              if (this.currentYear >= 24 && this.currentYear <= 40) {
-//                this.popupVisible4 = true;
+              if (this.currentYear >= 24 && this.currentYear <= 40) { 
                 Toast('请输入准确信息')
               }
             }
@@ -234,22 +230,16 @@
           this.childrenStateValue = 3
         }
       },
-      //        app点击返回
+      // pp点击返回
       back() {
         // Toast('返回')
-        window.history.back();
-//        let ua = navigator.userAgent.toLowerCase()
-//        if (/iphone|ipad|ipod/.test(ua)) {
-//          popToViewController()
-//        } else if (/android/.test(ua)) {
-//          htmlToJava.popToViewController()
-//        }
+        this.$router.goBack()
       },
-//     姓名正则
+      // 姓名正则
       inputname() {
         this.username = this.username.replace()
       },
-      //身份证号正则
+      // 身份证号正则
       inputIdcard() {
         console.log(1111)
         let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
@@ -257,10 +247,7 @@
         console.log(reg.test(this.idcard))
         if (reg.test(this.idcard)) {
           console.log('reg.test')
-          Toast('111')
-          /*this.idcard = this.idcard.replace()*/
         } else {
-
         }
       },
       transfer() {
@@ -295,7 +282,6 @@
                 this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}`)
               }
               else if (res.status == 200 && response.code == 1100) {
-//              this.popupVisible6 = true;
                 Toast('您输入的信息有误')
                 return false;
               }
@@ -322,7 +308,7 @@
 
   .home2 {
     .title {
-      height: 47px;
+      height: 44px;
       background-color: #2D6DEB;
       position: fixed;
       left: 0;

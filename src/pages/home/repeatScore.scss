@@ -6,9 +6,8 @@ body {
 }
 
 .title {
-  height: 47px;
+  height: 44px;
   background-color: #2D6DEB;
-  position: relative;
   position: fixed;
   left: 0;
   top: 0;
@@ -18,8 +17,7 @@ body {
 
 img {
   height: 100%;
-  widht: 100%
-
+  width: 100%;
 }
 
 .titleLeft {
@@ -28,7 +26,6 @@ img {
   position: absolute;
   left: 15px;
   bottom: 14px
-
 }
 
 .titleMid {
