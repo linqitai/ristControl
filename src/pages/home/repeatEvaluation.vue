@@ -92,7 +92,7 @@
 <script>
   import axios from 'axios'
   import {Toast} from 'mint-ui'
-  import {currentBorrowAmount, borrowRecord, recentRepaymentPlan} from '../../api/index'
+  import {currentBorrowAmount, borrowRecord, recentRepaymentPlan, addRecord} from '../../api/index'
   import {getDate, dateAddHorizontal} from '../../common/js/times'
 //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
@@ -390,6 +390,29 @@
 //        }
 //      },
       transfer1() {
+        this.accountTel = this.$route.query.accountTel;
+        this.username = this.$route.query.username;
+        this.idcard = this.$route.query.idcard;
+        this.marryStateValue = this.$route.query.marryStateValue;
+        this.objectStateValue = this.$route.query.objectStateValue;
+        this.childrenStateValue = this.$route.query.childrenStateValue;
+        this.pay = this.$route.query.pay;
+        this.type = this.$route.query.type;
+        if (this.accountTel) {
+          let params = {
+            mobile: this.accountTel,
+            name: this.username,
+            identityNo: this.idcard,
+            marriage: parseInt(this.marryStateValue),
+            spouseOCP: parseInt(this.objectStateValue),
+            childOCP: parseInt(this.childrenStateValue),
+            fmSaving: this.pay,
+            action: 2
+          }
+          axios.post(root + '/selfeval/evaluate', params).then(res => {
+//            this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
+          })
+        }
         if (this.accountTel) {
           let params = {
             mobile: this.accountTel,
@@ -408,21 +431,22 @@
             }
           })
         }
+
       },
-      transfer2() {
-        if (this.accountTel) {
-          let params = {
-            mobile: this.accountTel,
-          }
-          let config = {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          }
-          axios.post(root + '/selfeval/financing', params, config).then(res => {
-          })
-        }
-      },
+//      transfer2() {
+//        if (this.accountTel) {
+//          let params = {
+//            mobile: this.accountTel,
+//          }
+//          let config = {
+//            headers: {
+//              'Content-Type': 'application/json'
+//            },
+//          }
+//          axios.post(root + '/selfeval/financing', params, config).then(res => {
+//          })
+//        }
+//      },
       goStages() {
         console.log(this.atborrowMoney)
         var asd = JSON.stringify({"atborrowMoney": this.atborrowMoney});

@@ -17,6 +17,10 @@ export const doubleSelf = (params) => {
 export const action = (params) => {
   return http.fetchPost(zyd + '/selfeval/actionRecord', params)
 }
+// 动作接口
+export const addRecord = (params) => {
+  return http.fetchPost(zyd + '/selfeval/addRecord', params)
+}
 const aa = '/zyd'
 // 融资接口（当前在借总金额）
 export const currentBorrowAmount = (params) => {

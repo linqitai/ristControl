@@ -54,7 +54,8 @@
       </mt-popup>
       <mt-field label="子女职业" v-show="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
                 v-model="childrenState" class="informationBorder" :readonly="readonly"></mt-field>
-      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收入-月支出(元)" type="number" v-model="pay"
+      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收入-月支出(元)" type="number"
+                v-model="pay"
       ></mt-field>
     </div>
     <div class="yes" @click="transfer()">{{type | typeBtnText}}</div>
@@ -66,7 +67,7 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import {evaluate} from '../../api/api'
-//  const root = '/rz' // 线上
+  //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
@@ -275,6 +276,22 @@
         }
       },
       transfer() {
+//          let params = {
+//            mobile: this.accountTel,
+//            action: 1 | 3
+//          }
+//          if(type === 'repeat'){
+//            this.action = 3
+//          }else{
+//            this.action = 1
+//          }
+//          let config = {
+//            headers: {
+//              'Content-Type': 'application/json'
+//            }
+//          }
+//          axios.post(root + '/selfeval/addRecord', params, config).then(res => {
+//          })
         if (this.accountTel) {
           let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
           if (reg.test(this.idcard)) {
@@ -285,7 +302,8 @@
               marriage: parseInt(this.marryStateValue),
               spouseOCP: parseInt(this.objectStateValue),
               childOCP: parseInt(this.childrenStateValue),
-              fmSaving: this.pay
+              fmSaving: this.pay,
+              action: this.type === 'repeat' ? 3 : 1
             }
             let config = {
               headers: {
@@ -294,8 +312,20 @@
             }
             const self = this;
             axios.post(root + '/selfeval/evaluate', params, config).then(res => {
+              console.log(params)
               const response = res.data;
-              console.log(res)
+
+//              let params = {
+//                mobile: this.accountTel,
+//                action: this.type === 'repeat' ? 3 : 1
+//              }
+//              let config = {
+//                headers: {
+//                  'Content-Type': 'application/json'
+//                }
+//              }
+//              axios.post(root + '/selfeval/addRecord', params, config).then(res => {
+//              })
               if (res.status == 200 && response.code == 1000 && response.data.score) {
                 this.score = response.data.score.toFixed(0);
                 this.money = response.data.quota;//授信money
@@ -303,7 +333,13 @@
 //                const deg = 360 - this.initialdeg * 2;
 //                const eachscore = this.allscore / deg;
 //                const needtransdeg = score / eachscore;
-                this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}`)
+                this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
+                &username=${this.username}
+                &idcard=${this.idcard}
+                &marryStateValue=${this.marryStateValue}
+                &objectStateValue=${this.objectStateValue}
+                &childrenStateValue=${this.childrenStateValue}
+                &pay=${this.pay}`)
               }
               else if (res.status == 200 && response.code == 1100) {
 //              this.popupVisible6 = true;
@@ -325,6 +361,7 @@
 </script>
 <style lang="scss">
   @import "../../common/scss/common.scss";
+
   body {
     margin: 0;
     padding: 0;
@@ -334,7 +371,7 @@
 
   .home2 {
     .title {
-      height: 47px;
+      height: 44px;
       background-color: $mainColorBlue;
       position: fixed;
       left: 0;

@@ -169,18 +169,7 @@
           }
           axios.post(root + '/selfeval/addRecord', params, config).then(res => {})
           // this.action()
-//           this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
-//          let params = {
-//            mobile: this.accountTel,
-//            action: 0
-//          }
-//          let config = {
-//            headers: {
-//              'Content-Type': 'application/json'
-//            }
-//          }
-//          axios.post('/zsf/selfeval/addRecord', params, config).then(res => {
-//          })
+           this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
         }
       }
     }
@@ -204,7 +193,7 @@
     }
 
     .title {
-      height: 47px;
+      height: 44px;
       /*background-color: #2D6DEB;*/
       background-color: $mainColorBlue;
       position: fixed;

@@ -4,6 +4,7 @@ const root = '/zsf'
 export const evaluate = root + '/selfeval/evaluate.json'
 // 自评记录查询
 export const query = root + '/selfeval/query.json'
+export const addRecord = root + '/selfeval/addRecord.json'
 // 融资接口（当前在借总金额）
 // export const query = '/tzyd/selfeval/query.json'
 // 测试
