@@ -2,7 +2,8 @@
   <div class="home2">
     <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
-      <div class="titleMid"><span>自评</span></div>
+      <div class="titleMid"><span>{{type | typeText}}</span></div>
+      <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
     </div>
     <div class="prompt"><span>请输入真实有效的内容，否则将影响您的臻商信用</span></div>
     <div class="information">
@@ -33,8 +34,8 @@
         <div @click.stop="selectState2('政府部门')">政府部门</div>
         <div @click.stop="selectState2('事业单位')">事业单位</div>
         <div @click.stop="selectState2('共同经营')" v-show="together">共同经营</div>
-        <div @click.stop="selectState2('无配偶')" v-show="noobject">无配偶</div>
         <div @click.stop="selectState2('其他')">其他</div>
+        <div @click.stop="selectState2('无配偶')" v-show="noobject">无配偶</div>
         <div id="boxBlank"></div>
         <div @click="popupVisible2 = false">取消</div>
       </mt-popup>
@@ -46,17 +47,18 @@
         position="bottom" class="box">
         <div @click.stop="selectState3('政府部门')">政府部门</div>
         <div @click.stop="selectState3('事业单位')">事业单位</div>
-        <div @click.stop="selectState3('暂无子女')">暂无子女</div>
         <div @click.stop="selectState3('其他')">其他</div>
+        <div @click.stop="selectState3('暂无子女')">暂无子女</div>
         <div id="boxBlank"></div>
         <div @click="popupVisible3 = false">取消</div>
       </mt-popup>
       <mt-field label="子女职业" v-show="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
                 v-model="childrenState" class="informationBorder" :readonly="readonly"></mt-field>
-      <mt-field class="homeCharge informationBorder" label="家庭月收支 " placeholder="月收入-月支出(元)" type="number" v-model="pay"
+      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收入-月支出(元)" type="number"
+                v-model="pay"
       ></mt-field>
     </div>
-    <div class="yes" @click="transfer()">自评</div>
+    <div class="yes" @click="transfer()">{{type | typeBtnText}}</div>
   </div>
 
 </template>
@@ -65,7 +67,8 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import {evaluate} from '../../api/api'
-
+  //  const root = '/rz' // 线上
+  const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
     data() {
@@ -101,7 +104,8 @@
         selfShow2: false,
         together: true,
         money: null,
-        currentYear: ''
+        currentYear: '',
+        type: this.$route.query.type
       }
     },
     watch: {
@@ -115,6 +119,14 @@
             }
           }
         }
+      }
+    },
+    filters: {
+      typeText(type) {
+        return type === 'repeat' ? '重自评' : '自评'
+      },
+      typeBtnText(type) {
+        return type === 'repeat' ? '重自评提交' : '自评提交'
       }
     },
     created() {
@@ -251,6 +263,22 @@
         }
       },
       transfer() {
+//          let params = {
+//            mobile: this.accountTel,
+//            action: 1 | 3
+//          }
+//          if(type === 'repeat'){
+//            this.action = 3
+//          }else{
+//            this.action = 1
+//          }
+//          let config = {
+//            headers: {
+//              'Content-Type': 'application/json'
+//            }
+//          }
+//          axios.post(root + '/selfeval/addRecord', params, config).then(res => {
+//          })
         if (this.accountTel) {
           let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
           if (reg.test(this.idcard)) {
@@ -261,7 +289,8 @@
               marriage: parseInt(this.marryStateValue),
               spouseOCP: parseInt(this.objectStateValue),
               childOCP: parseInt(this.childrenStateValue),
-              fmSaving: this.pay
+              fmSaving: this.pay,
+              action: this.type === 'repeat' ? 3 : 1
             }
             let config = {
               headers: {
@@ -269,9 +298,21 @@
               }
             }
             const self = this;
-            axios.post('/zsf/selfeval/evaluate', params, config).then(res => {
+            axios.post(root + '/selfeval/evaluate', params, config).then(res => {
+              console.log(params)
               const response = res.data;
-              console.log(res)
+
+//              let params = {
+//                mobile: this.accountTel,
+//                action: this.type === 'repeat' ? 3 : 1
+//              }
+//              let config = {
+//                headers: {
+//                  'Content-Type': 'application/json'
+//                }
+//              }
+//              axios.post(root + '/selfeval/addRecord', params, config).then(res => {
+//              })
               if (res.status == 200 && response.code == 1000 && response.data.score) {
                 this.score = response.data.score.toFixed(0);
                 this.money = response.data.quota;//授信money
@@ -279,7 +320,13 @@
 //                const deg = 360 - this.initialdeg * 2;
 //                const eachscore = this.allscore / deg;
 //                const needtransdeg = score / eachscore;
-                this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}`)
+                this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
+                &username=${this.username}
+                &idcard=${this.idcard}
+                &marryStateValue=${this.marryStateValue}
+                &objectStateValue=${this.objectStateValue}
+                &childrenStateValue=${this.childrenStateValue}
+                &pay=${this.pay}`)
               }
               else if (res.status == 200 && response.code == 1100) {
                 Toast('您输入的信息有误')
@@ -299,6 +346,8 @@
   }
 </script>
 <style lang="scss">
+  @import "../../common/scss/common.scss";
+
   body {
     margin: 0;
     padding: 0;
@@ -319,7 +368,7 @@
 
     img {
       height: 100%;
-      widht: 100%
+      width: 100%
     }
 
     .titleLeft {
@@ -337,6 +386,13 @@
       line-height: 50px;
       color: #ffffff;
       font-size: 17px
+    }
+    .titleRight {
+      height: 28px;
+      width: 20px;
+      position: absolute;
+      bottom: 20px;
+      right: 15px
     }
 
     .prompt {
@@ -431,7 +487,7 @@
       height: 40px;
       width: 160px;
       background-color: #00917E;
-      border-radius: 50px;
+      border-radius: 10px;
       margin: 50px auto;
       color: white;
       font-size: 17px;

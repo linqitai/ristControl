@@ -4,6 +4,7 @@ import pageTransition from '@/components/pageTransition'
 import selfEvaluation from '@/pages/home/selfEvaluation'
 import writeSelfEvaInfo from '@/pages/home/writeSelfEvaInfo'
 import repeatEvaluation from '@/pages/home/repeatEvaluation'
+import organizingData from '@/pages/drawMoney/organizingData'
 Router.prototype.goBack = function () {
   this.isBack = true
   window.history.go(-1)
@@ -28,9 +29,11 @@ const router = new Router({
       }, {
         path: '/repeatEvaluation',
         component: repeatEvaluation
+      }, {
+        path: '/organizingData',
+        component: organizingData
       }]
-    }
-  ]
+    }]
 })
 
 export default router

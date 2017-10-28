@@ -1,3 +1,4 @@
+@import "../../common/scss/common.scss";
 body {
   margin: 0;
   padding: 0;
@@ -103,17 +104,6 @@ img {
 
 }
 
-.circlebiginner-mid {
-  height: 11px;
-  width: 25px;
-  position: absolute;
-  top: 152px;
-  left: 53px;
-  font-size: 10px;
-  color: #00917E
-
-}
-
 .circlebiginner-right {
   height: 12px;
   width: 100px;
@@ -215,45 +205,35 @@ img {
 }
 
 .apply {
-  height: 38px;
-  width: 130px;
-  background-color: #F2F2F2;
+  height: 25px;
+  width: 60px;
+  //background-color: #F2F2F2;
+  background-color: white;
   position: absolute;
   top: 140px;
-  left: -75px;
+  left: -50px;
   font-size: 14px;
   text-align: center;
-  line-height: 38px;
+  line-height: 25px;
   color: #00917F;
-
+  border:1px solid #00917F;
+  border-radius: 5px;
 }
 
-.apply img {
-  height: 11px;
-  width: 13px;
-  margin-right: 5px
-
-}
 
 .promote {
-  height: 38px;
-  width: 130px;
-  background-color: #F2F2F2;
+  height: 25px;
+  width: 60px;
+  background-color: white;
   position: absolute;
   top: 140px;
-  right: -75px;
+  right: -50px;
   font-size: 14px;
   text-align: center;
-  line-height: 38px;
+  line-height: 25px;
   color: #00917F;
-
-}
-
-.promote img {
-  height: 11px;
-  width: 13px;
-  margin-right: 5px
-
+  border:1px solid #00917F;
+  border-radius: 5px;
 }
 
 .borrowMoney {
@@ -382,8 +362,8 @@ img {
   float: left;
   line-height: 43px;
   margin-left: 3%;
-  color: #00917E;;
-  font-size: 15px
+  color: black;
+  font-size: 16px
 
 }
 
@@ -391,16 +371,15 @@ img {
   height: 42px;
   border-bottom: 1px solid #F2F2F2;
   box-sizing: border-box;
-  position: relative
-
+  position: relative;
 }
 
 .message-mid span:nth-of-type(1) {
-  //float: left;
+  float: left;
   left: 3%;
   line-height: 42px;
   margin-left: 3%;
-  font-size: 15px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -440,12 +419,14 @@ img {
     line-height: 43px;
     width: 50%;
     float: left;
-    color: #00917E;
+    color: black;
     box-sizing: border-box;
     border: 1px solid gainsboro;
     &.active {
       border-bottom: none;
       border-color: #00917E;
+      background-color: #00917E;
+      color:white
     }
   }
 }
@@ -459,6 +440,9 @@ img {
 .play-table-noRecords {
   height: 61px;
   line-height: 61px;
+  float:left;
+  margin-left: 3%;
+  font-size:14px
 }
 
 .play-table-name {
