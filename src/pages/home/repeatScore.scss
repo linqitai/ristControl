@@ -1,4 +1,4 @@
-@import "../../common/scss/common.scss";
+@import "../../common/scss/index.scss";
 body {
   margin: 0;
   padding: 0;
@@ -100,7 +100,8 @@ img {
   top: 120px;
   left: 10px;
   font-size: 13px;
-  color: #646464
+  color: #646464;
+  text-decoration:none
 
 }
 
@@ -111,7 +112,8 @@ img {
   top: 120px;
   left: 75px;
   font-size: 13px;
-  color: #646464
+  color: #646464;
+  text-decoration:none
 
 }
 
@@ -151,7 +153,7 @@ img {
   top: 0;
   left: 0;
   clip: rect(0, 67px, 67px, 0px);
-  background-color: #0DBDAA;
+  background-color: #2D6DEB;
   border-radius: 50%;
   z-index: 2;
   border-radius: 50%;
@@ -176,7 +178,8 @@ img {
   top: 1px;
   right: 23px;
   color: cornflowerblue;
-  font-size:13px
+  font-size:13px;
+  text-decoration:none
 
 }
 .transfer-score.rightscore{

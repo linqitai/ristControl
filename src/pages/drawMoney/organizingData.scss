@@ -1,71 +1,129 @@
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+@import "../../common/scss/common.scss";
+.organizingData {
+  .title {
+    height: 44px;
+    background-color: #2D6DEB;
+    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
+  }
+  .contentWrapper {
+    overflow: hidden;
+    background-color: #ffffff;
+    padding-left: 16px;
+    margin-top: 12px;
+    .myCellWrapper {
+      @include cell();
+      @include border-1px();
+    }
+    .selectModel{
+      padding: 8px 12px;
+      @include border-1px();
+    }
+    .selectTitle{
+      padding: 0px 12px;
+      height: 40px;
+      line-height: 40px;
+      @include border-1px();
+      width: 100%;
+      font-size: 18px;
+      color: #323232;
+      background-color: #ffffff;
+      .text {
+        line-height: 44px;
+        text-align: center;
+      }
+      .back-img {
+        width: 10px;
+        height: 17px;
+        background-image: url('../../common/images/btn_back.png');
+        background-size: 100% 100%;
+        @include extend-click();
+        position: absolute;
+        top: 14px;
+        left: 15px;
+      }
+    }
+    // .beginBtn{
+    //   width: 100px;
+    //   margin: 20px auto;
+    //   display: block;
+    // }
+  }
+  img {
+    height: 100%;
+    widht: 100%
+
+  }
+  .titleLeft {
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    left: 15px;
+    bottom: 14px
+
+  }
+
+  .titleMid {
+    height: 17px;
+    width: 150px;
+    margin: 0 auto;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px
+
+  }
+
+  //.titleRight {
+  //  height: 28px;
+  //  width: 20px;
+  //  position: absolute;
+  //  bottom: 18px;
+  //  right: 15px
+  //
+  //}
+  .main{
+    height:100%;
+    padding-top: 44px;
+  }
+
+  .prompt2 {
+    height: 8px;
+    background-color: #F2F2F2;
+    border-bottom: 1px solid lightgrey;
+  }
+  .table-infor{
+    height:44px;
+    width:100%;
+    border-bottom: 1px solid lightgrey;
+    background-color: white;
+  }
+  .table-left{
+    float: left;
+    line-height: 44px;
+    margin-left: 5%;
+    font-size:15px
+  }
+  .table-right{
+    float: right;
+    line-height: 44px;
+    margin-right:5%;
+    font-size:15px
+  }
+  .tableInput{
+
+  }
+  .rightIcon{
+    float:right;
+    margin-top: 5px;
+  }
+  .table-right img{
+    height:80%;
+    width:80%
+  }
 }
 
-.title {
-  height: 44px;
-  background-color: #2D6DEB;
-  position: relative;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  z-index: 100;
-}
-img {
-  height: 100%;
-  widht: 100%
 
-}
-.titleLeft {
-  height: 17px;
-  width: 9px;
-  position: absolute;
-  left: 15px;
-  bottom: 14px
-
-}
-
-.titleMid {
-  height: 17px;
-  width: 150px;
-  margin: 0 auto;
-  line-height: 50px;
-  color: #ffffff;
-  font-size: 17px
-
-}
-
-.titleRight {
-  height: 28px;
-  width: 20px;
-  position: absolute;
-  bottom: 18px;
-  right: 15px
-
-}
-.main{
-  height:100%;
-  padding-top: 44px;
-}
-
-.prompt2 {
-  height: 8px;
-  background-color: #F2F2F2;
- border-bottom: 1px solid lightgrey;
-}
-.table-infor{
-  height:44px;
-  width:100%;
-  border-bottom: 1px solid lightgrey;
-  background-color: white;
-}
-.table-left{
-  float: left;
-  line-height: 44px;
-  margin-left: 5%;
-  font-size:15px
-}

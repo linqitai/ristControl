@@ -89,7 +89,10 @@ video {
 
 
 /* HTML5 display-role reset for older browsers */
-
+input,input:hover,input:active{
+  border:none;
+  outline: 0;
+}
 article,
 aside,
 details,
