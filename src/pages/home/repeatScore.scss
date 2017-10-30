@@ -1,482 +1,543 @@
 @import "../../common/scss/common.scss";
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .title {
-  height: 44px;
-  background-color: #2D6DEB;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  z-index: 100;
+    height: 44px;
+    background-color: #2D6DEB;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
 }
 
 img {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .titleLeft {
-  height: 17px;
-  width: 9px;
-  position: absolute;
-  left: 15px;
-  bottom: 14px
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    left: 15px;
+    bottom: 14px
 }
 
 .titleMid {
-  height: 17px;
-  width: 89px;
-  margin: 0 auto;
-  line-height: 50px;
-  color: #ffffff;
-  font-size: 17px
-
+    height: 17px;
+    width: 89px;
+    margin: 0 auto;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px
 }
 
 .titleRight {
-  height: 28px;
-  width: 20px;
-  position: absolute;
-  bottom: 18px;
-  right: 15px
-
+    height: 28px;
+    width: 20px;
+    position: absolute;
+    bottom: 18px;
+    right: 15px
 }
 
 .topciycle {
-  height: 210px;
-  width: 100%;
-  padding-top: 68px;
-  overflow: hidden;
-  background-color: #F2F2F2;
-  .yesmoney {
-    margin: 0px auto;
-  }
-  .ciycle {
-    height: 134px;
-    width: 134px;
-    margin: 0 auto 0 auto;
-    margin-top: 14px;
-    position: relative;
-    .outCiycle {
-      height: 134px;
-      width: 134px;
-      border-radius: 50%;
-      position: absolute;
-      clip: rect(0, 134px, 104px, 0px);
-      .bgimg {
-        width: 134px;
-        height: 134px;
-        background: url(../../assets/123.png);
-        background-size: 100% 100%;
-        z-index: 1;
-      }
-      .circlebiginner {
-        position: absolute;
-        width: 128px;
-        height: 128px;
-        top: 3px;
-        left: 3px;
-        background: url(../../assets/line.png);
-        background-size: 100% 100%;
-        background-color: #F2F2F2;
-        border-radius: 50%;
-        z-index: 3;
-
-      }
+    height: 210px;
+    width: 100%;
+    padding-top: 68px;
+    overflow: hidden;
+    background-color: #F2F2F2;
+    .yesmoney {
+        margin: 0px auto;
     }
-  }
+    .ciycle {
+        height: 134px;
+        width: 134px;
+        margin: 0 auto 0 auto;
+        margin-top: 14px;
+        position: relative;
+        .outCiycle {
+            height: 134px;
+            width: 134px;
+            border-radius: 50%;
+            position: absolute;
+            clip: rect(0, 134px, 104px, 0px);
+            .bgimg {
+                width: 134px;
+                height: 134px;
+                background: url(../../assets/123.png);
+                background-size: 100% 100%;
+                z-index: 1;
+            }
+            .circlebiginner {
+                position: absolute;
+                width: 128px;
+                height: 128px;
+                top: 3px;
+                left: 3px;
+                background: url(../../assets/line.png);
+                background-size: 100% 100%;
+                background-color: #F2F2F2;
+                border-radius: 50%;
+                z-index: 3;
+            }
+        }
+    }
 }
 
 .circlebiginner-left {
-  height: 10px;
-  width: 7px;
-  position: absolute;
-  top: 120px;
-  left: 10px;
-  font-size: 13px;
-  color: #646464
-
+    height: 10px;
+    width: 7px;
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    font-size: 13px;
+    color: #646464
 }
 
 .circlebiginner-right {
-  height: 12px;
-  width: 100px;
-  position: absolute;
-  top: 120px;
-  left: 75px;
-  font-size: 13px;
-  color: #646464
-
+    height: 12px;
+    width: 100px;
+    position: absolute;
+    top: 120px;
+    left: 75px;
+    font-size: 13px;
+    color: #646464
 }
 
 .circleinner2 {
-  position: absolute;
-  width: 104px;
-  height: 104px;
-  top: 15px;
-  left: 15px;
-  background: #2D6DEB;
-  border-radius: 50%;
-  z-index: 4;
-  /*box-shadow: 1px 1px 15px #43D2C3;*/
-  color: white;
-
+    position: absolute;
+    width: 104px;
+    height: 104px;
+    top: 15px;
+    left: 15px;
+    background: #2D6DEB;
+    border-radius: 50%;
+    z-index: 4;
+    /*box-shadow: 1px 1px 15px #43D2C3;*/
+    color: white;
 }
 
 .circleinner2 span {
-  font-size: 11px;
-  line-height: 80px;
-  text-align: center;
-
+    font-size: 11px;
+    line-height: 80px;
+    text-align: center;
 }
 
 .circleinner2 div {
-  font-size: 17px;
-  position: absolute;
-  top: 50px;
-  left: 25px
-
+    font-size: 17px;
+    position: absolute;
+    top: 50px;
+    left: 25px
 }
 
 .transfer {
-  width: 134px;
-  height: 134px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  clip: rect(0, 67px, 67px, 0px);
-  background-color: #0DBDAA;
-  border-radius: 50%;
-  z-index: 2;
-  border-radius: 50%;
-  transform: rotate(235deg);
-
+    width: 134px;
+    height: 134px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0, 67px, 67px, 0px);
+    background-color: #0DBDAA;
+    border-radius: 50%;
+    z-index: 2;
+    border-radius: 50%;
+    transform: rotate(235deg);
 }
 
 .transfer-block {
-  position: absolute;
-  height: 134px;
-  width: 134px;
-  right: 0;
-  z-index: 10;
-  top: 0;
-
+    position: absolute;
+    height: 134px;
+    width: 134px;
+    right: 0;
+    z-index: 10;
+    top: 0;
 }
 
 .transfer-score {
-  position: absolute;
-  width: auto;
-  height: 20px;
-  top: 1px;
-  right: 23px;
-  color: cornflowerblue;
-  font-size:13px
+    position: absolute;
+    width: auto;
+    height: 20px;
+    top: 1px;
+    right: 23px;
+    color: cornflowerblue;
+    font-size: 13px
+}
 
+.transfer-score.rightscore {
+    right: -27px;
 }
-.transfer-score.rightscore{
-   right:-27px;
-}
+
 .transfer-circle {
-  margin-left: 10px;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: -9px;
-  right: 67px;
-  margin-right: -11px;
-  line-height: 20px;
-  background: url(../../assets/transfercircle.png);
-  background-size: 100% 100%;
-  margin-right: -11px
-
+    margin-left: 10px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -9px;
+    right: 67px;
+    margin-right: -11px;
+    line-height: 20px;
+    background: url(../../assets/transfercircle.png);
+    background-size: 100% 100%;
+    margin-right: -11px
 }
 
 .inCiycle {
-  height: 69px;
-  width: 69px;
-  border-radius: 50%;
-  position: absolute;
-
+    height: 69px;
+    width: 69px;
+    border-radius: 50%;
+    position: absolute;
 }
 
 .apply {
-  height: 22px;
-  width: 48px;
-  //background-color: #F2F2F2;
-  background-color: white;
-  position: absolute;
-  top: 140px;
-  left: -11px;
-  font-size: 12px;
-  text-align: center;
-  line-height: 25px;
-  color: cornflowerblue;
-  border:1px solid cornflowerblue;
-  border-radius: 5px;
+    height: 22px;
+    width: 48px;
+    //background-color: #F2F2F2;
+    background-color: white;
+    position: absolute;
+    top: 140px;
+    left: -11px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 25px;
+    color: cornflowerblue;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
 }
 
-
 .promote {
-  height: 22px;
-  width: 48px;
-  background-color: white;
-  position: absolute;
-  top: 140px;
-  right: -17px;
-  font-size: 12px;
-  text-align: center;
-  line-height: 25px;
-  color: dodgerblue;
-  border:1px solid cornflowerblue;
-  border-radius: 5px;
+    height: 22px;
+    width: 48px;
+    background-color: white;
+    position: absolute;
+    top: 140px;
+    right: -17px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 25px;
+    color: dodgerblue;
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
 }
 
 .borrowMoney {
-  height: 150px;
-  width: 100%;
-  background-color: white;
-
-}
-
-.borrowMoney-top {
-  height: 75px;
-  width: 100%;
-  border-bottom: 1px solid lightgrey;
-  box-sizing: border-box;
-  position: relative
-
-}
-
-.borrowMoney-top-left {
-  float: left;
-  line-height: 75px;
-  left: 4%;
-  position:absolute;
-
-}
-.borrowMoney-top-left b {
-  font-size: 16px;
-  color: black;
-  //font-weight: 700;
-
-}
-
-.borrowMoney-top-left span {
-  font-size: 15px;
-  margin-left:15px;
-  color:#646464
+    height: auto;
+    width: 100%;
+    background-color: white;
+    .box {
+        height: 200px;
+        width: 100%;
+        border-bottom: 1px solid lightgrey;
+        box-sizing: border-box;
+        .line1 {
+            padding-left: 4%;
+            height: 74px;
+            border-bottom: 1px solid #c7c7c7;
+            b {
+                font-size: 16px;
+                height: 16px;
+                vertical-align: middle;
+                color: black;
+                border-left: 2px solid #646464;
+                padding-left: 10px;
+                margin-top: 32px;
+            }
+            span {
+                font-size: 15px;
+                margin-left: 15px;
+                color: #646464;
+                margin-top: 32px;
+            }
+        }
+        .line2 {
+            display: flex;
+            height: 74px;
+            border-bottom: 1px solid #c7c7c7;
+            .cell {
+                border-right: 1px solid #c7c7c7;
+                flex: 1;
+                .text1 {
+                    font-size: 13px;
+                    margin-top: 18px;
+                }
+                .text2 {
+                    font-size: 14px;
+                    margin-top: 14px;
+                    color: $mainColorBlue;
+                }
+                &:last-child {
+                    border-right: none;
+                }
+            }
+        }
+        .line3 {
+            .status {
+                font-size: 14px;
+                margin-top: 20px;
+                margin-left: 8%;
+            }
+            .rightBtn {
+                float: right;
+                font-size: 15px;
+                height: 28px;
+                line-height: 28px;
+                width: 18%;
+                margin-right: 4%;
+                margin-top: 10px;
+                border-radius: 10px;
+                color: cornflowerblue;
+                background-color: white;
+                border: 1px solid cornflowerblue;
+            }
+        }
+    }
+    .box2 {
+        width: 100%;
+        box-sizing: border-box;
+        .line1 {
+            padding-left: 4%;
+            height: 74px;
+            b {
+                font-size: 16px;
+                height: 16px;
+                vertical-align: middle;
+                color: black;
+                border-left: 2px solid #646464;
+                padding-left: 10px;
+                margin-top: 32px;
+            }
+            span {
+                font-size: 15px;
+                margin-left: 15px;
+                color: #646464;
+                margin-top: 32px;
+            }
+        }
+        .rightBtn {
+            float: right;
+            font-size: 15px;
+            height: 28px;
+            line-height: 28px;
+            width: 18%;
+            margin-top: 24px;
+            margin-right: 4%;
+            border-radius: 10px;
+            color: cornflowerblue;
+            background-color: white;
+            border: 1px solid cornflowerblue;
+        }
+    }
 }
 
 .borrowMoney-top-right {
-  float: right;
-  font-size: 15px;
-  height: 28px;
-  width: 18%;
-  border-radius: 10px;
-  color: cornflowerblue;
-  position: absolute;
-  top: 20px;
-  right: 4%;
-  line-height: 28px;
-  border:1px solid cornflowerblue;
-  background-color: white;
+    float: right;
+    font-size: 15px;
+    height: 28px;
+    width: 18%;
+    border-radius: 10px;
+    color: cornflowerblue;
+    position: absolute;
+    top: 20px;
+    right: 4%;
+    line-height: 28px;
+    border: 1px solid cornflowerblue;
+    background-color: white;
 }
 
 .borrowMoney-bottom {
-  height: 75px;
-  width: 100%;
-  position: relative
-
+    height: 75px;
+    width: 100%;
+    position: relative
 }
 
 .borrowMoney-bottom-left {
-  float: left;
-  line-height: 75px;
-  left: 4%;
-  position: absolute;
-
-}
-
-.borrowMoney-bottom-left b {
-  font-size: 16px;
-  color: black
-
-}
-
-.borrowMoney-bottom-left span {
-  font-size: 15px;
-  margin-left: 15px;
-  color:#646464
-}
-
-.borrowMoney-bottom-right {
-  float: right;
-  font-size: 15px;
-  height: 28px;
-  width: 18%;
-  border-radius: 10px;
-  color: cornflowerblue;
-  position: absolute;
-  background-color: white;
-  top: 20px;
-  right: 4%;
-  line-height: 28px;
-  border:1px solid cornflowerblue;
-
+    float: left;
+    height: 74px;
+    padding-left: 4%;
+    b {
+        font-size: 16px;
+        height: 16px;
+        vertical-align: middle;
+        color: black;
+        border-left: 2px solid #646464;
+        padding-left: 10px;
+        margin-top: 32px;
+    }
+    span {
+        font-size: 15px;
+        margin-left: 15px;
+        color: #646464;
+        margin-top: 32px;
+    }
 }
 
 .prompt2 {
-  height: 8px;
-  background-color: #F2F2F2;
-
+    height: 8px;
+    background-color: #F2F2F2;
 }
 
 .message {
-  background-color: white
-
+    background-color: white
 }
 
 .message-top {
-  height: 43px;
-  border-bottom: 1px solid #F2F2F2;
-  box-sizing: border-box;
-  position: relative
-
+    height: 43px;
+    border-bottom: 1px solid #F2F2F2;
+    box-sizing: border-box;
+    position: relative
 }
 
 .message-top img {
-  float: right;
-  position: absolute;
-  right: 3%;
-  height: 13px;
-  width: 8px;
-  top: 13px
-
+    float: right;
+    position: absolute;
+    right: 3%;
+    height: 13px;
+    width: 8px;
+    top: 13px
 }
 
 .message-top span {
-  float: left;
-  line-height: 43px;
-  margin-left: 4%;
-  color: black;
-  font-size: 16px
-
+    float: left;
+    line-height: 43px;
+    margin-left: 4%;
+    color: black;
+    font-size: 16px
 }
 
 .message-mid {
-  height: 42px;
-  border-bottom: 1px solid #F2F2F2;
-  box-sizing: border-box;
-  position: relative;
-  color:#646464;
-  font-size:12px
+    height: 42px;
+    border-bottom: 1px solid #F2F2F2;
+    box-sizing: border-box;
+    position: relative;
+    color: #646464;
+    font-size: 12px
 }
 
 .message-mid span:nth-of-type(1) {
-  float: left;
-  line-height: 42px;
-  margin-left: 7%;
-  font-size: 14px;
-  text-align: center;
+    float: left;
+    line-height: 42px;
+    margin-left: 7%;
+    font-size: 14px;
+    text-align: center;
 }
 
 .message-mid span:nth-of-type(2) {
-  float: right;
-  left: 3%;
-  line-height: 42px;
-  margin-right: 3%;
-  font-size: 15px
-
+    float: right;
+    left: 3%;
+    line-height: 42px;
+    margin-right: 3%;
+    font-size: 15px
 }
 
+
 /*.message-bottom {*/
+
+
 /*height: 43px;*/
+
+
 /*color: #00917E;*/
+
+
 /*font-size: 14px;*/
+
+
 /*line-height: 43px*/
+
+
 /*}*/
 
+
 /*.message-bottom2 {*/
+
+
 /*height: 43px;*/
+
+
 /*color: #00917E;*/
+
+
 /*font-size: 14px;*/
+
+
 /*line-height: 43px*/
+
+
 /*}*/
 
 .play {
-  height: 100%;
-  background-color: white;
+    height: 100%;
+    background-color: white;
 }
 
 .tab {
-  height: 28px;
-  font-size: 13px;
-  .tabItem {
     height: 28px;
-    line-height: 28px;
-    width: 50%;
-    float: left;
-    color: black;
-    box-sizing: border-box;
-    border: 1px solid lightgrey;
-    &.active {
-      border-bottom: none;
-      border-color: lightslategray;
-      background-color: cornflowerblue;
-      color:white
+    font-size: 13px;
+    .tabItem {
+        height: 28px;
+        line-height: 28px;
+        width: 50%;
+        float: left;
+        color: black;
+        box-sizing: border-box;
+        border: 1px solid lightgrey;
+        &.active {
+            border-bottom: none;
+            border-color: lightslategray;
+            background-color: cornflowerblue;
+            color: white
+        }
     }
-  }
 }
 
 .play-table {
-  height: 61px;
-  border-bottom: 1px solid #F2F2F2;
-  position: relative;
+    height: 61px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
 }
 
 .play-table-noRecords {
-  height: 61px;
-  line-height: 61px;
-  float:left;
-  margin-left: 7%;
-  font-size:14px;
-  color:#646464
+    height: 61px;
+    line-height: 61px;
+    float: left;
+    margin-left: 7%;
+    font-size: 14px;
+    color: #646464
 }
 
 .play-table-name {
-  float: left;
-  font-size: 13px;
-  margin-left: 3%;
-  line-height: 45px;
+    float: left;
+    font-size: 13px;
+    margin-left: 3%;
+    line-height: 45px;
 }
 
 .play-table-money {
-  float: right;
-  font-size: 13px;
-  margin-right: 3%;
-  line-height: 45px;
+    float: right;
+    font-size: 13px;
+    margin-right: 3%;
+    line-height: 45px;
 }
 
 .play-table-date {
-  float: left;
-  font-size: 11px;
-  margin-left: 3%;
-  bottom: 5px;
-  position: absolute;
-  color: lightgrey;
+    float: left;
+    font-size: 11px;
+    margin-left: 3%;
+    bottom: 5px;
+    position: absolute;
+    color: lightgrey;
 }
 
 .play-table-count {
-  float: right;
-  font-size: 11px;
-  right: 3%;
-  bottom: 5px;
-  position: absolute;
-  color: lightgrey;
+    float: right;
+    font-size: 11px;
+    right: 3%;
+    bottom: 5px;
+    position: absolute;
+    color: lightgrey;
 }

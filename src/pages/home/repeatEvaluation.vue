@@ -39,18 +39,36 @@
       </div>
     </div>
     <div class="borrowMoney">
-      <div class="borrowMoney-top">
-        <div class="borrowMoney-top-left"><b>| 臻e贷</b><span>前往网商银行借款</span></div>
-        <div class="borrowMoney-top-right">申请</div>
+      <div class="box">
+        <div class="line1"><b class="boxTitle left">臻e贷</b><span class="ml15 left">由臻e盾、网商银行联合推出</span></div>
+        <!--<div class="borrowMoney-top-right">申请</div>-->
+        <div class="line2 clear">
+          <div class="cell">
+            <div class="text1">授信额度(元)</div>
+            <div class="text2">暂无</div>
+          </div>
+          <div class="cell">
+            <div class="text1">授信额度(元)</div>
+            <div class="text2">暂无</div>
+          </div>
+        </div>
+        <div class="line3">
+          <div class="status left">尚未申请</div>
+          <div class="rightBtn right" @click="applyBtn()" v-if="isShowApplyM">申请</div>
+          <div class="rightBtn right" @click="GiveMBtn()" v-if="isShowGiveM">还款</div>
+          <div class="rightBtn right" @click="GiveMBtn()" v-if="isShowGetM">提款</div>
+        </div>
       </div>
-      <div class="borrowMoney-bottom">
-        <div class="borrowMoney-bottom-left"><b>| 臻分期</b><span>臻e盾产品支付分期啦</span></div>
-        <div class="borrowMoney-bottom-right" @click="goStages()">申请</div>
+      <div class="box2">
+        <div class="line1">
+          <b class="left">臻分期</b><span class="ml15 left">臻e盾产品支付分期啦</span>
+          <div class="rightBtn" @click="goStages()">申请</div>
+        </div>
       </div>
     </div>
     <div class="prompt2"></div>
     <div class="message">
-      <div class="message-top"><span>| 融资信息</span><img src="../../assets/right.png" alt=""></div>
+      <div class="message-top"><span>融资信息</span><img src="../../assets/right.png" alt=""></div>
       <div class="message-mid"><span>暂无数据</span><span></span></div>
       <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
       <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
@@ -97,7 +115,6 @@
 //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
-    name: 'HelloWorld',
     data() {
       return {
         moneyRecords: false,
@@ -138,7 +155,10 @@
         atborrowMoney: '',
         records: [],
         playRecords: [],
-        amount: ''
+        amount: '',
+        isShowApplyM: true,
+        isShowGiveM: false,
+        isShowGetM: false
       }
     },
     filters: {
@@ -192,6 +212,15 @@
       })
     },
     methods: {
+      GetMBtn() {
+        Toast('提款')
+      },
+      GiveMBtn() {
+        Toast('还款')
+      },
+      applyBtn() {
+        Toast('申请')
+      },
 //      借款记录
       borrowRecord() {
         let params = {
