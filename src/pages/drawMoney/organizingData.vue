@@ -7,44 +7,44 @@
     </div>
     <div class="main">
       <div class="table-infor">
-        <div class="table-left"></div>
+        <div class="table-left">本地房产</div>
         <div></div>
       </div>
       <div class="table-infor">
-        <div></div>
-        <div></div>
-      </div>
-      <div class="table-infor">
-        <div></div>
+        <div class="table-left">市场价值</div>
         <div></div>
       </div>
       <div class="table-infor">
+        <div class="table-left">车辆信息</div>
         <div></div>
+      </div>
+      <div class="table-infor">
+        <div class="table-left">市场价值</div>
         <div></div>
       </div>
       <div class="prompt2"></div>
       <div class="table-infor">
-        <div></div>
-        <div></div>
-      </div>
-      <div class="table-infor">
-        <div></div>
+        <div class="table-left">是否店铺所有者</div>
         <div></div>
       </div>
       <div class="table-infor">
-        <div></div>
-        <div></div>
-      </div>
-      <div class="table-infor">
-        <div></div>
+        <div class="table-left">店铺月经营收入</div>
         <div></div>
       </div>
       <div class="table-infor">
-        <div></div>
+        <div class="table-left">员工人数</div>
         <div></div>
       </div>
       <div class="table-infor">
+        <div class="table-left">店铺年租金</div>
         <div></div>
+      </div>
+      <div class="table-infor">
+        <div class="table-left">店铺开业时长</div>
+        <div></div>
+      </div>
+      <div class="table-infor">
+        <div class="table-left">店铺所处区域</div>
         <div></div>
       </div>
     </div>

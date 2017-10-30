@@ -51,14 +51,21 @@ img {
   height:100%;
   padding-top: 44px;
 }
+
+.prompt2 {
+  height: 8px;
+  background-color: #F2F2F2;
+ border-bottom: 1px solid lightgrey;
+}
 .table-infor{
   height:44px;
   width:100%;
   border-bottom: 1px solid lightgrey;
   background-color: white;
 }
-.prompt2 {
-  height: 8px;
-  background-color: #F2F2F2;
- border-bottom: 1px solid lightgrey;
+.table-left{
+  float: left;
+  line-height: 44px;
+  margin-left: 5%;
+  font-size:15px
 }

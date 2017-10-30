@@ -5,7 +5,7 @@
       <div class="titleMid"><span>{{type | typeText}}</span></div>
       <!--<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>-->
     </div>
-    <div class="prompt"><span>请输入真实有效的内容，否则将影响您的臻商信用</span></div>
+    <div class="prompt"><span>请输入真实有效的内容，否则将严重影响您的信用!</span></div>
     <div class="information">
       <mt-field label="手机号" disabled="disabled" v-model="accountTel" placeholder="" type=""
                 class="informationBorder"></mt-field>
