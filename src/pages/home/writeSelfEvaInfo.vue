@@ -3,7 +3,7 @@
     <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
       <div class="titleMid"><span>{{type | typeText}}</span></div>
-      <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
+      <!--<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>-->
     </div>
     <div class="prompt"><span>请输入真实有效的内容，否则将影响您的臻商信用</span></div>
     <div class="information">
@@ -54,7 +54,7 @@
       </mt-popup>
       <mt-field label="子女职业" v-show="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
                 v-model="childrenState" class="informationBorder" :readonly="readonly"></mt-field>
-      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收入-月支出(元)" type="number"
+      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收入-月支出" type="number"
                 v-model="pay"
       ></mt-field>
     </div>
@@ -126,7 +126,7 @@
         return type === 'repeat' ? '重自评' : '自评'
       },
       typeBtnText(type) {
-        return type === 'repeat' ? '重自评提交' : '自评提交'
+        return type === 'repeat' ? '提交' : '提交'
       }
     },
     created() {
@@ -222,7 +222,7 @@
           if (this.idcard) {
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-            if (this.currentYear >= 24 && this.currentYear <= 40) { 
+            if (this.currentYear >= 24 && this.currentYear <= 40) {
               Toast('请输入准确信息')
             }
           }
@@ -233,7 +233,7 @@
             if (this.idcard) {
               var date = new Date();
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-              if (this.currentYear >= 24 && this.currentYear <= 40) { 
+              if (this.currentYear >= 24 && this.currentYear <= 40) {
                 Toast('请输入准确信息')
               }
             }
@@ -261,6 +261,25 @@
           console.log('reg.test')
         } else {
         }
+      },
+      addAction() {
+        let params = {
+          mobile: this.accountTel,
+          name: this.username,
+          identityNo: this.idcard,
+          marriage: parseInt(this.marryStateValue),
+          spouseOCP: parseInt(this.objectStateValue),
+          childOCP: parseInt(this.childrenStateValue),
+          fmSaving: this.pay,
+          action: this.type === 'repeat' ? 3 : 1
+        }
+        let config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        axios.post(root + '/selfeval/addRecord', params, config).then(res => {
+        })
       },
       transfer() {
 //          let params = {
@@ -316,10 +335,7 @@
               if (res.status == 200 && response.code == 1000 && response.data.score) {
                 this.score = response.data.score.toFixed(0);
                 this.money = response.data.quota;//授信money
-//                const score = response.data.score.toFixed(1);//自评分
-//                const deg = 360 - this.initialdeg * 2;
-//                const eachscore = this.allscore / deg;
-//                const needtransdeg = score / eachscore;
+                this.addAction();
                 this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
                 &username=${this.username}
                 &idcard=${this.idcard}
@@ -401,7 +417,7 @@
       background-color: #F2F2F2;
       font-size: 13px;
       color: darkgray;
-      line-height: 45px;
+      line-height: 51px;
       border-bottom: 1px solid lightgray;
       margin-top: 44px;
     }
@@ -484,14 +500,14 @@
     }
 
     .yes {
-      height: 40px;
-      width: 160px;
-      background-color: #00917E;
+      height: 35px;
+      width: 80px;
+      background-color: cornflowerblue;
       border-radius: 10px;
       margin: 50px auto;
       color: white;
       font-size: 17px;
-      line-height: 40px
+      line-height: 35px
     }
   }
 </style>

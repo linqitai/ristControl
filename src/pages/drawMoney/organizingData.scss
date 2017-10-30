@@ -6,7 +6,7 @@ body {
 }
 
 .title {
-  height: 47px;
+  height: 44px;
   background-color: #2D6DEB;
   position: relative;
   position: fixed;
@@ -49,10 +49,16 @@ img {
 }
 .main{
   height:100%;
-  padding-top: 47px;
+  padding-top: 44px;
 }
 .table-infor{
   height:44px;
   width:100%;
   border-bottom: 1px solid lightgrey;
+  background-color: white;
+}
+.prompt2 {
+  height: 8px;
+  background-color: #F2F2F2;
+ border-bottom: 1px solid lightgrey;
 }

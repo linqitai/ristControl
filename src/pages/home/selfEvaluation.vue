@@ -3,7 +3,7 @@
     <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
       <div class="titleMid"><span>信用中心</span></div>
-      <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
+      <!--<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>-->
     </div>
     <div class="header">完成自评后才会有信用额度哦</div>
     <div class="topciycle">
@@ -280,7 +280,7 @@
       top: 120px;
       left: 10px;
       font-size: 13px;
-      color: #00917E
+      color: #646464
     }
 
     .circlebiginner-mid {
@@ -300,7 +300,7 @@
       top: 120px;
       left: 78px;
       font-size: 13px;
-      color: #00917E
+      color: #646464
     }
 
     .circleinner2 {
@@ -309,11 +309,11 @@
       height: 104px;
       top: 15px;
       left: 15px;
-      background: #E4F9F6;
+      background: #2D6DEB;
       border-radius: 50%;
       z-index: 4;
       /*box-shadow: 1px 1px 15px #43D2C3;*/
-      color: #00917F;
+      color: white;
     }
 
     .circleinner2 span {
@@ -369,12 +369,12 @@
     }
 
     .yes {
-      height: 40px;
-      width: 160px;
-      background-color: #00917E;
+      height: 35px;
+      width: 80px;
+      background-color: cornflowerblue;
       color: white;
       border-radius: 10px;
-      line-height: 40px;
+      line-height: 35px;
       margin: 58px auto
     }
   }

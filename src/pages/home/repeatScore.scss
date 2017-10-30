@@ -100,7 +100,7 @@ img {
   top: 120px;
   left: 10px;
   font-size: 13px;
-  color: #00917E
+  color: #646464
 
 }
 
@@ -109,9 +109,9 @@ img {
   width: 100px;
   position: absolute;
   top: 120px;
-  left: 78px;
+  left: 75px;
   font-size: 13px;
-  color: #00917E
+  color: #646464
 
 }
 
@@ -121,7 +121,7 @@ img {
   height: 104px;
   top: 15px;
   left: 15px;
-  background: #00917E;
+  background: #2D6DEB;
   border-radius: 50%;
   z-index: 4;
   /*box-shadow: 1px 1px 15px #43D2C3;*/
@@ -175,7 +175,8 @@ img {
   height: 20px;
   top: 1px;
   right: 23px;
-  color: #00917F
+  color: cornflowerblue;
+  font-size:13px
 
 }
 .transfer-score.rightscore{
@@ -205,34 +206,34 @@ img {
 }
 
 .apply {
-  height: 25px;
-  width: 60px;
+  height: 22px;
+  width: 48px;
   //background-color: #F2F2F2;
   background-color: white;
   position: absolute;
   top: 140px;
-  left: -50px;
-  font-size: 14px;
+  left: -11px;
+  font-size: 12px;
   text-align: center;
   line-height: 25px;
-  color: #00917F;
-  border:1px solid #00917F;
+  color: cornflowerblue;
+  border:1px solid cornflowerblue;
   border-radius: 5px;
 }
 
 
 .promote {
-  height: 25px;
-  width: 60px;
+  height: 22px;
+  width: 48px;
   background-color: white;
   position: absolute;
   top: 140px;
-  right: -50px;
-  font-size: 14px;
+  right: -17px;
+  font-size: 12px;
   text-align: center;
   line-height: 25px;
-  color: #00917F;
-  border:1px solid #00917F;
+  color: dodgerblue;
+  border:1px solid cornflowerblue;
   border-radius: 5px;
 }
 
@@ -256,35 +257,35 @@ img {
   float: left;
   line-height: 75px;
   left: 4%;
-  position: absolute
+  position:absolute;
 
 }
-
 .borrowMoney-top-left b {
-  font-size: 18px;
-  color: #00917E
+  font-size: 16px;
+  color: black;
+  //font-weight: 700;
 
 }
 
 .borrowMoney-top-left span {
   font-size: 15px;
-  margin-left: 22px
-
+  margin-left:15px;
+  color:#646464
 }
 
 .borrowMoney-top-right {
   float: right;
   font-size: 15px;
-  height: 31px;
-  width: 25%;
-  background-color: #00917E;
-  border-radius: 50px;
-  color: white;
+  height: 28px;
+  width: 18%;
+  border-radius: 10px;
+  color: cornflowerblue;
   position: absolute;
   top: 20px;
   right: 4%;
-  line-height: 31px
-
+  line-height: 28px;
+  border:1px solid cornflowerblue;
+  background-color: white;
 }
 
 .borrowMoney-bottom {
@@ -298,34 +299,35 @@ img {
   float: left;
   line-height: 75px;
   left: 4%;
-  position: absolute
+  position: absolute;
 
 }
 
 .borrowMoney-bottom-left b {
-  font-size: 18px;
-  color: #00917E
+  font-size: 16px;
+  color: black
 
 }
 
 .borrowMoney-bottom-left span {
   font-size: 15px;
-  margin-left: 15px
-
+  margin-left: 15px;
+  color:#646464
 }
 
 .borrowMoney-bottom-right {
   float: right;
   font-size: 15px;
-  height: 31px;
-  width: 25%;
-  background-color: #00917E;
-  border-radius: 50px;
-  color: white;
+  height: 28px;
+  width: 18%;
+  border-radius: 10px;
+  color: cornflowerblue;
   position: absolute;
+  background-color: white;
   top: 20px;
   right: 4%;
-  line-height: 31px
+  line-height: 28px;
+  border:1px solid cornflowerblue;
 
 }
 
@@ -361,7 +363,7 @@ img {
 .message-top span {
   float: left;
   line-height: 43px;
-  margin-left: 3%;
+  margin-left: 4%;
   color: black;
   font-size: 16px
 
@@ -372,13 +374,14 @@ img {
   border-bottom: 1px solid #F2F2F2;
   box-sizing: border-box;
   position: relative;
+  color:#646464;
+  font-size:12px
 }
 
 .message-mid span:nth-of-type(1) {
   float: left;
-  left: 3%;
   line-height: 42px;
-  margin-left: 3%;
+  margin-left: 7%;
   font-size: 14px;
   text-align: center;
 }
@@ -412,20 +415,20 @@ img {
 }
 
 .tab {
-  height: 43px;
-  font-size: 15px;
+  height: 28px;
+  font-size: 13px;
   .tabItem {
-    height: 43px;
-    line-height: 43px;
+    height: 28px;
+    line-height: 28px;
     width: 50%;
     float: left;
     color: black;
     box-sizing: border-box;
-    border: 1px solid gainsboro;
+    border: 1px solid lightgrey;
     &.active {
       border-bottom: none;
-      border-color: #00917E;
-      background-color: #00917E;
+      border-color: lightslategray;
+      background-color: cornflowerblue;
       color:white
     }
   }
@@ -441,8 +444,9 @@ img {
   height: 61px;
   line-height: 61px;
   float:left;
-  margin-left: 3%;
-  font-size:14px
+  margin-left: 7%;
+  font-size:14px;
+  color:#646464
 }
 
 .play-table-name {

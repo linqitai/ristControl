@@ -30,6 +30,9 @@ const router = new Router({
         path: '/repeatEvaluation',
         component: repeatEvaluation
       }, {
+        path: '/repeatScore',
+        component: repeatEvaluation
+      }, {
         path: '/organizingData',
         component: organizingData
       }]

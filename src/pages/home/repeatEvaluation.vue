@@ -3,10 +3,10 @@
     <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
       <div class="titleMid"><span>信用中心</span></div>
-      <div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>
+      <!--<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>-->
     </div>
     <div class="topciycle">
-      <div class="yesmoney">可用信用额度:{{atborrowMoney}}元</div>
+      <div class="yesmoney">可用信用额度/{{atborrowMoney}}元</div>
       <div class="ciycle">
         <div class="outCiycle">
           <!--<div style="position:absolute;z-index:9999;margin-left:50%; transform: translateX(-50%)">10000元 </div>-->
@@ -40,11 +40,11 @@
     </div>
     <div class="borrowMoney">
       <div class="borrowMoney-top">
-        <div class="borrowMoney-top-left"><b>臻e贷</b><span>前往网商银行借款</span></div>
+        <div class="borrowMoney-top-left"><b>| 臻e贷</b><span>前往网商银行借款</span></div>
         <div class="borrowMoney-top-right">申请</div>
       </div>
       <div class="borrowMoney-bottom">
-        <div class="borrowMoney-bottom-left"><b>臻分期</b><span>臻e盾产品支付分期啦</span></div>
+        <div class="borrowMoney-bottom-left"><b>| 臻分期</b><span>臻e盾产品支付分期啦</span></div>
         <div class="borrowMoney-bottom-right" @click="goStages()">申请</div>
       </div>
     </div>
@@ -317,78 +317,6 @@
           /*this.idcard = this.idcard.replace()*/
         }
       },
-//      transfer() {
-//        if (this.accountTel) {
-//          let params = {
-//            mobile: this.accountTel,
-//            name: this.username,
-//            identityNo: this.idcard,
-//            marriage: parseInt(this.marryStateValue),
-//            spouseOCP: parseInt(this.objectStateValue),
-//            childOCP: parseInt(this.childrenStateValue),
-//            fmSaving: this.pay,
-//          }
-//          let config = {
-//            headers: {
-//              'Content-Type': 'application/json'
-//            }
-//          }
-//          const self = this;
-//          axios.post('/zsf/selfeval/reEvaluate', params, config).then(res => {
-//            const response = res.data;
-//            console.log(res)
-//            if (res.status == 200 && response.code == 1000 && response.data.score) {
-//              const score = response.data.score.toFixed(1);//自评分
-//              const deg = 360 - this.initialdeg * 2;
-//              const eachscore = this.allscore / deg;
-//              const needtransdeg = score / eachscore;
-//              this.circleshow = true;
-//              this.score = response.data.score.toFixed(0);
-//              this.money = response.data.quota;//授信money
-//              //重评归0
-//              if (self.Reappraisal) {
-//                this.transferdeg = 235;
-//                self.scoreshow = false;
-//                self.Reappraisal = false;
-//              }
-//              setInterval(function () {
-//                if (self.transferdeg >= (235 + needtransdeg)) {
-//                  self.scoreshow = true;
-//                  self.selfShow2 = true;//授信金额出现
-//                  return;
-//                }
-//                self.transferdeg++;
-//              }, 20)
-//              //本地评分
-//              const nowdate = new Date();
-//              const obj = {"time": nowdate.getTime(), "score": this.score, "money": this.money};
-//              if (window.localStorage) {
-//                window.localStorage.setItem("storescore", JSON.stringify(obj));
-//              }
-//              //第一次自评6小时定时监测
-//              setInterval(function () {
-//                console.log(nowdate.getTime(), new Date().getTime())
-//                if ((nowdate.getTime() + 6 * 60 * 60 * 1000) < new Date().getTime()) {
-//                  self.Reappraisal = true;
-////                  this.$router.push(`/home?accountTel=${this.accountTel}`)
-//                }
-//              }, 1000)
-//            } else if (res.status == 200 && response.code == 1101) {
-////              this.popupVisible5 = true;
-//              Toast('6小时内您无法重新自评')
-//              return false;
-//            } else if (res.status == 200 && response.code == 1100) {
-////              this.popupVisible6 = true;
-//              Toast('您输入的信息有误')
-//              return false;
-//            }
-//          }).catch(res => {
-//            Toast(res)
-//          })
-//        } else {
-//          Toast('没有接收到accountTel参数')
-//        }
-//      },
       transfer1() {
         this.accountTel = this.$route.query.accountTel;
         this.username = this.$route.query.username;
@@ -409,7 +337,7 @@
             fmSaving: this.pay,
             action: 2
           }
-          axios.post(root + '/selfeval/evaluate', params).then(res => {
+          axios.post(root + '/selfeval/addRecord', params).then(res => {
 //            this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
           })
         }
