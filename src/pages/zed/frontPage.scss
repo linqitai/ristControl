@@ -1,0 +1,29 @@
+@import "../../common/scss/common.scss";
+.frontPage {
+    padding-top: 44px;
+    .line1 {
+        display: flex;
+        padding-left: 4%;
+        height: 74px;
+        border-bottom: 1px solid #c7c7c7;
+        b {
+            flex: 0 0 60px;
+            font-size: 16px;
+            height: 16px;
+            color: black;
+            border-left: 2px solid #646464;
+            padding-left: 6px;
+            margin-top: 32px;
+            box-sizing: border-box;
+        }
+        span {
+            flex: 1;
+            font-size: 13px;
+            line-height: 15px;
+            color: #646464;
+            margin-top: 24px;
+            padding-left: 8px;
+            padding-right: 12px;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-@import "../../common/scss/common.scss";
+@import "../../common/scss/index.scss";
 .organizingData {
   .title {
     height: 44px;
@@ -14,7 +14,7 @@
     overflow: hidden;
     background-color: #ffffff;
     padding-left: 16px;
-    margin-top: 12px;
+    margin-top: 44px;
     .myCellWrapper {
       @include cell();
       @include border-1px();
@@ -109,20 +109,21 @@
   }
   .table-right{
     float: right;
-    line-height: 44px;
+    line-height: 42px;
     margin-right:5%;
-    font-size:15px
+    font-size:15px;
+    overflow: hidden;
   }
   .tableInput{
 
   }
   .rightIcon{
     float:right;
-    margin-top: 5px;
   }
   .table-right img{
-    height:80%;
-    width:80%
+    width: 10px;
+    height: 17px;
+    margin-top: 12px;
   }
 }
 
