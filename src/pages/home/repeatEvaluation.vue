@@ -35,7 +35,7 @@
         <div class="circlebiginner-right">1000分</div>
         <div class="apply"><span @click="transfer1()">重自评</span>
         </div>
-        <div class="promote">去提额</div>
+        <div class="promote" @click="goDrawMoney()">去提额</div>
       </div>
     </div>
     <div class="borrowMoney">
@@ -68,7 +68,7 @@
     </div>
     <div class="prompt2"></div>
     <div class="message">
-      <div class="message-top"><span>融资信息</span><img src="../../assets/right.png" alt=""></div>
+      <div class="message-top" @click="goOrganinzingData()"><span>融资信息</span><img src="../../assets/right.png" alt=""></div>
       <div class="message-mid"><span>暂无数据</span><span></span></div>
       <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
       <!--<div class="message-mid"><span>您的额度已过期,请重新申请!</span><span>10:00</span></div>-->
@@ -100,6 +100,7 @@
           <div class="play-table-date">{{item.applyTime | _getDate}}</div>
           <div class="play-table-count">共{{item.repayTotalTimes}}期</div>
         </div>
+        <div class="lookMore" @click="lookMore()" v-show="lookMoreShow">查看更多</div>
         <div class="play-table-noRecords" v-show="noRecords">暂无数据</div>
       </div>
     </div>
@@ -158,7 +159,8 @@
         amount: '',
         isShowApplyM: true,
         isShowGiveM: false,
-        isShowGetM: false
+        isShowGetM: false,
+        lookMoreShow: false
       }
     },
     filters: {
@@ -230,8 +232,11 @@
           if (res.code === 0 && res.list.length !== 0) {
             console.log(res.list.length)
             this.records = res.list;
+            this.noRecords = false
+            this.lookMoreShow = true
           } else {
             this.noRecords = true
+            this.lookMoreShow = false
           }
         })
       },
@@ -243,85 +248,11 @@
         recentRepaymentPlan(params).then(res => {
           if (res.code === 0 && res.list.length !== 0) {
             this.playRecords = res.list;
+            this.noRecords = false
           } else {
             this.noRecords = true
           }
         })
-      },
-      //点击婚姻状态
-      selectState: function (state) {
-        this.marryState = state;
-        this.popupVisible = false;
-        if (state == '未婚') {
-          this.objectshow = false;// 配偶
-          this.childrenshow = false;// 子女
-
-        } else if (state == '离异') {
-          this.objectshow = false;// 配偶
-          this.childrenshow = true;// 子女
-        } else {
-          this.objectshow = true;
-          this.childrenshow = true;
-        }
-        if (state == '未婚') {
-          this.marryStateValue = 0
-          this.objectStateValue = 0
-          this.childrenStateValue = 0
-        } else if (state == '已婚') {
-          this.marryStateValue = 1
-        } else if (state == '离异') {
-          this.marryStateValue = 2
-          this.objectStateValue = 0
-        } else {
-          this.marryStateValue = 3
-        }
-      },
-      //点击配偶职业
-      selectState2: function (state) {
-        this.objectState = state;
-        this.popupVisible2 = false;
-        if (state == '无配偶') {
-          this.objectStateValue = 0
-        } else if (state == '政府部门') {
-          this.objectStateValue = 1
-        } else if (state == '事业单位') {
-          this.objectStateValue = 2
-        } else {
-          this.objectStateValue = 3
-        }
-      },
-      //点击子女职业
-      selectState3: function (state) {
-        this.childrenState = state;
-        this.popupVisible3 = false;
-        if (state == '无配偶') {
-          this.childrenStateValue = 0
-        } else if (state == '政府部门') {
-          this.childrenStateValue = 1
-          if (this.idcard) {
-            var date = new Date;
-            this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-            if (this.currentYear >= 24 && this.currentYear <= 40) {
-//              this.popupVisible4 = true;
-              Toast('请输入准确信息')
-            }
-          }
-        } else if (state == '事业单位') {
-          this.childrenStateValue = 2
-          if (this.idcard) {
-            console.log(this.idcard.substr(6, 4));
-            if (this.idcard) {
-              var date = new Date;
-              this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-              if (this.currentYear >= 24 && this.currentYear <= 40) {
-//                this.popupVisible4 = true;
-                Toast('请输入准确信息')
-              }
-            }
-          }
-        } else {
-          this.childrenStateValue = 3
-        }
       },
       //        app点击返回
       back() {
@@ -333,6 +264,9 @@
           htmlToJava.popToViewController()
         }
         window.history.back();
+      },
+      lookMore(){
+        this.$router.push(`/borrowRecord?accountTel=${this.accountTel}`)
       },
 //     姓名正则
       inputname() {
@@ -390,20 +324,6 @@
         }
 
       },
-//      transfer2() {
-//        if (this.accountTel) {
-//          let params = {
-//            mobile: this.accountTel,
-//          }
-//          let config = {
-//            headers: {
-//              'Content-Type': 'application/json'
-//            },
-//          }
-//          axios.post(root + '/selfeval/financing', params, config).then(res => {
-//          })
-//        }
-//      },
       goStages() {
         console.log(this.atborrowMoney)
         var asd = JSON.stringify({"atborrowMoney": this.atborrowMoney});
@@ -427,6 +347,12 @@
         this.moneyPlayShow = false;
         this.moneyRecords = true;
         this.borrowRecord()
+      },
+      goDrawMoney(){
+        this.$router.push(`/promoteMoney?accountTel=${this.accountTel}`)
+      },
+      goOrganinzingData(){
+        this.$router.push(`/finincing?accountTel=${this.accountTel}`)
       }
     }
   }

@@ -114,8 +114,13 @@
     font-size:15px;
     overflow: hidden;
   }
-  .tableInput{
-
+  .table-right input{
+    text-align: right;
+  }
+  .selectInput{
+    padding:10px;
+    font-size:15px;
+    width:100px
   }
   .rightIcon{
     float:right;
@@ -124,6 +129,30 @@
     width: 10px;
     height: 17px;
     margin-top: 12px;
+  }
+  .box {
+    width: 100%;
+    background-color: #BDBDBD
+  }
+  .box div {
+    height: 35px;
+    border-bottom: 1px solid lightgray;
+    line-height: 35px;
+    font-size: 15px;
+    background-color: #fff
+  }
+  #boxBlank {
+    height: 20px;
+    background-color: #BDBDBD
+  }
+  .yesButton{
+    height:44px;
+    width:300px;
+    background-color: cornflowerblue;
+    color:white;
+    border-radius: 10px;
+    margin:90px auto;
+    line-height: 44px;
   }
 }
 

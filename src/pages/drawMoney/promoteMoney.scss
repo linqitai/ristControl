@@ -1,0 +1,213 @@
+@import "../../common/scss/index.scss";
+.promoteMoney{
+  .title {
+    height: 44px;
+    background-color: #2D6DEB;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .titleLeft {
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    left: 15px;
+    bottom: 14px
+  }
+
+  .titleMid {
+    height: 17px;
+    width: 89px;
+    margin: 0 auto;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px
+  }
+  .main{
+    margin-top:44px;
+  }
+  .prompt2 {
+    height: 38px;
+    font-size: 13px;
+    background-color: #F2F2F2;
+    line-height: 40px;
+    color:gray;
+    //line-height: 38px;
+  }
+  .prompt2 span{
+  position: absolute;
+    left:5%
+  }
+  .prompt {
+    height: 8px;
+    background-color: #F2F2F2;
+  }
+  .table{
+    position: relative;
+    height:50px;
+    border-bottom:1px solid #F2F2F2;
+  }
+  .table-leftT{
+    position: absolute;
+    left:5%;
+    top:20%;
+    font-size:14px
+  }
+  .table-leftB{
+    position: absolute;
+    left:5%;
+    bottom:15%;
+    font-size:14px;
+    color:gray;
+  }
+  .table-noDrawMoney{
+    height:20px;
+    line-height: 20px;
+    width:50px;
+    background-color:cornflowerblue;
+    border-radius: 5px;
+    color:white;
+    position: absolute;
+    right:12%;
+    top:30%;
+    font-size:14px;
+  }
+  .table-img{
+    height:15px;
+    width:12px;
+    position: absolute;
+    right:6%;
+    top:32%
+  }
+  .table-img img{
+    height:100%;
+    width:100%
+  }
+  .table-line{
+    position: absolute;
+    width:25%;
+    top:2%;
+    left:40%;
+  }
+  .table-number{
+    height:12px;
+    width:30px;
+    font-size:14px;
+    position: absolute;
+    top:17%;
+    left:67%
+  }
+  .prompt3{
+    margin:25px auto;
+    font-size:20px
+  }
+
+  //.circle {
+  //  width: 100px;
+  //  height: 100px;
+  //  position: absolute;
+  //  border-radius: 50%;
+  //  background: black;
+  //  border: 1px solid black;
+  //}
+  //
+  //.left,.right{
+  //  width:100px;
+  //  height:100px;
+  //  position: absolute;
+  //  top: 0px;left: 0px;
+  //}
+  //.pie_left, .pie_right{
+  //  width:100px;
+  //  height:100px;
+  //  position: absolute;
+  //  border-radius: 50%;
+  //  top: 0px;left: 0px;
+  //  background: red;
+  //}
+  //
+  //.pie_right,.right {
+  //  clip:rect(0,auto,auto,50px);
+  //}
+  //.pie_left , .left{
+  //  clip:rect(0,50px,auto,0);
+  //}
+  //
+  ///*
+  //*当top和left取值为auto时，相当于0
+  //*当bottom和right取值为auto时，相当于100%
+  //*/
+  //.mask {
+  //  width: 150px;
+  //  height: 150px;
+  //  border-radius: 50%;
+  //  left: 25px;
+  //  top: 25px;
+  //  /*background: #FFF;*/
+  //  position: absolute;
+  //  text-align: center;
+  //  line-height: 150px;
+  //  font-size: 16px;
+  //}
+  //.mt-range .mt-range-content .mt-range-thumb{
+  //  display: none;
+  //  width:0;
+  //  height: 0;
+  //}
+  //.mt-range-thumb{
+  //  display:none
+  //}
+  .app3 {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .w-right {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0, auto, auto, 50px);
+  }
+
+  .w-left {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0, 500px, auto, 0);
+  }
+
+  .right {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0, auto, auto, 50px);
+  }
+
+  .left {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip: rect(0, 50px, auto, 0);
+  }
+
+}

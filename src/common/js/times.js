@@ -47,3 +47,9 @@ export function dateAddHorizontal(t) {
   data = t.substr(0,4) + '-' + t.substr(4,2) + '-' + t.substr(6,2)
   return data
 }
+// 获取时间 年月例如201310
+export function dataYaerMonth(t) {
+  let data
+  data = t.substr(0,4) + t.substr(5,2)
+  return data
+}

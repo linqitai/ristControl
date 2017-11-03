@@ -320,18 +320,6 @@
             axios.post(root + '/selfeval/evaluate', params, config).then(res => {
               console.log(params)
               const response = res.data;
-
-//              let params = {
-//                mobile: this.accountTel,
-//                action: this.type === 'repeat' ? 3 : 1
-//              }
-//              let config = {
-//                headers: {
-//                  'Content-Type': 'application/json'
-//                }
-//              }
-//              axios.post(root + '/selfeval/addRecord', params, config).then(res => {
-//              })
               if (res.status == 200 && response.code == 1000 && response.data.score) {
                 this.score = response.data.score.toFixed(0);
                 this.money = response.data.quota;//授信money

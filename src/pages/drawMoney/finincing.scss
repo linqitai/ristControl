@@ -1,0 +1,47 @@
+@import "../../common/scss/index.scss";
+.finincing{
+  .title {
+    height: 44px;
+    background-color: #2D6DEB;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .titleLeft {
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    left: 15px;
+    bottom: 14px
+  }
+
+  .titleMid {
+    height: 17px;
+    width: 89px;
+    margin: 0 auto;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px
+  }
+  .table{
+    height: 70px;
+    margin-top: 44px;
+    border-bottom: 1px solid lightgrey;
+    position: relative;
+  }
+  .table img{
+    height:25px;
+    width:28px;
+    position: absolute;
+    left:5%;
+    top:30%
+  }
+}

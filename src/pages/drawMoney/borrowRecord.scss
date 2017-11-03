@@ -1,0 +1,160 @@
+@import "../../common/scss/index.scss";
+body{
+  background-color: red;
+
+}
+.borrowRecord{
+  background-color: #F2F2F2;
+  position: fixed;
+  left:0;
+  top:0;
+  right: 0;
+  bottom: 0;
+  .title {
+    height: 44px;
+    background-color: #2D6DEB;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .titleLeft {
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    left: 15px;
+    bottom: 14px
+  }
+
+  .titleMid {
+    height: 17px;
+    width: 89px;
+    margin: 0 auto;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px
+  }
+  .tab{
+    height: 35px;
+    font-size: 13px;
+    margin-top:44px;
+    background-color: white;
+    .tabItem {
+      height: 35px;
+      line-height: 35px;
+      width: 50%;
+      float: left;
+      color: black;
+      box-sizing: border-box;
+      border: 1px solid lightgrey;
+      position: relative;
+    }
+    .table-left{
+      float: left;
+      line-height: 35px;
+      margin-left: 5%;
+    }
+    .selectInput{
+      width:100px;
+      text-align: center;
+    }
+    .rightIcon{
+      float: right;
+    }
+    .tabItem span{
+      float: left;
+      margin-left: 10%;
+    }
+    img{
+      float: right;
+      width:15px;
+      height:10px;
+      margin-top:10px;
+      margin-right:10%
+    }
+      &.active {
+        border-bottom: none;
+        border-color: lightslategray;
+        background-color: cornflowerblue;
+        color: white
+      }
+
+  }
+  .prompt2 {
+    height: 8px;
+    background-color: #F2F2F2;
+    border-bottom: 1px solid lightgrey;
+  }
+  .play-table {
+    height: 61px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
+    background-color: white;
+  }
+  .play-table-name {
+    float: left;
+    font-size: 13px;
+    margin-left: 5%;
+    line-height: 45px;
+  }
+
+  .play-table-money {
+    float: right;
+    font-size: 13px;
+    margin-right: 5%;
+    line-height: 45px;
+  }
+
+  .play-table-date {
+    float: left;
+    font-size: 11px;
+    margin-left: 5%;
+    bottom: 5px;
+    position: absolute;
+    color: lightgrey;
+  }
+
+  .play-table-count {
+    float: right;
+    font-size: 11px;
+    right: 5%;
+    bottom: 5px;
+    position: absolute;
+    color: lightgrey;
+  }
+  #timeSelect{
+    height: 35px;
+    line-height: 35px;
+    width: 50%;
+    float: left;
+    color: black;
+    box-sizing: border-box;
+    border: 1px solid lightgrey;
+    position: relative;
+  }
+  .box {
+    width: 100%;
+    background-color: #BDBDBD
+  }
+  .box div {
+    height: 35px;
+    border-bottom: 1px solid lightgray;
+    line-height: 35px;
+    font-size: 15px;
+    background-color: #fff
+  }
+  #boxBlank {
+    height: 20px;
+    background-color: #BDBDBD
+  }
+  //#timeSelect:hover{
+  //  border:none
+  //}
+}

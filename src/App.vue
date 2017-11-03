@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,7 +38,7 @@ export default {
 .child-view {
   position: absolute;
   width:100%;
-  // transition: all .8s cubic-bezier(.55,0,.1,1);
+  transition: all .8s cubic-bezier(.55,0,.1,1);
 }
 .slide-left-enter, .slide-right-leave-active {
   opacity: 0;
@@ -50,4 +50,7 @@ export default {
   -webkit-transform: translate(-50px, 0);
   transform: translate(-50px, 0);
 }
+/*.mt-range-thumb{*/
+    /*display: none;*/
+  /*}*/
 </style>

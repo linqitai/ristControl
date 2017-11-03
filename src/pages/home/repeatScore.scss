@@ -200,31 +200,31 @@ img {
 }
 
 .apply {
-    height: 22px;
-    width: 48px;
+    height: 24px;
+    width: 67px;
     //background-color: #F2F2F2;
     background-color: white;
     position: absolute;
-    top: 140px;
-    left: -11px;
-    font-size: 12px;
+    top: 144px;
+    left: -31px;
+    font-size: 11px;
     text-align: center;
-    line-height: 25px;
+    line-height: 24px;
     color: cornflowerblue;
     border: 1px solid cornflowerblue;
     border-radius: 5px;
 }
 
 .promote {
-    height: 22px;
-    width: 48px;
+    height: 24px;
+    width: 67px;
     background-color: white;
     position: absolute;
-    top: 140px;
-    right: -17px;
-    font-size: 12px;
+    top: 144px;
+    right: -33px;
+    font-size: 11px;
     text-align: center;
-    line-height: 25px;
+    line-height: 24px;
     color: dodgerblue;
     border: 1px solid cornflowerblue;
     border-radius: 5px;
@@ -514,7 +514,11 @@ img {
     font-size: 14px;
     color: #646464
 }
-
+.lookMore{
+    height:30px;
+  line-height:30px;
+  font-size:13px
+}
 .play-table-name {
     float: left;
     font-size: 13px;

@@ -5,6 +5,10 @@ import selfEvaluation from '@/pages/home/selfEvaluation'
 import writeSelfEvaInfo from '@/pages/home/writeSelfEvaInfo'
 import repeatEvaluation from '@/pages/home/repeatEvaluation'
 import organizingData from '@/pages/drawMoney/organizingData'
+import repayment from '@/pages/drawMoney/repayment'
+import borrowRecord from '@/pages/drawMoney/borrowRecord'
+import finincing from '@/pages/drawMoney/finincing'
+import promoteMoney from '@/pages/drawMoney/promoteMoney'
 // 臻e盾
 import frontPage from '@/pages/zed/frontPage'
 
@@ -40,6 +44,18 @@ const router = new Router({
         }, {
             path: '/frontPage',
             component: frontPage
+        }, {
+            path: '/repayment',
+            component: repayment
+        }, {
+            path: '/borrowRecord',
+            component: borrowRecord
+        }, {
+            path: '/finincing',
+            component: finincing
+        }, {
+            path: '/promoteMoney',
+            component: promoteMoney
         }]
     }]
 })

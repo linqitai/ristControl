@@ -34,8 +34,8 @@ module.exports = {
     proxyTable: {
       '/zsf':{
         // target:'http://192.168.18.227:8090',// 本地测试
-         // target:'http://192.168.18.5:8090',// 石智颖
-         target:'http://114.55.86.215:8090', // 测试
+          target:'http://192.168.18.6:8090',// 石智颖
+        // target:'http://114.55.86.215:8090', // 测试
          // target:'http://192.168.18.170:8061',
         changeOrigin:true,
         pathRewrite:{
@@ -56,8 +56,8 @@ module.exports = {
       '/zyd':{
         // target:'http://192.168.18.227:8090',// 本地测试
         // target:'http://192.168.18.5:8090',// 石智颖
-        // target:'http://192.168.18.170:8061', // 义良
-         target:'http://114.55.86.215:8061',// 测试
+         target:'http://192.168.18.170:8061', // 义良
+        // target:'http://114.55.86.215:8061',// 测试
         // 114.215.211.3:22 项目测试环境
         changeOrigin:true,
         pathRewrite:{

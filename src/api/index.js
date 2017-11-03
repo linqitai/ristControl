@@ -21,6 +21,10 @@ export const action = (params) => {
 export const addRecord = (params) => {
   return http.fetchPost(zyd + '/selfeval/addRecord', params)
 }
+// 提额总数
+export const query = (params) => {
+  return http.fetchPost(zyd + '/promoteQuota/query.json', params)
+}
 const aa = '/zyd'
 // 融资接口（当前在借总金额）
 export const currentBorrowAmount = (params) => {
@@ -34,3 +38,12 @@ export const borrowRecord = (params) => {
 export const recentRepaymentPlan = (params) => {
   return http.fetchPost(aa + '/apishow/recentRepaymentPlan.json', params)
 }
+// 融资接口（还款计划）
+export const repaymentPlan = (params) => {
+  return http.fetchPost(aa + '/apishow/repaymentPlan.json', params)
+}
+// 借款记录（最近6个月)
+export const timeTableList = (params) => {
+  return http.fetchPost(aa + '/common/date/sixMonth.json', params)
+}
+
