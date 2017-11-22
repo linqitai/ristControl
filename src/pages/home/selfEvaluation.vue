@@ -1,10 +1,11 @@
 <template>
   <div class="home1">
-    <div class="title">
-      <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
-      <div class="titleMid"><span>信用中心</span></div>
-      <!--<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>-->
-    </div>
+    <!--<div class="title">-->
+      <!--&lt;!&ndash;<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="titleMid"><span>信用中心</span></div>&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>&ndash;&gt;-->
+    <!--</div>-->
+    <m-header>信用中心</m-header>
     <div class="header">完成自评后才会有信用额度哦</div>
     <div class="topciycle">
       <div class="ciycle">
@@ -18,9 +19,9 @@
         <div class="circleinner2" v-show="selfShow2"><span>信用额度</span>
           <div class="">0元</div>
         </div>
-        <div class="transfer-block" v-show="circleshow"
-             v-bind:style="{transform:'rotate(' +(transferdeg-2)+'deg)',WebkitTransform:'rotate(' +(transferdeg-2)+'deg)'}">
-        </div>
+        <!--<div class="transfer-block" v-show="circleshow"-->
+             <!--v-bind:style="{transform:'rotate(' +(transferdeg-2)+'deg)',WebkitTransform:'rotate(' +(transferdeg-2)+'deg)'}">-->
+        <!--</div>-->
         <div class="circlebiginner-left">0</div>
         <div class="circlebiginner-right">1000分</div>
       </div>
@@ -33,11 +34,15 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import {evaluate, query, actionRecord} from '../../api/api'
+  import mHeader from '@/components/HeaderBackToApp'
 //  import {action} from '../../api/index'
 //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
+    components: {
+      mHeader
+    },
     data() {
       return {
         mobile: '',
@@ -98,7 +103,7 @@
         }
       },
       //点击配偶职业
-      selectState2: function (state) {
+      selectState2: function (state){
         this.objectState = state;
         this.popupVisible2 = false;
         if (state == '无配偶') {
@@ -123,7 +128,6 @@
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
             if (this.currentYear >= 24 && this.currentYear <= 40) {
-//              this.popupVisible4 = true;
               Toast('请输入准确信息')
             }
           }
@@ -145,19 +149,17 @@
       },
       // app点击返回
       back() {
-        // Toast('返回')
-        window.history.back();
         let ua = navigator.userAgent.toLowerCase()
         if (/iphone|ipad|ipod/.test(ua)) {
           popToViewController()
         } else if (/android/.test(ua)) {
           htmlToJava.popToViewController()
         }
-        window.history.back();
       },
       select() {
         this.accountTel = this.$route.query.accountTel;
         if (this.accountTel) {
+//          Toast('IfIntoAccountTel:' + this.accountTel)
           let params = {
             mobile: this.accountTel,
             action: 0
@@ -167,9 +169,16 @@
               'Content-Type': 'application/json'
             }
           }
-          axios.post(root + '/selfeval/addRecord', params, config).then(res => {})
-          // this.action()
-           this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
+          axios.post(root + '/selfeval/addRecord', params, config).then(res => {
+            console.log('axios:' + res.data.code)
+            if(res.data.code === 1000){
+              this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
+            } else {
+//              Toast('出错了:' + res.data.msg)
+            }
+          })
+        }else{
+//          Toast('没传accountTel')
         }
       }
     }

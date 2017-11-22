@@ -1,10 +1,10 @@
 <template>
-  <div class="borrowRecord" ref="borrowRecord" v-show="repeatIsShow">
+  <div class="recentPaymoney">
     <!--<div class="title">-->
-      <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
-      <!--<div class="titleMid"><span>借款记录</span></div>-->
+    <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
+    <!--<div class="titleMid"><span>借款记录</span></div>-->
     <!--</div>-->
-    <m-header @closePage="closePage" >借款记录</m-header>
+    <m-header>还款计划</m-header>
     <div class="tab">
       <mt-popup
         v-model="popupVisible"
@@ -28,7 +28,7 @@
       <div class="tabItem" @click="popupVisible = true">
         <div class="table-left">时间</div>
         <input class="selectInput" type="text" placeholder="" v-model="timeSelect" readonly>
-        <div class="rightIcon"><img src="../../assets/bottom.png" alt=""></div>
+        <div class="rightIcon"><img src="../../assets/bottom.png" width="26" height="14"></div>
       </div>
       <div class="tabItem" @click="popupVisible2 = true">
         <div class="table-left">产品类型</div>
@@ -39,16 +39,16 @@
       <!--<span>产品类型</span><img src="../../assets/bottom.png" alt="">-->
       <!--</div>-->
     </div>
-    <!--<div class="totalRemoney">111</div>-->
-    <!--<div class="prompt2" v-show="promptShow">111</div>-->
+    <div class="prompt2" v-show="promptShow"></div>
     <div class="recordWrapper">
-      <div class="totalRemoney" v-show="totalborrowShow">共借款{{totalBorrowAmount}}元,已还款{{totalPayAmount}}元</div>
-      <div class="play-table" v-for="item in records" v-show="tableShow">
-        <div class="play-table-name">{{item.dateTime | _dateAddHorizontal}}</div>
-        <div class="play-table-money">{{item.amount}}元</div>
-        <div class="play-table-date">臻分期-{{item.productName}}</div>
+      <div class="play-table" v-for="item in records"  v-show="tableShow">
+        <div class="play-table-name">{{item.repayDate | _dateAddHorizontal}}</div>
+        <div class="play-table-waitRepay">待还{{item.amount}}元</div>
+        <div class="play-table-money"></div>
+        <div class="play-table-date">臻分期-{{item.productName}},第{{item.alreadyRepayTimes}}期/共{{item.repayTotalTimes}}期</div>
         <div class="play-table-count">{{item.id | idstatus}}</div>
         <div class="play-table-outDate" v-show="item.overDueDays !== null && item.overDueDays !== 0">逾期{{item.overDueDays}}天</div>
+        <div class="autoless">自动扣款<img src="../../assets/right.png" alt=""></div>
       </div>
     </div>
     <div class="play-table-noRecords" v-show="noRecords">暂无数据</div>
@@ -64,18 +64,13 @@
     recentRepaymentPlan,
     addRecord,
     repaymentPlan,
-    timeTableList
+    timeTableList,
+    timeTableListAfter
   } from '../../api/index'
-  import {getTime, getDate1, dateAddHorizontal} from '../../common/js/times'
+  import {getTime, getDate, dateAddHorizontal} from '../../common/js/times'
   import {} from '../../common/js/jquery-3.2.1.slim.min.js'
-  import mHeader from '@/components/HeaderClose.vue'
+  import mHeader from '@/components/Header'
   export default {
-    props: {
-      repeatIsShow: {
-        type: Boolean,
-        default: false
-      }
-    },
     components: {
       mHeader
     },
@@ -87,22 +82,24 @@
         id: '',
         promptShow: true,
         tableShow: true,
-        timeTableShow: false,
         popupVisible: false,
         popupVisible2: false,
         timeSelect: '',
         typeSelect: '',
         data: '',
         noRecords: false,
-        tableShow: true,
-        totalborrowShow: true,
-        totalPayAmount: '',
-        totalBorrowAmount: ''
+        tableShow: true
       }
     },
     filters: {
+      _getDate(t) {
+        return getDate(t)
+      },
       _dateAddHorizontal(t) {
         return dateAddHorizontal(t)
+      },
+      _dataYaerMonth(t) {
+        return dataYaerMonth(t)
       },
       idstatus(t) {
         return t === 0 ? '借款' : t === 1 ? '还款' : ''
@@ -110,74 +107,61 @@
     },
     created() {
       this.accountTel = this.$route.query.accountTel;
-      this.borrowRecord();
-      this.timeTableList()
+      this.recentRepaymentPlan();
+      this.timeTableListAfter()
+//      this.selectState()
     },
     methods: {
-      closePage() {
-//        this.$refs.borrowRecord.style.display = 'none'
-        this.$emit('changeIsShowType', false)
+      back() {
+        this.$router.goBack()
       },
-      //      借款记录
-      borrowRecord() {
+      //      还款计划
+      recentRepaymentPlan() {
         let params = {
           mobile: this.accountTel
 
         }
-        borrowRecord(params).then(res => {
+        recentRepaymentPlan(params).then(res => {
           if (res.code === 0 && res.list.length !== 0) {
             this.records = res.list
-            this.totalPayAmount = res.obj.totalPayAmount
-            this.totalBorrowAmount = res.obj.totalBorrowAmount
-            this.tableShow = true
             this.noRecords = false
-            this.totalborrowShow = true
+            this.tableShow = true
+
           } else {
             this.noRecords = true
             this.lookMoreShow = false
-            this.totalborrowShow = false
           }
         })
       },
-      timeTable() {
-//       this.promptShow = false;
-//       this.tableShow = false;
-      },
-      typeTable() {
-
-      },
       // 时间转化
       dateYearMonth(t) {
-        let data = ''
-        if(t != undefined) {
-          data = t.substr(0, 4) + t.substr(5, 2)
-        }
+        let data
+        data = t.substr(0, 4) + t.substr(5, 2)
         return data
       },
 //      proup的点击事件
       selectState(state) {
         this.timeSelect = state;
-        console.log(state)
         let time = this.dateYearMonth(state)
         // console.log('dateYearMonth:' + this.dateYearMonth(state))
         this.popupVisible = false;
         if (state == '全部') {
-          this.borrowRecord()
+          this.recentRepaymentPlan()
         } else {
           let params = {
             mobile: this.accountTel,
             applyDate: time
           }
-          borrowRecord(params).then(res => {
+
+          recentRepaymentPlan(params).then(res => {
             if (res.code === 0 && res.list.length !== 0) {
               this.records = res.list
+              console.log(this.records)
+              this.noRecords = false
               this.tableShow = true
-                this.noRecords = false
-              this.totalborrowShow = true
             } else {
-              this.tableShow = false
               this.noRecords = true
-              this.totalborrowShow = false
+              this.tableShow = false
             }
           })
         }
@@ -186,34 +170,32 @@
         this.typeSelect = state;
         this.popupVisible2 = false;
         if (state == '全部') {
-          this.borrowRecord()
+          this.recentRepaymentPlan()
         }
         if (state == '臻分期') {
-          this.borrowRecord()
+          this.recentRepaymentPlan()
         }
         if (state == '臻e贷') {
           let params = {
             mobile: this.accountTel
 
           }
-          borrowRecord(params).then(res => {
+          recentRepaymentPlan(params).then(res => {
             if (res.code === 0 && res.list.length !== 0) {
               this.records = res.list.slice
               this.noRecords = true
-              this.totalborrowShow = false
             } else {
-              this.noRecords = false
-              this.totalborrowShow = true
+              this.noRecords = true
             }
           })
         }
       },
       //最近6个月时间列表查询
-      timeTableList() {
+      timeTableListAfter() {
         let params = {
           mobile: this.accountTel
         }
-        timeTableList(params).then(res => {
+        timeTableListAfter(params).then(res => {
           if (res.code === 0 && res.list.length !== 0) {
             this.lists = res.list;
             this.noRecords = false
@@ -229,5 +211,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import "./borrowRecord.scss";
+  @import "./recentPaymoney.scss";
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
+      <keep-alive>
       <router-view class="child-view"></router-view>
+      </keep-alive>
     </transition>
   </div>
 </template>
@@ -50,7 +52,9 @@ export default {
   -webkit-transform: translate(-50px, 0);
   transform: translate(-50px, 0);
 }
-/*.mt-range-thumb{*/
-    /*display: none;*/
-  /*}*/
+.mt-range-thumb{
+     display: none;
+   }
+.mt-range-progress{
+}
 </style>

@@ -1,10 +1,11 @@
 <template>
   <div class="home2">
-    <div class="title">
-      <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
-      <div class="titleMid"><span>{{type | typeText}}</span></div>
-      <!--<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>-->
-    </div>
+    <!--<div class="title">-->
+      <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
+      <!--<div class="titleMid"><span>{{type | typeText}}</span></div>-->
+      <!--&lt;!&ndash;<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>&ndash;&gt;-->
+    <!--</div>-->
+    <m-header>{{type | typeText}}</m-header>
     <div class="prompt"><span>请输入真实有效的内容，否则将严重影响您的信用!</span></div>
     <div class="information">
       <mt-field label="手机号" disabled="disabled" v-model="accountTel" placeholder="" type=""
@@ -54,7 +55,7 @@
       </mt-popup>
       <mt-field label="子女职业" v-show="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
                 v-model="childrenState" class="informationBorder" :readonly="readonly"></mt-field>
-      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收入-月支出" type="number"
+      <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收支=月收入-月支出" type="number"
                 v-model="pay"
       ></mt-field>
     </div>
@@ -67,10 +68,14 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import {evaluate} from '../../api/api'
+  import mHeader from '@/components/Header'
   //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
+    components: {
+      mHeader
+    },
     data() {
       return {
         readonly: true,
@@ -271,7 +276,9 @@
           spouseOCP: parseInt(this.objectStateValue),
           childOCP: parseInt(this.childrenStateValue),
           fmSaving: this.pay,
-          action: this.type === 'repeat' ? 3 : 1
+          action: this.type === 'repeat' ? 3 : 1,
+          score: this.score,
+          quota: this.money
         }
         let config = {
           headers: {
@@ -281,67 +288,87 @@
         axios.post(root + '/selfeval/addRecord', params, config).then(res => {
         })
       },
-      transfer() {
-//          let params = {
-//            mobile: this.accountTel,
-//            action: 1 | 3
-//          }
-//          if(type === 'repeat'){
-//            this.action = 3
-//          }else{
-//            this.action = 1
-//          }
-//          let config = {
-//            headers: {
-//              'Content-Type': 'application/json'
-//            }
-//          }
-//          axios.post(root + '/selfeval/addRecord', params, config).then(res => {
-//          })
-        if (this.accountTel) {
-          let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-          if (reg.test(this.idcard)) {
-            let params = {
-              mobile: this.accountTel,
-              name: this.username,
-              identityNo: this.idcard,
-              marriage: parseInt(this.marryStateValue),
-              spouseOCP: parseInt(this.objectStateValue),
-              childOCP: parseInt(this.childrenStateValue),
-              fmSaving: this.pay,
-              action: this.type === 'repeat' ? 3 : 1
-            }
-            let config = {
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            }
-            const self = this;
-            axios.post(root + '/selfeval/evaluate', params, config).then(res => {
-              console.log(params)
-              const response = res.data;
-              if (res.status == 200 && response.code == 1000 && response.data.score) {
-                this.score = response.data.score.toFixed(0);
-                this.money = response.data.quota;//授信money
-                this.addAction();
-                this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
+      selfApply() {
+        let params = {
+          mobile: this.accountTel,
+          name: this.username,
+          identityNo: this.idcard,
+          marriage: parseInt(this.marryStateValue),
+          spouseOCP: parseInt(this.objectStateValue),
+          childOCP: parseInt(this.childrenStateValue),
+          fmSaving: this.pay,
+          action: this.type === 'repeat' ? 3 : 1
+        }
+        let config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        const self = this;
+        axios.post(root + '/selfeval/evaluate', params, config).then(res => {
+          const response = res.data;
+          if (res.status == 200 && response.code == 1000 && response.data.score) {
+            this.score = response.data.score.toFixed(0);
+            this.money = response.data.quota;//授信money
+            this.addAction();
+            this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
                 &username=${this.username}
                 &idcard=${this.idcard}
                 &marryStateValue=${this.marryStateValue}
                 &objectStateValue=${this.objectStateValue}
                 &childrenStateValue=${this.childrenStateValue}
-                &pay=${this.pay}`)
-              }
-              else if (res.status == 200 && response.code == 1100) {
-                Toast('您输入的信息有误')
-                return false;
-              }
-            }).catch(res => {
-              Toast(res)
-            })
-          } else {
-            Toast('身份证有误')
+                &pay=${this.pay}
+                &from=self`)
           }
+          else if (res.status == 200 && response.code == 1100) {
+            Toast('请输入正确信息')
+            return false;
+          }
+        })
+      },
+      transfer() {
+        if (this.accountTel) {
+//          this.selfApply();
+          if (this.username === '' || this.username === null) {
+            Toast('请填写姓名')
+            return
+          }
+          let reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+          let namereg =  /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$/;
+          let numberreg = /^[0-9]*$/;
+          console.log('name:  ' + namereg.test(this.username))
+          if(namereg.test(this.username)){
+          }else{
+            Toast('您输入的格式有误')
+            return
+           }
+          if (this.idcard === '' || this.idcard === null) {
+            Toast('请填写身份证号')
+            return
+          }
+          if(reg.test(this.idcard)){
+          }else{
+            Toast('您输入的格式有误')
+            return
+          }
+          if (this.marryStateValue === '' || this.marryStateValue === null) {
+            Toast('请填写婚姻状态')
+            return
+          }
+          if (this.objectStateValue === '' || this.objectStateValue === null) {
+            Toast('请填写配偶职业')
+            return
+          }
+          if (this.childrenStateValue === '' || this.childrenStateValue === null) {
+            Toast('请填写子女职业')
+            return
+          }
+          console.log('this.pay' + this.pay)
+          if (this.pay === '' || this.pay === null) {
+            Toast('您未输入月收支或格式错误')
+            return
+          }
+          this.selfApply()
         } else {
           Toast('没有接收到accountTel参数')
         }

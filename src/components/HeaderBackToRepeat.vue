@@ -16,11 +16,16 @@ export default {
     isHelp: {
       type: Boolean,
       default: true
+    },
+    accountTel: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     back() {
-      this.$router.goBack()
+//      this.$router.goBack()
+      this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}`)
     },
     toHelpPage() {
       this.$router.push(`/help`)

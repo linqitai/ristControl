@@ -221,7 +221,7 @@ img {
     background-color: white;
     position: absolute;
     top: 144px;
-    right: -33px;
+    right: -31px;
     font-size: 11px;
     text-align: center;
     line-height: 24px;
@@ -234,34 +234,70 @@ img {
     height: auto;
     width: 100%;
     background-color: white;
+    .boxTitle{
+      width: 52px;
+    }
     .box {
-        height: 200px;
+        height: 68px;
         width: 100%;
-        border-bottom: 1px solid lightgrey;
+        //border-bottom: 1px solid lightgrey;
         box-sizing: border-box;
         .line1 {
+            position: relative;
             padding-left: 4%;
-            height: 74px;
-            border-bottom: 1px solid #c7c7c7;
+            height: 45px;
+            line-height: 45px;
+            &:after{
+              content: '';
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              height: 1px;
+              width: 100%;
+              transform: scaleY(0.3);
+              background-color: #dedede;
+              z-index:100;
+            }
             b {
+                position: relative;
                 font-size: 16px;
                 height: 16px;
-                vertical-align: middle;
                 color: black;
-                border-left: 2px solid #646464;
-                padding-left: 10px;
-                margin-top: 32px;
+                padding-left: 5px;
+                &:after{
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  bottom: -15px;
+                  height: 14px;
+                  width: 2px;
+                  background-color: #000000;
+                  z-index:100;
+                }
+                // border-left: 2px solid #646464;
             }
             span {
-                font-size: 15px;
+                font-size: 13px;
                 margin-left: 15px;
                 color: #646464;
-                margin-top: 32px;
             }
+          .rightBtn {
+            float: right;
+            font-size: 15px;
+            margin-top: 10px;
+            height: 24px;
+            line-height: 24px;
+            width: 18%;
+            margin-right: 4%;
+            border-radius: 10px;
+            color: cornflowerblue;
+            background-color: white;
+            border: 1px solid cornflowerblue;
+          }
         }
         .line2 {
             display: flex;
-            height: 74px;
+            height: 55px;
             border-bottom: 1px solid #c7c7c7;
             .cell {
                 border-right: 1px solid #c7c7c7;
@@ -282,18 +318,19 @@ img {
         }
         .line3 {
             .status {
-                font-size: 14px;
-                margin-top: 20px;
-                margin-left: 8%;
+                font-size: 12px;
+                margin-top: 6px;
+                margin-left: $marginLeft;
+                color:#797979;
             }
             .rightBtn {
                 float: right;
                 font-size: 15px;
-                height: 28px;
-                line-height: 28px;
+                height: 24px;
+                line-height: 24px;
                 width: 18%;
                 margin-right: 4%;
-                margin-top: 10px;
+                margin-top: 9px;
                 border-radius: 10px;
                 color: cornflowerblue;
                 background-color: white;
@@ -302,40 +339,69 @@ img {
         }
     }
     .box2 {
+        height:68px;
         width: 100%;
         box-sizing: border-box;
         .line1 {
+            position: relative;
             padding-left: 4%;
-            height: 74px;
+            height: 45px;
+            line-height: 45px;
+            &:after{
+              content: '';
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              height: 1px;
+              width: 100%;
+              transform: scaleY(0.3);
+              background-color: #dedede;
+              z-index:100;
+            }
             b {
+                position: relative;
                 font-size: 16px;
                 height: 16px;
-                vertical-align: middle;
                 color: black;
-                border-left: 2px solid #646464;
-                padding-left: 10px;
-                margin-top: 32px;
+                padding-left: 5px;
+                &:after{
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  bottom: -15px;
+                  height: 14px;
+                  width: 2px;
+                  background-color: #000000;
+                  z-index:100;
+                }
             }
             span {
-                font-size: 15px;
+                font-size: 13px;
                 margin-left: 15px;
                 color: #646464;
-                margin-top: 32px;
             }
         }
         .rightBtn {
             float: right;
             font-size: 15px;
-            height: 28px;
-            line-height: 28px;
+            margin-top: 10px;
+            height: 24px;
+            line-height: 24px;
             width: 18%;
-            margin-top: 24px;
             margin-right: 4%;
             border-radius: 10px;
             color: cornflowerblue;
             background-color: white;
             border: 1px solid cornflowerblue;
         }
+      .line3 {
+        .status {
+          font-size: 12px;
+          margin-top: 6px;
+          margin-left: $marginLeft;
+          color:#797979;
+        }
+      }
     }
 }
 
@@ -426,7 +492,8 @@ img {
 .message-mid span:nth-of-type(1) {
     float: left;
     line-height: 42px;
-    margin-left: 7%;
+    margin-left: $marginLeft;
+    color: $colorGray;
     font-size: 14px;
     text-align: center;
 }
@@ -501,7 +568,7 @@ img {
 }
 
 .play-table {
-    height: 61px;
+    height: 50px;
     border-bottom: 1px solid #F2F2F2;
     position: relative;
 }
@@ -510,9 +577,9 @@ img {
     height: 61px;
     line-height: 61px;
     float: left;
-    margin-left: 7%;
+    margin-left: $marginLeft;
     font-size: 14px;
-    color: #646464
+    color: $colorGray;
 }
 .lookMore{
     height:30px;
@@ -521,32 +588,89 @@ img {
 }
 .play-table-name {
     float: left;
-    font-size: 13px;
-    margin-left: 3%;
-    line-height: 45px;
+    font-size: 14px;
+    margin-left: $marginLeft;
+    line-height: 40px;
 }
 
 .play-table-money {
     float: right;
-    font-size: 13px;
-    margin-right: 3%;
-    line-height: 45px;
+    font-size: 14px;
+    margin-right: $marginLeft;
+    line-height: 40px;
 }
 
 .play-table-date {
     float: left;
     font-size: 11px;
-    margin-left: 3%;
+    margin-left: $marginLeft;
     bottom: 5px;
     position: absolute;
-    color: lightgrey;
+    color: darkgrey;
 }
 
 .play-table-count {
     float: right;
     font-size: 11px;
-    right: 3%;
+    right: $marginLeft;
     bottom: 5px;
     position: absolute;
-    color: lightgrey;
+    color: darkgrey;
 }
+.play-table-outDate{
+  float: right;
+  width:50px;
+  font-size: 11px;
+  left: 25%;
+  position: absolute;
+  top: 13px;
+  color: red;
+  border:1px solid red
+}
+.play-table-outDate2{
+  float: right;
+  width:50px;
+  font-size: 11px;
+  left: 55%;
+  position: absolute;
+  top: 12px;
+  color: red;
+  border:1px solid red
+}
+.play-table-waitRepay{
+    float: right;
+    font-size: 14px;
+    left: 28%;
+    position: absolute;
+    //top: 15px;
+  line-height: 40px;
+}
+.autoless{
+  height:20px;
+  line-height:20px;
+  //width:70px;
+  position:absolute;
+  //border:1px solid gray;
+  font-size:13px;
+  border-radius: 5px;
+  color:gray;
+  right:20px;
+  top:15px;
+  img{
+    padding-left:2px;
+  height:18px;
+  width:12px;
+  float: right;
+  margin-right:-10px
+}
+}
+//.redPoint{
+//  height:8px;
+//  width:8px;
+//  border-radius: 50%;
+//  background-color: red;
+//  position: absolute;
+//  right:-28px;
+//  top:147px;
+//}
+

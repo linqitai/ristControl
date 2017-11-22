@@ -1,5 +1,8 @@
 @import "../../common/scss/index.scss";
 .promoteMoney{
+  background-color: #ffffff;
+  $blueColor: #2D6DEB;
+  $whiteColor: #ffffff;
   .title {
     height: 44px;
     background-color: #2D6DEB;
@@ -31,23 +34,19 @@
     color: #ffffff;
     font-size: 17px
   }
-  .main{
-    margin-top:44px;
-  }
   .prompt2 {
-    height: 38px;
+    height: 40px;
     font-size: 13px;
     background-color: #F2F2F2;
-    line-height: 40px;
-    color:gray;
-    //line-height: 38px;
+    line-height: 51px;
+    color:darkgray;
   }
   .prompt2 span{
-  position: absolute;
+    position: absolute;
     left:5%
   }
   .prompt {
-    height: 8px;
+    height: 4px;
     background-color: #F2F2F2;
   }
   .table{
@@ -59,13 +58,17 @@
     position: absolute;
     left:5%;
     top:20%;
-    font-size:14px
+    font-size:16px;
+    .table-leftT-span{
+    font-size:12px;
+      color:gray
+  }
   }
   .table-leftB{
     position: absolute;
     left:5%;
     bottom:15%;
-    font-size:14px;
+    font-size:12px;
     color:gray;
   }
   .table-noDrawMoney{
@@ -76,25 +79,44 @@
     border-radius: 5px;
     color:white;
     position: absolute;
-    right:12%;
+    right:11%;
     top:30%;
     font-size:14px;
   }
-  .table-img{
-    height:15px;
-    width:12px;
+  .table-noDrawMoney-new{
+    height:20px;
+    line-height: 20px;
+    width:50px;
+    border-radius: 5px;
+    color:cornflowerblue;
     position: absolute;
-    right:6%;
+    right:9%;
+    top:30%;
+    font-size:15px;
+  }
+  .table-img{
+    height:20px;
+    width:15px;
+    position: absolute;
+    right:4%;
     top:32%
   }
-  .table-img img{
-    height:100%;
-    width:100%
+  .table-imgnew{
+    height:20px;
+    width:15px;
+    position: absolute;
+    top:0;
+    right:-8px;
+  }
+  .iconfont{
+    color:cornflowerblue;
+    font-size:15px;
+    margin-left: 8px;
   }
   .table-line{
     position: absolute;
     width:25%;
-    top:2%;
+    top:5%;
     left:40%;
   }
   .table-number{
@@ -107,107 +129,192 @@
   }
   .prompt3{
     margin:25px auto;
+    font-size:17px
+  }
+  .content-title{
+    margin:25px auto;
     font-size:20px
   }
+  .yes{
+    height:30px;
+    width:70px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 10px;
+    line-height: 30px;
+    margin:10px auto
+  }
+  .initZero{
+    position:absolute;
+    top:465px;
+    left:50%;
+    color:gray;
+    font-size:14px
+  }
+  // 圆
+  .topciycle {
+    height: 155px;
+    width: 100%;
+    padding-top: 50px;
+    overflow: hidden;
+    background-color: white;
+    .yesmoney {
+      margin: 0px auto;
+    }
+    .ciycle {
+      height: 134px;
+      width: 134px;
+      margin: 0 auto 0 auto;
+      margin-top: 14px;
+      position: relative;
+      .outCiycle {
+        height: 134px;
+        width: 134px;
+        border-radius: 50%;
+        position: absolute;
+        clip: rect(0, 134px, 104px, 0px);
+        .bgimg {
+          width: 134px;
+          height: 134px;
+          background: url(../../assets/1231.png);
+          background-size: 100% 100%;
+          z-index: 1;
+        }
+        .circlebiginner {
+          position: absolute;
+          background: url(../../assets/line.png);
+          background-size: 100% 100%;
+          background-color: white;
+          border-radius: 50%;
+          z-index: 3;
+          width: 130px;
+          height: 130px;
+          top: 3px;
+          left: 2px;
+        }
+        .zhezhao{
+          position: absolute;
+          width: 128px;
+          height: 128px;
+          top: 3px;
+          left: 3px;
+          background: url(../../assets/666.png);
+          background-size: 100% 100%;
+          background-color: white;
+          border-radius: 50%;
+          z-index: 3;
+        }
+      }
+    }
+  }
 
-  //.circle {
-  //  width: 100px;
-  //  height: 100px;
-  //  position: absolute;
-  //  border-radius: 50%;
-  //  background: black;
-  //  border: 1px solid black;
-  //}
-  //
-  //.left,.right{
-  //  width:100px;
-  //  height:100px;
-  //  position: absolute;
-  //  top: 0px;left: 0px;
-  //}
-  //.pie_left, .pie_right{
-  //  width:100px;
-  //  height:100px;
-  //  position: absolute;
-  //  border-radius: 50%;
-  //  top: 0px;left: 0px;
-  //  background: red;
-  //}
-  //
-  //.pie_right,.right {
-  //  clip:rect(0,auto,auto,50px);
-  //}
-  //.pie_left , .left{
-  //  clip:rect(0,50px,auto,0);
-  //}
-  //
-  ///*
-  //*当top和left取值为auto时，相当于0
-  //*当bottom和right取值为auto时，相当于100%
-  //*/
-  //.mask {
-  //  width: 150px;
-  //  height: 150px;
-  //  border-radius: 50%;
-  //  left: 25px;
-  //  top: 25px;
-  //  /*background: #FFF;*/
-  //  position: absolute;
-  //  text-align: center;
-  //  line-height: 150px;
-  //  font-size: 16px;
-  //}
-  //.mt-range .mt-range-content .mt-range-thumb{
-  //  display: none;
-  //  width:0;
-  //  height: 0;
-  //}
-  //.mt-range-thumb{
-  //  display:none
-  //}
-  .app3 {
-    width: 100px;
-    height: 100px;
+  .circlebiginner-left {
+    height: 10px;
+    width: 7px;
     position: absolute;
+    top: 120px;
+    left: 10px;
+    font-size: 12px;
+    color: #646464;
+    text-decoration:none
+
+  }
+
+  .circlebiginner-right {
+    height: 12px;
+    width: 100px;
+    position: absolute;
+    top: 120px;
+    left: 75px;
+    font-size: 12px;
+    color: #646464;
+    text-decoration:none
+  }
+
+
+  .circleinner2 {
+    position: absolute;
+    width: 104px;
+    height: 104px;
+    top: 15px;
+    left: 15px;
+    background: #2D6DEB;
     border-radius: 50%;
+    z-index: 4;
+    /*box-shadow: 1px 1px 15px #43D2C3;*/
+    color: white;
   }
 
-  .w-right {
-    width: 100px;
-    height: 100px;
+  .circleinner2 span {
+    font-size: 11px;
+    line-height: 80px;
+    text-align: center;
+  }
+
+  .circleinner2 div {
+    font-size: 17px;
+    //position: absolute;
+    //top: 50px;
+    margin-top:-28px;
+    left: 25px
+  }
+
+  .transfer {
+    width: 134px;
+    height: 134px;
     position: absolute;
     top: 0;
     left: 0;
-    clip: rect(0, auto, auto, 50px);
+    clip: rect(0, 67px, 67px, 0px);
+    background-color: #2D6DEB;
+    border-radius: 50%;
+    z-index: 2;
+    border-radius: 50%;
+    transform: rotate(235deg);
   }
 
-  .w-left {
-    width: 100px;
-    height: 100px;
+  .transfer-block {
     position: absolute;
+    height: 134px;
+    width: 134px;
+    right: 0;
+    z-index: 10;
     top: 0;
-    left: 0;
-    clip: rect(0, 500px, auto, 0);
   }
 
-  .right {
-    width: 100px;
-    height: 100px;
+  .transfer-score {
+    position: absolute;
+    width: auto;
+    height: 20px;
+    top: 1px;
+    right: 23px;
+    color: cornflowerblue;
+    font-size:12px;
+    text-decoration:none
+  }
+
+  .transfer-score.rightscore {
+    right: -27px;
+  }
+
+  .transfer-circle {
+    margin-left: 10px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -9px;
+    right: 67px;
+    margin-right: -11px;
+    line-height: 20px;
+    background: url(../../assets/transfercircle.png);
+    background-size: 100% 100%;
+    margin-right: -11px
+  }
+
+  .inCiycle {
+    height: 69px;
+    width: 69px;
     border-radius: 50%;
     position: absolute;
-    top: 0;
-    left: 0;
-    clip: rect(0, auto, auto, 50px);
   }
-
-  .left {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    clip: rect(0, 50px, auto, 0);
-  }
-
 }

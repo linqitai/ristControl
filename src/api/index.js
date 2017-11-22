@@ -46,4 +46,8 @@ export const repaymentPlan = (params) => {
 export const timeTableList = (params) => {
   return http.fetchPost(aa + '/common/date/sixMonth.json', params)
 }
+// 借款记录（最近6个月后)
+export const timeTableListAfter = (params) => {
+  return http.fetchPost(aa + '/common/date/sixMonthLast.json', params)
+}
 

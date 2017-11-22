@@ -1,12 +1,11 @@
 @import "../../common/scss/index.scss";
-.borrowRecord{
+.recentPaymoney{
   background-color: #F2F2F2;
   position: absolute;
   left:0;
   top:0;
   right: 0;
   bottom: 0;
-  z-index:1001;
   .title {
     height: 44px;
     background-color: #2D6DEB;
@@ -40,22 +39,24 @@
   }
   .tab{
     position: fixed;
-    top:0;
-    left:0;
+    left: 0;
     right: 0;
+    top: 0px;
     z-index: 100;
+    display: flex;
     height: 35px;
     font-size: 13px;
     margin-top:44px;
     background-color: white;
     .tabItem {
+      flex:1;
       height: 35px;
       line-height: 35px;
-      width: 50%;
       float: left;
       color: black;
       box-sizing: border-box;
-      border: 1px solid lightgrey;
+      border-bottom: 1px solid lightgrey;
+      border-right: 1px solid lightgrey;
       position: relative;
     }
     .table-left{
@@ -66,7 +67,6 @@
     .selectInput{
       width:70px;
       text-align: center;
-      color: #323232;
     }
     .rightIcon{
       float: right;
@@ -84,12 +84,12 @@
       margin-top:10px;
       margin-right:10%
     }
-      &.active {
-        border-bottom: none;
-        border-color: lightslategray;
-        background-color: cornflowerblue;
-        color: white
-      }
+    &.active {
+      border-bottom: none;
+      border-color: lightslategray;
+      background-color: cornflowerblue;
+      color: white
+    }
 
   }
   .prompt2 {
@@ -98,26 +98,26 @@
     border-bottom: 1px solid lightgrey;
   }
   .recordWrapper{
-    margin-top: 80px;
+    margin-top: 66px;
   }
   .play-table {
+    position: relative;
     height: 50px;
     border-bottom: 1px solid #F2F2F2;
-    position: relative;
     background-color: white;
   }
   .play-table-name {
     float: left;
-    font-size: 13px;
+    font-size: 14px;
     margin-left: $marginLeft;
     line-height: 40px;
   }
 
   .play-table-money {
     float: right;
-    font-size: 14px;
+    font-size: 13px;
     margin-right: $marginLeft;
-    line-height: 40px;
+    line-height: 45px;
   }
 
   .play-table-date {
@@ -135,15 +135,15 @@
     right: $marginLeft;
     bottom: 5px;
     position: absolute;
-    color: darkgrey;
+    color: lightgrey;
   }
   .play-table-outDate{
     float: right;
     width:50px;
     font-size: 11px;
-    left: 28%;
+    left: 55%;
     position: absolute;
-    top: 13px;
+    top: 12px;
     color: red;
     border:1px solid red
   }
@@ -180,13 +180,32 @@
     font-size: 14px;
     color: $colorGray;
   }
-  .totalRemoney{
-    background-color: #F2F2F2;
-    height: 35px;
-    font-size: 13px;
-    line-height: 42px;
-    text-align: left;
-    padding-left:$marginLeft;
-    color: gray
+  .play-table-waitRepay{
+    float: right;
+    font-size: 14px;
+    left: 28%;
+    position: absolute;
+    line-height: 40px;
   }
+  .autoless{
+    height:20px;
+    line-height:20px;
+    //width:50px;
+    position:absolute;
+    //border:1px solid gray;
+    font-size:13px;
+    border-radius: 5px;
+    color:gray;
+    right:20px;
+    top:15px;
+    img{
+    padding-left:2px;
+    height:18px;
+    width:12px;
+    float: right;
+    margin-right:-10px
+  }
+  }
+
+
 }

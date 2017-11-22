@@ -16,7 +16,8 @@ export function format(t) {
 }
 // 获取完整的时间（年月日）
 export function getDate(t) {
-  var time = new Date(t)
+  let s = parseInt(t)
+  var time = new Date(s)
   var y = time.getFullYear()
   var m = time.getMonth() + 1
   var d = time.getDate()
@@ -43,8 +44,10 @@ export function getTime(t) {
 }
 // 获取时间戳
 export function dateAddHorizontal(t) {
-  let data
-  data = t.substr(0,4) + '-' + t.substr(4,2) + '-' + t.substr(6,2)
+  let data = ''
+  if(t != null) {
+    data = t.substr(0,4) + '-' + t.substr(4,2) + '-' + t.substr(6,2)
+  }
   return data
 }
 // 获取时间 年月例如201310

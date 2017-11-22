@@ -9,12 +9,14 @@ import repayment from '@/pages/drawMoney/repayment'
 import borrowRecord from '@/pages/drawMoney/borrowRecord'
 import finincing from '@/pages/drawMoney/finincing'
 import promoteMoney from '@/pages/drawMoney/promoteMoney'
+import help from '@/pages/drawMoney/help'
+import recentPaymoney from '@/pages/drawMoney/recentPaymoney'
 // 臻e盾
 import frontPage from '@/pages/zed/frontPage'
 
 Router.prototype.goBack = function() {
     this.isBack = true
-    window.history.go(-1)
+    window.history.back()
 }
 Vue.use(Router)
 
@@ -56,6 +58,12 @@ const router = new Router({
         }, {
             path: '/promoteMoney',
             component: promoteMoney
+        }, {
+            path: '/help',
+            component: help
+        }, {
+           path: '/recentPaymoney',
+           component: recentPaymoney
         }]
     }]
 })

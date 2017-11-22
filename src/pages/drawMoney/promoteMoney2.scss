@@ -1,0 +1,181 @@
+@import "../../common/scss/index.scss";
+.promoteMoney{
+  background-color: #ffffff;
+  $blueColor: #2D6DEB;
+  $whiteColor: #ffffff;
+  .piewrap {
+    position: relative;
+    height: 250px;
+    .text {
+      width: 100%;
+      text-align: center;
+      position: relative;
+      top: 120px;
+      color: #646464;
+    }
+    .inner {
+      position: absolute;
+      left: 50%;
+      top: 46px;
+      transform: translateX(-50%);
+      width: 108px;
+      height: 108px;
+      border-radius: 140px;
+      overflow: hidden;
+      background-color: $blueColor;
+      border: 1px solid #c7c7c7;
+      .ileft,
+      .iright,
+      .masker {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+      }
+      .ileft {
+        left: 0;
+        top: 0;
+        background-color: $whiteColor;
+        transform-origin: right center;
+      }
+      .iright {
+        left: 50%;
+        top: 0;
+        background-color: $whiteColor; // transform: rotate(190deg);
+        transform-origin: left center;
+      }
+      .masker {
+        background-color: $blueColor;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  .title {
+    height: 44px;
+    background-color: #2D6DEB;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .titleLeft {
+    height: 17px;
+    width: 9px;
+    position: absolute;
+    left: 15px;
+    bottom: 14px
+  }
+
+  .titleMid {
+    height: 17px;
+    width: 89px;
+    margin: 0 auto;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 17px
+  }
+  .main{
+    margin-top:44px;
+  }
+  .prompt2 {
+    height: 40px;
+    font-size: 13px;
+    background-color: #F2F2F2;
+    line-height: 51px;
+    color:darkgray;
+  }
+  .prompt2 span{
+  position: absolute;
+    left:5%
+  }
+  .prompt {
+    height: 8px;
+    background-color: #F2F2F2;
+  }
+  .table{
+    position: relative;
+    height:50px;
+    border-bottom:1px solid #F2F2F2;
+  }
+  .table-leftT{
+    position: absolute;
+    left:5%;
+    top:20%;
+    font-size:14px
+  }
+  .table-leftB{
+    position: absolute;
+    left:5%;
+    bottom:15%;
+    font-size:14px;
+    color:gray;
+  }
+  .table-noDrawMoney{
+    height:20px;
+    line-height: 20px;
+    width:50px;
+    background-color:cornflowerblue;
+    border-radius: 5px;
+    color:white;
+    position: absolute;
+    right:9%;
+    top:30%;
+    font-size:14px;
+  }
+  .table-img{
+    height:15px;
+    width:12px;
+    position: absolute;
+    right:4%;
+    top:32%
+  }
+  .table-img img{
+    height:100%;
+    width:100%
+  }
+  .table-line{
+    position: absolute;
+    width:25%;
+    top:5%;
+    left:40%;
+  }
+  .table-number{
+    height:12px;
+    width:30px;
+    font-size:14px;
+    position: absolute;
+    top:17%;
+    left:67%
+  }
+  .prompt3{
+    margin:25px auto;
+    font-size:17px
+  }
+  .content-title{
+    margin:25px auto;
+    font-size:20px
+  }
+  .yes{
+    height:35px;
+    width:120px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 10px;
+    line-height: 35px;
+    margin: 140px auto 10px auto;
+  }
+  .initZero{
+    position:absolute;
+    top:465px;
+    left:50%;
+    color:gray;
+    font-size:14px
+  }
+}

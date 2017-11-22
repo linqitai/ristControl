@@ -5,22 +5,21 @@
     <div class="text">
       <slot></slot>
     </div>
-    <div class="logo" @click="toHelpPage" v-show="isHelp">
+    <div class="logo" @click="toHelpPage">
       <i class="iconfont iconHelp">&#xe64a;</i>
     </div>
   </header>
 </template>
 <script>
 export default {
-  props: {
-    isHelp: {
-      type: Boolean,
-      default: true
-    }
-  },
   methods: {
     back() {
-      this.$router.goBack()
+      let ua = navigator.userAgent.toLowerCase()
+      if (/iphone|ipad|ipod/.test(ua)) {
+        popToViewController()
+      } else if (/android/.test(ua)) {
+        htmlToJava.popToViewController()
+      }
     },
     toHelpPage() {
       this.$router.push(`/help`)
