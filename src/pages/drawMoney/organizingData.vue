@@ -283,10 +283,10 @@
           Toast('请输入车辆价值')
           return
         }
-        if(this.localHouseValue === 0 && this.carInforValue === 0 && this.isshopOwnerValue === 0){
-          Toast('您未填信息,请重新输入')
-          return
-        }
+//        if(this.localHouseValue === 0 && this.carInforValue === 0 && this.isshopOwnerValue === 0){
+//          Toast('您未填信息,请重新输入')
+//          return
+//        }
         if(this.employee_num > 50) {
           Toast('员工人数过大')
           return
@@ -295,13 +295,13 @@
           Toast('年租金过大')
           return
         }
-        if(this.localHouseValue === 0 && this.carInforValue === 0 && this.isshopOwnerValue === 1){
-          Toast('请输入完整的店铺信息')
-          return
-        }
+//        if(this.localHouseValue === 0 && this.carInforValue === 0 && this.isshopOwnerValue === 1){
+//          Toast('请输入完整的店铺信息')
+//          return
+//        }
         axios.post(root + '/promoteQuota/calculate', params, config).then(res => {
           console.log(res.data.code)
-          if (res.status == 200 && res.data.code == 1000 && res.data.data.asset) {
+          if (res.status == 200 && res.data.code == 1000) {
             this.asset = res.data.data.asset
             this.$router.push(`/promoteMoney?accountTel=${this.accountTel}`)
           }

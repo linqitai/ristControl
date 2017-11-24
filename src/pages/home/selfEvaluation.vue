@@ -127,7 +127,8 @@
           if (this.idcard) {
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-            if (this.currentYear >= 24 && this.currentYear <= 40) {
+            if (this.currentYear <= 40) {
+//              if (this.currentYear >= 24 && this.currentYear <= 40) {
               Toast('请输入准确信息')
             }
           }
@@ -138,7 +139,8 @@
             if (this.idcard) {
               var date = new Date;
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-              if (this.currentYear >= 24 && this.currentYear <= 40) {
+//              if (this.currentYear >= 24 && this.currentYear <= 40) {
+                if (this.currentYear <= 40) {
                 Toast('请输入准确信息')
               }
             }

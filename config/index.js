@@ -27,7 +27,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: process.env.PORT || 8089,
+    port: process.env.PORT || 8085,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -35,7 +35,7 @@ module.exports = {
       '/zsf':{
         // target:'http://192.168.18.227:8090',// 本地测试
         // target:'http://192.168.18.10:8090',// 石智颖
-        target:'http://47.96.251.43:8090', // 测试
+          target:'http://47.96.251.43:8090', // 测试
         // target:'http://121.199.33.100:8030',// 线上
         // target:'http://192.168.18.170:8061',
         changeOrigin:true,

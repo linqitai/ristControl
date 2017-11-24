@@ -53,7 +53,7 @@
         <div id="boxBlank"></div>
         <div @click="popupVisible3 = false">取消</div>
       </mt-popup>
-      <mt-field label="子女职业" v-show="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
+      <mt-field label="子女职业" v-if="childrenshow" @click.native="popupVisible3 = true" placeholder=">"
                 v-model="childrenState" class="informationBorder" :readonly="readonly"></mt-field>
       <mt-field class="homeCharge informationBorder" label="家庭月收支(元) " placeholder="月收支=月收入-月支出" type="number"
                 v-model="pay"
@@ -110,7 +110,8 @@
         together: true,
         money: null,
         currentYear: '',
-        type: this.$route.query.type
+        type: this.$route.query.type,
+        is: true
       }
     },
     watch: {
@@ -119,8 +120,11 @@
           if (this.childrenStateValue == 1 || this.childrenStateValue == 2) {
             var date = new Date();
             this.currentYear = date.getFullYear() - val.substr(6, 4);
-            if (this.currentYear >= 24 && this.currentYear <= 40) {
-              Toast('请输入准确信息')
+//            if (this.currentYear >= 24 && this.currentYear <= 40) {
+            if (this.currentYear <= 40 && this.marryState !== '未婚') {
+//              Toast('您的子女职业不准确')
+              this.is = false
+              return
             }
           }
         }
@@ -218,6 +222,7 @@
       },
       // 点击子女职业
       selectState3: function (state) {
+        this.is = true
         this.childrenState = state;
         this.popupVisible3 = false;
         if (state == '无配偶') {
@@ -227,8 +232,11 @@
           if (this.idcard) {
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-            if (this.currentYear >= 24 && this.currentYear <= 40) {
-              Toast('请输入准确信息')
+//            if (this.currentYear >= 24 && this.currentYear <= 40) {
+              if (this.currentYear <= 40 && this.marryState !== '未婚') {
+//              Toast('您的子女职业不准确')
+                this.is = false
+                return
             }
           }
         } else if (state === '事业单位') {
@@ -238,8 +246,11 @@
             if (this.idcard) {
               var date = new Date();
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-              if (this.currentYear >= 24 && this.currentYear <= 40) {
-                Toast('请输入准确信息')
+              if (this.currentYear <= 40 && this.marryState !== '未婚') {
+//                if (this.currentYear >= 24 && this.currentYear <= 40) {
+//                Toast('您的子女职业不准确')
+                this.is = false
+                return
               }
             }
           }
@@ -348,7 +359,7 @@
           }
           if(reg.test(this.idcard)){
           }else{
-            Toast('您输入的格式有误')
+            Toast('您输入的身份证号格式有误')
             return
           }
           if (this.marryStateValue === '' || this.marryStateValue === null) {
@@ -357,6 +368,10 @@
           }
           if (this.objectStateValue === '' || this.objectStateValue === null) {
             Toast('请填写配偶职业')
+            return
+          }
+          if(this.is === false && this.marryState !== '未婚'){
+            Toast('您输入的子女职业不准确')
             return
           }
           if (this.childrenStateValue === '' || this.childrenStateValue === null) {

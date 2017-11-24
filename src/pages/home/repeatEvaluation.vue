@@ -171,6 +171,7 @@
         circleshow: false,
         objectshow: true,
         childrenshow: true,
+        promoteTotal: '',
         money: null,
         noRecords: false,
         currentYear: '',
@@ -221,6 +222,7 @@
 //      this.showScore = parseInt(this.$route.query.score);
 //      this.showMoney = this.$route.query.money;
       this.loans = this.$route.query.loans;
+      this.recentRepaymentPlan()
 //      this.score = this.showScore;
 //      this.money = this.showMoney;  // 自评钱
 //      this.promoteScore = this.$route.query.promoteScore; // 提额后总分
@@ -267,15 +269,8 @@
 //        this.scoreshow = true;//分数
 //        this.circleshow = true;//旋转圆
 //      }
-        this.recentRepaymentPlan()
+
      // }
-      let params = {
-        mobile: this.accountTel
-      }
-      currentBorrowAmount(params).then(res => {
-        let borrowMoney = res.obj.currentBorrowAmount
-        this.atborrowMoney = this.money - this.borrowMoney
-      })
     },
     methods: {
       changeIsShowType(flag) {
@@ -414,7 +409,7 @@
               this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
             }
             else {
-              Toast('6小时内您无法重新自评')
+              Toast('24小时内您无法重新自评')
             }
           })
         }
@@ -501,8 +496,6 @@
             this.firstDrawMoneyShow = false;
             this.secondDrawMoneyShow = true
           }
-          console.log(this.promoteTotal)
-          console.log(this.quota)
           this.money = this.promoteTotal + this.quota
           this.score = this.money / 200
           const deg = 360 - this.initialdeg * 2;
@@ -525,6 +518,17 @@
           this.transferdeg = this.transferdeg;
           this.scoreshow = true
           this.circleshow = true
+          this.canUseMoney()
+        })
+      },
+      canUseMoney(){
+        let params = {
+          mobile: this.accountTel
+        }
+        currentBorrowAmount(params).then(res => {
+          this.borrowMoney = res.obj.currentBorrowAmount
+          this.atborrowMoney = this.money - (this.borrowMoney / 100)
+          console.log(this.borrowMoney)
         })
       },
       changeRedPoint(){
