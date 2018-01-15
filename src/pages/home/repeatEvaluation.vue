@@ -97,7 +97,7 @@
         <div class="play-table" v-for="item in playRecords" v-show="playRecords.length>0">
           <div class="play-table-name">{{item.repayDate | _dateAddHorizontal}}</div>
           <div class="play-table-date">臻分期-{{item.productName}},第{{item.alreadyRepayTimes}}期/共{{item.repayTotalTimes}}期</div>
-          <div class="play-table-waitRepay">待还{{item.amount}}元</div>
+          <div class="play-table-waitRepay">待还{{item.amount / 100}}元</div>
           <div class="play-table-outDate2" v-show="item.overDueDays !== null && item.overDueDays !== 0">逾期{{item.overDueDays}}天</div>
           <div class="autoless">自动扣款<img src="../../assets/right.png" alt=""></div>
         </div>
@@ -109,7 +109,7 @@
         <!--v-for="item in records"-->
         <div class="play-table" v-for="item in records" v-show="records.length>0">
           <div class="play-table-name">{{item.dateTime | _dateAddHorizontal}}</div>
-          <div class="play-table-money">{{item.amount}}元</div>
+          <div class="play-table-money">{{item.amount / 100}}元</div>
           <div class="play-table-date">臻分期-{{item.productName}}</div>
           <div class="play-table-count">{{item.id | idstatus}}</div>
           <div class="play-table-outDate" v-show="item.overDueDays !== null && item.overDueDays !== 0">逾期{{item.overDueDays}}天</div>
@@ -330,7 +330,11 @@
             console.log(res.list[0].dateTime)
             this.records = res.list.slice(0,3)
             this.noRecords = false
-            this.lookMoreShow = true
+            if(res.list.length > 3){
+              this.lookMoreShow = true
+            } else {
+              this.lookMoreShow = false
+            }
           } else {
             this.noRecords = true
             this.lookMoreShow = false
@@ -346,22 +350,17 @@
           if (res.code === 0 && res.list.length !== 0) {
             this.playRecords = res.list.slice(0,3);
             this.noRecords = false
-            this.lookMoreShow = true
+            if(res.list.length > 3){
+              this.lookMoreShow = true
+            } else {
+              this.lookMoreShow = false
+            }
           } else {
             this.noRecords = true
             this.lookMoreShow = false
           }
         })
       },
-      //        app点击返回
-//      back() {
-//        let ua = navigator.userAgent.toLowerCase()
-//        if (/iphone|ipad|ipod/.test(ua)) {
-//          popToViewController()
-//        } else if (/android/.test(ua)) {
-//          htmlToJava.popToViewController()
-//        }
-//      },
       lookMore(){
         this.repeatIsShow = true
         // this.$router.push(`/borrowRecord?accountTel=${this.accountTel}`)
@@ -420,6 +419,7 @@
         var asd = JSON.stringify({"atborrowMoney": this.atborrowMoney});
         let ua = navigator.userAgent.toLowerCase()
         if (/iphone|ipad|ipod/.test(ua)) {
+//          Toast(asd)
           gotoInstallment(asd)
         } else if (/android/.test(ua)) {
           htmlToJava.gotoInstallment(asd)

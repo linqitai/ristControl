@@ -42,10 +42,10 @@
     <!--<div class="totalRemoney">111</div>-->
     <!--<div class="prompt2" v-show="promptShow">111</div>-->
     <div class="recordWrapper">
-      <div class="totalRemoney" v-show="totalborrowShow">共借款{{totalBorrowAmount}}元,已还款{{totalPayAmount}}元</div>
+      <div class="totalRemoney" v-show="totalborrowShow">共借款{{totalBorrowAmount / 100}}元,已还款{{totalPayAmount / 100}}元</div>
       <div class="play-table" v-for="item in records" v-show="tableShow">
         <div class="play-table-name">{{item.dateTime | _dateAddHorizontal}}</div>
-        <div class="play-table-money">{{item.amount}}元</div>
+        <div class="play-table-money">{{item.amount / 100}}元</div>
         <div class="play-table-date">臻分期-{{item.productName}}</div>
         <div class="play-table-count">{{item.id | idstatus}}</div>
         <div class="play-table-outDate" v-show="item.overDueDays !== null && item.overDueDays !== 0">逾期{{item.overDueDays}}天</div>

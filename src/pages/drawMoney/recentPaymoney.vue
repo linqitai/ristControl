@@ -43,7 +43,7 @@
     <div class="recordWrapper">
       <div class="play-table" v-for="item in records"  v-show="tableShow">
         <div class="play-table-name">{{item.repayDate | _dateAddHorizontal}}</div>
-        <div class="play-table-waitRepay">待还{{item.amount}}元</div>
+        <div class="play-table-waitRepay">待还{{item.amount / 100}}元</div>
         <div class="play-table-money"></div>
         <div class="play-table-date">臻分期-{{item.productName}},第{{item.alreadyRepayTimes}}期/共{{item.repayTotalTimes}}期</div>
         <div class="play-table-count">{{item.id | idstatus}}</div>
