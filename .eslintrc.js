@@ -23,6 +23,24 @@ module.exports = {
     'generator-star-spacing': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'semi':[0]
+    'eol-last': 0,
+    'space-before-function-paren': 0,
+    // 可以使用";"号
+    "semi": [0],
+    // 可以使用未定义的元素
+    "no-undef": 0,
+    // space-before-function-paren 
+    'space-before-function-paren': 0,
+    'indent': 0,
+    'no-unused-vars': 0,
+    'no-trailing-spaces': 0,
+    'spaced-comment': 0,
+    'quotes': 0,
+    'eqeqeq': 0,
+    'no-useless-escape': 0,
+    'one-var': 0,
+    'comma-dangle': 0,
+    'padded-blocks': 0,
+    'no-shadow-restricted-names': 0
   }
 }

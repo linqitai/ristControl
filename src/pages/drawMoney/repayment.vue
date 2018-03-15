@@ -4,7 +4,7 @@
       <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
       <!--<div class="titleMid"><span>还款计划</span></div>-->
     <!--</div>-->
-    <m-header>还款计划</m-header>
+    <!-- <m-header>还款计划</m-header> -->
     <div class="table">
       <div class="play-table" v-for="item in records">
         <div class="play-table-name">{{item.status | getStatus}}</div>
@@ -22,6 +22,7 @@
   import {currentBorrowAmount, borrowRecord, recentRepaymentPlan, addRecord, repaymentPlan} from '../../api/index'
   import {getTime, getDate, dateAddHorizontal} from '../../common/js/times'
   import mHeader from '@/components/Header'
+  import {headAPP} from 'common/js/utils'
 
   export default {
     components: {
@@ -38,6 +39,7 @@
       }
     },
     created() {
+      headAPP()
       this.accountTel = this.$route.query.accountTel;
       this.id = this.$route.query.id;
       this.detailRecords()

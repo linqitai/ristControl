@@ -14,19 +14,16 @@ import recentPaymoney from '@/pages/drawMoney/recentPaymoney'
 // 臻e盾
 import frontPage from '@/pages/zed/frontPage'
 
-Router.prototype.goBack = function() {
+Router.prototype.goBack = function () {
     this.isBack = true
     window.history.back()
 }
 Vue.use(Router)
 
 const router = new Router({
-    routes: [{
-        path: '/',
-        name: 'pageTransition',
-        component: pageTransition,
-        children: [{
-            path: '',
+    routes: [
+        {
+            path: '/',
             component: selfEvaluation
         }, {
             path: '/selfEvaluation',
@@ -62,9 +59,9 @@ const router = new Router({
             path: '/help',
             component: help
         }, {
-           path: '/recentPaymoney',
-           component: recentPaymoney
-        }]
-    }]
+            path: '/recentPaymoney',
+            component: recentPaymoney
+        }
+    ]
 })
 export default router

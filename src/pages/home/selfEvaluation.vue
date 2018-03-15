@@ -5,7 +5,7 @@
       <!--&lt;!&ndash;<div class="titleMid"><span>信用中心</span></div>&ndash;&gt;-->
       <!--&lt;!&ndash;<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>&ndash;&gt;-->
     <!--</div>-->
-    <m-header>信用中心</m-header>
+    <!-- <m-header>信用中心</m-header> -->
     <div class="header">完成自评后才会有信用额度哦</div>
     <div class="topciycle">
       <div class="ciycle">
@@ -35,6 +35,7 @@
   import {Toast} from 'mint-ui'
   import {evaluate, query, actionRecord} from '../../api/api'
   import mHeader from '@/components/HeaderBackToApp'
+  import {headAPP} from 'common/js/utils'
 //  import {action} from '../../api/index'
 //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
@@ -42,6 +43,9 @@
     name: 'HelloWorld',
     components: {
       mHeader
+    },
+    created(){
+      headAPP()
     },
     data() {
       return {
@@ -128,7 +132,6 @@
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
             if (this.currentYear <= 40) {
-//              if (this.currentYear >= 24 && this.currentYear <= 40) {
               Toast('请输入准确信息')
             }
           }
@@ -139,7 +142,6 @@
             if (this.idcard) {
               var date = new Date;
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-//              if (this.currentYear >= 24 && this.currentYear <= 40) {
                 if (this.currentYear <= 40) {
                 Toast('请输入准确信息')
               }
@@ -161,7 +163,6 @@
       select() {
         this.accountTel = this.$route.query.accountTel;
         if (this.accountTel) {
-//          Toast('IfIntoAccountTel:' + this.accountTel)
           let params = {
             mobile: this.accountTel,
             action: 0
@@ -176,11 +177,9 @@
             if(res.data.code === 1000){
               this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
             } else {
-//              Toast('出错了:' + res.data.msg)
             }
           })
         }else{
-//          Toast('没传accountTel')
         }
       }
     }

@@ -1,9 +1,9 @@
 <template>
   <div class="promoteMoney">
-    <div class="title">
+    <!-- <div class="title">
       <div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>
       <div class="titleMid"><span>提额</span></div>
-    </div>
+    </div> -->
     <div class="main">
       <div class="prompt2"><span>提交材料越多，获取额度越高，最高可达15万元</span></div>
       <div class="table">
@@ -115,6 +115,7 @@
   } from '../../api/index'
   import {getTime, getDate, dateAddHorizontal} from '../../common/js/times'
   import Schart from 'vue-schart';
+  import {headAPP} from 'common/js/utils'
   //  import {} from '../../common/js/jquery-3.2.1.slim.min.js'
   //  import {} from '../../common/js/circle_progress.js'
   const root = '/zsf'
@@ -160,6 +161,7 @@
       }
     },
     created() {
+      headAPP()
       this.accountTel = this.$route.query.accountTel;
       this.username = this.$route.query.username;
       this.promoteMoneyTotal();

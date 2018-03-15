@@ -4,7 +4,7 @@
       <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
       <!--<div class="titleMid"><span>融资消息</span></div>-->
     <!--</div>-->
-    <m-header>融资消息</m-header>
+    <!-- <m-header>融资消息</m-header> -->
     <div class="table">
       <img src="../../assets/closed.png" alt="">
       <div></div>
@@ -20,6 +20,7 @@
   import {currentBorrowAmount, borrowRecord, recentRepaymentPlan, addRecord, repaymentPlan} from '../../api/index'
   import {getTime, getDate, dateAddHorizontal} from '../../common/js/times'
   import mHeader from '@/components/Header'
+  import {headAPP} from 'common/js/utils'
 
   export default {
     components: {
@@ -29,6 +30,7 @@
       return {}
     },
     created() {
+      headAPP()
     },
     methods: {
       back() {

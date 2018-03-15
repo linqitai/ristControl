@@ -6,6 +6,7 @@ import router from './router'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './common/scss/reset.scss'
+import 'common/js/utils'
 Vue.use(MintUI)
 
 Vue.config.productionTip = false

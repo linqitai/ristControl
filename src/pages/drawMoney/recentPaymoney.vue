@@ -4,7 +4,7 @@
     <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
     <!--<div class="titleMid"><span>借款记录</span></div>-->
     <!--</div>-->
-    <m-header>还款计划</m-header>
+    <!-- <m-header>还款计划</m-header> -->
     <div class="tab">
       <mt-popup
         v-model="popupVisible"
@@ -70,6 +70,7 @@
   import {getTime, getDate, dateAddHorizontal} from '../../common/js/times'
   import {} from '../../common/js/jquery-3.2.1.slim.min.js'
   import mHeader from '@/components/Header'
+  import {headAPP} from 'common/js/utils'
   export default {
     components: {
       mHeader
@@ -106,10 +107,10 @@
       }
     },
     created() {
+      headAPP()
       this.accountTel = this.$route.query.accountTel;
       this.recentRepaymentPlan();
       this.timeTableListAfter()
-//      this.selectState()
     },
     methods: {
       back() {
@@ -126,7 +127,6 @@
             this.records = res.list
             this.noRecords = false
             this.tableShow = true
-
           } else {
             this.noRecords = true
             this.lookMoreShow = false

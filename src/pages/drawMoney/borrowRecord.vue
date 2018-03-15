@@ -4,7 +4,7 @@
       <!--<div class="titleLeft" @click="back()"><img src="../../assets/nav_btn_back@2x.png" alt=""></div>-->
       <!--<div class="titleMid"><span>借款记录</span></div>-->
     <!--</div>-->
-    <m-header @closePage="closePage" >借款记录</m-header>
+    <!-- <m-header @closePage="closePage" >借款记录</m-header> -->
     <div class="tab">
       <mt-popup
         v-model="popupVisible"
@@ -69,6 +69,7 @@
   import {getTime, getDate1, dateAddHorizontal} from '../../common/js/times'
   import {} from '../../common/js/jquery-3.2.1.slim.min.js'
   import mHeader from '@/components/HeaderClose.vue'
+  import {headAPP} from 'common/js/utils'
   export default {
     props: {
       repeatIsShow: {
@@ -109,6 +110,7 @@
       }
     },
     created() {
+      headAPP()
       this.accountTel = this.$route.query.accountTel;
       this.borrowRecord();
       this.timeTableList()

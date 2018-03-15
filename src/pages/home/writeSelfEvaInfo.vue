@@ -5,7 +5,7 @@
       <!--<div class="titleMid"><span>{{type | typeText}}</span></div>-->
       <!--&lt;!&ndash;<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>&ndash;&gt;-->
     <!--</div>-->
-    <m-header>{{type | typeText}}</m-header>
+    <!-- <m-header>{{type | typeText}}</m-header> -->
     <div class="prompt"><span>请输入真实有效的内容，否则将严重影响您的信用!</span></div>
     <div class="information">
       <mt-field label="手机号" disabled="disabled" v-model="accountTel" placeholder="" type=""
@@ -69,6 +69,7 @@
   import {Toast} from 'mint-ui'
   import {evaluate} from '../../api/api'
   import mHeader from '@/components/Header'
+  import {headAPP} from 'common/js/utils'
   //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
@@ -120,9 +121,7 @@
           if (this.childrenStateValue == 1 || this.childrenStateValue == 2) {
             var date = new Date();
             this.currentYear = date.getFullYear() - val.substr(6, 4);
-//            if (this.currentYear >= 24 && this.currentYear <= 40) {
             if (this.currentYear <= 40 && this.marryState !== '未婚') {
-//              Toast('您的子女职业不准确')
               this.is = false
               return
             }
@@ -140,6 +139,7 @@
     },
     created() {
       this.accountTel = this.$route.query.accountTel
+      headAPP()
       // 本地存储评分
       const self = this;
       if (window.localStorage) {
@@ -232,9 +232,7 @@
           if (this.idcard) {
             var date = new Date;
             this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
-//            if (this.currentYear >= 24 && this.currentYear <= 40) {
               if (this.currentYear <= 40 && this.marryState !== '未婚') {
-//              Toast('您的子女职业不准确')
                 this.is = false
                 return
             }
@@ -247,8 +245,6 @@
               var date = new Date();
               this.currentYear = date.getFullYear() - this.idcard.substr(6, 4);
               if (this.currentYear <= 40 && this.marryState !== '未婚') {
-//                if (this.currentYear >= 24 && this.currentYear <= 40) {
-//                Toast('您的子女职业不准确')
                 this.is = false
                 return
               }
@@ -339,7 +335,6 @@
       },
       transfer() {
         if (this.accountTel) {
-//          this.selfApply();
           if (this.username === '' || this.username === null) {
             Toast('请填写姓名')
             return
@@ -449,7 +444,6 @@
       color: darkgray;
       line-height: 51px;
       border-bottom: 1px solid lightgray;
-      margin-top: 44px;
     }
 
     .prompt2 {

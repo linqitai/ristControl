@@ -5,7 +5,7 @@
       <!--<div class="titleMid"><span>信用中心</span></div>-->
       <!--&lt;!&ndash;<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>&ndash;&gt;-->
     <!--</div>-->
-    <m-header>信用中心</m-header>
+    <!-- <m-header>信用中心</m-header> -->
     <div class="topciycle">
       <div class="yesmoney">可用信用额度/{{atborrowMoney}}元</div>
       <div class="ciycle">
@@ -66,7 +66,7 @@
           <!--<div class="rightBtn right" @click="GiveMBtn()" v-if="isShowGetM">提款</div>-->
         </div>
       </div>
-      <div class="prompt2"></div>
+      <!-- <div class="prompt2"></div>
       <div class="box2">
         <div class="line1">
           <b class="boxTitle left">臻分期</b><span class="ml15 left">安全服务，全面分期</span>
@@ -75,7 +75,7 @@
         <div class="line3">
           <div class="status left">尚未申请</div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="prompt2"></div>
     <div class="message">
@@ -127,9 +127,10 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import {currentBorrowAmount, borrowRecord, recentRepaymentPlan, addRecord} from '../../api/index'
-  import {getDate, dateAddHorizontal} from '../../common/js/times'
+  import {getDate, dateAddHorizontal} from 'common/js/times'
   import mHeader from '@/components/HeaderBackToApp'
   import borrowrecord from '@/pages/drawMoney/borrowRecord'
+  import {headAPP} from 'common/js/utils'
 //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
@@ -210,7 +211,7 @@
       }
     },
     created() {
-
+      headAPP()
       this.accountTel = this.$route.query.accountTel;
       this.redPoint();
       this.idcard = this.$route.query.idcard;
@@ -219,58 +220,8 @@
       this.childrenStateValue = this.$route.query.childrenStateValue;
       this.pay = this.$route.query.pay;
       this.username = this.$route.query.username;
-//      this.showScore = parseInt(this.$route.query.score);
-//      this.showMoney = this.$route.query.money;
       this.loans = this.$route.query.loans;
       this.recentRepaymentPlan()
-//      this.score = this.showScore;
-//      this.money = this.showMoney;  // 自评钱
-//      this.promoteScore = this.$route.query.promoteScore; // 提额后总分
-//      this.promoteTotal = this.$route.query.promoteTotal; // 提额后总钱数x
-//      if(this.$route.query.from === 'self'){
-//        this.score = this.showScore;
-//        this.money = this.showMoney;  // 自评钱
-//        const deg = 360 - this.initialdeg * 2;
-//        const eachscore = this.allscore / deg;
-//        const needtransdeg = Math.floor(this.score / eachscore);
-//        this.score>this.allscore/2?this.rightscore=true:this.rightscore=false;
-//        if(needtransdeg>180){
-//          this.transferdega = this.transferdega + 90;
-//          this.transferdegb = this.transferdegb + 180;
-//          this.transferdeg = this.transferdeg+needtransdeg;
-//        }else if(needtransdeg>90){
-//          this.transferdega = this.transferdega + 90;
-//          this.transferdegb = this.transferdegb + needtransdeg;
-//          this.transferdeg = this.transferdegb;
-//        }else{
-//          this.transferdeg = this.transferdeg+needtransdeg;
-//        };
-//        this.scoreshow = true;//分数
-//        this.circleshow = true;//旋转圆
-//      }
-//      else if(this.$route.query.from === 'promote'){
-//        this.score = this.promoteScore
-//        this.money = parseInt(this.promoteTotal)
-//        const deg = 360 - this.initialdeg * 2;
-//        const eachscore = this.allscore / deg;
-//        const needtransdeg = Math.floor(this.score / eachscore);
-//        this.score>this.allscore/2?this.rightscore=true:this.rightscore=false;
-//        if(needtransdeg>180){
-//          this.transferdega = this.transferdega + 90;
-//          this.transferdegb = this.transferdegb + 180;
-//          this.transferdeg = this.transferdeg+needtransdeg;
-//        }else if(needtransdeg>90){
-//          this.transferdega = this.transferdega + 90;
-//          this.transferdegb = this.transferdegb + needtransdeg;
-//          this.transferdeg = this.transferdegb;
-//        }else{
-//          this.transferdeg = this.transferdeg+needtransdeg;
-//        };
-//        this.scoreshow = true;//分数
-//        this.circleshow = true;//旋转圆
-//      }
-
-     // }
     },
     methods: {
       changeIsShowType(flag) {
@@ -297,36 +248,16 @@
             score: this.score,
             quota: this.money
           }
-          axios.post(root + '/selfeval/addRecord', params).then(res => {
-//            this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
-          })
+          axios.post(root + '/selfeval/addRecord', params).then(res => {})
         }
       },
-//      借款记录
+      //  借款记录
       borrowRecord() {
         let params = {
           mobile: this.accountTel
         }
         borrowRecord(params).then(res => {
           if (res.code === 0 && res.list.length !== 0) {
-//            let all = []
-//            for(let i = 0; i < res.list.length; i ++){
-//              let list = res.list[i]
-//              list.forEach(function (item) {
-//                if(item.status === 2){
-//                  item.type = '还款'
-//                  item.time = item.repayDate
-//                }
-//                if(item.loadStatus === 2){
-//                  item.type = '借款'
-//                  item.time = item.dealTime
-//                }
-//                all.push(item)
-//              })
-//              this.noRecords = false
-//              this.lookMoreShow = true
-//            }
-//            this.records = all.slice(0, 3)
             console.log(res.list[0].dateTime)
             this.records = res.list.slice(0,3)
             this.noRecords = false
@@ -391,7 +322,7 @@
             quota: this.money
           }
           axios.post(root + '/selfeval/addRecord', params).then(res => {
-//            this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
+            // this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
           })
         }
         if (this.accountTel) {
@@ -419,7 +350,6 @@
         var asd = JSON.stringify({"atborrowMoney": this.atborrowMoney});
         let ua = navigator.userAgent.toLowerCase()
         if (/iphone|ipad|ipod/.test(ua)) {
-//          Toast(asd)
           gotoInstallment(asd)
         } else if (/android/.test(ua)) {
           htmlToJava.gotoInstallment(asd)
@@ -437,9 +367,7 @@
             score: this.score,
             quota: this.money
           }
-          axios.post(root + '/selfeval/addRecord', params).then(res => {
-//            this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
-          })
+          axios.post(root + '/selfeval/addRecord', params).then(res => {})
         }
       },
       tableClass1() {
@@ -478,7 +406,6 @@
         }
       },
       goOrganinzingData(){
-//        this.$router.push(`/finincing?accountTel=${this.accountTel}`)
       },
       redPoint(){
         let params = {

@@ -5,9 +5,8 @@
       <!--<div class="titleMid"><span>提额-完善资料</span></div>-->
       <!--&lt;!&ndash;<div class="titleRight"><img src="../../assets/logo_zs@2x.png" alt=""></div>&ndash;&gt;-->
     <!--</div>-->
-    <m-header>提额-资产与经营</m-header>
+    <!-- <m-header>提额-资产与经营</m-header> -->
     <div class="main">
-
       <mt-popup
         v-model="popupVisible"
         position="bottom" class="box">
@@ -136,6 +135,7 @@
   import axios from 'axios'
   import {Toast} from 'mint-ui'
   import mHeader from '@/components/Header'
+  import {headAPP} from 'common/js/utils'
 
   const root = '/zsf'
   export default {
@@ -175,6 +175,7 @@
       }
     },
     created() {
+      headAPP()
       this.accountTel = this.$route.query.accountTel;
     },
     methods: {
