@@ -107,7 +107,8 @@ import {
   recentRepaymentPlan,
   addRecord,
   repaymentPlan,
-  query
+  query,
+  zsf
 } from "../../api/index";
 import { getTime, getDate, dateAddHorizontal } from "../../common/js/times";
 import mHeader from "@/components/HeaderBackToRepeat.vue";
@@ -183,7 +184,12 @@ export default {
     },
     back() {
       console.log("back");
-      this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}`);
+      // this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&title=信用中心`);
+      jiexin.openWindow({
+        url: document.location.protocol+'//'+window.location.host+ zsf() + `/#/repeatEvaluation?accountTel=${this.accountTel}`,
+        viewid:'repeatEvaluation',
+        title:'信用中心'
+      })
     },
     intoOrganizingData() {
       this.promoteMoneyTotal2();
@@ -323,12 +329,22 @@ export default {
     },
     promoteMoneyTotal2() {
       if (this.noAssetShow == true) {
-        this.$router.push(`/OrganizingData?accountTel=${this.accountTel}`);
+        // this.$router.push(`/OrganizingData?accountTel=${this.accountTel}&title=提额-资产与经营`);
+        jiexin.openWindow({
+          url: document.location.protocol+'//'+window.location.host+zsf()+ `/#/OrganizingData?accountTel=${this.accountTel}`,
+          viewid:'OrganizingData1',
+          title:'提额-资产与经营'
+        })
       } else if (this.noAssetShow2 == true) {
         if (this.newDate - this.assetDate < 2592000000) {
           Toast("您1个月内无法重新提额");
         } else {
-          this.$router.push(`/OrganizingData?accountTel=${this.accountTel}`);
+          // this.$router.push(`/OrganizingData?accountTel=${this.accountTel}&title=提额-资产与经营`);
+          jiexin.openWindow({
+            url: document.location.protocol+'//'+window.location.host+ zsf()+ `/#/OrganizingData?accountTel=${this.accountTel}`,
+            viewid:'OrganizingData2',
+            title:'提额-资产与经营'
+          })
         }
       }
     },

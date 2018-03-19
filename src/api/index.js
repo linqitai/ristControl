@@ -2,6 +2,21 @@ import http from './public'
 // 自评接口
 const zyd = '/zsf'
 // const zyd = '/rz'
+
+let zsfH5Url = '1232'
+
+if( window.location.host == "114.215.211.3" ){
+  zsfH5Url = '/test/dist'
+}else if(window.location.host == "www.zsbigdata.com.cn"){
+  zsfH5Url = '/bigData/zsf/dist'
+}else{
+  zsfH5Url = ''
+}
+
+export const zsf = () => {
+  return zsfH5Url
+}
+
 export const self = (params) => {
   return http.fetchPost(zyd + '/selfeval/evaluate.json', params)
 }

@@ -107,7 +107,7 @@
       }
     },
     created() {
-      headAPP()
+      headAPP();
       this.accountTel = this.$route.query.accountTel;
       this.recentRepaymentPlan();
       this.timeTableListAfter()

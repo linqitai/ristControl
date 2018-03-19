@@ -69,7 +69,7 @@
   import {getTime, getDate1, dateAddHorizontal} from '../../common/js/times'
   import {} from '../../common/js/jquery-3.2.1.slim.min.js'
   import mHeader from '@/components/HeaderClose.vue'
-  import {headAPP} from 'common/js/utils'
+  import { headAPP } from 'common/js/utils'
   export default {
     props: {
       repeatIsShow: {

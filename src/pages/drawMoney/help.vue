@@ -1,6 +1,6 @@
 <template>
   <div class="help">
-    <m-header :isHelp="isHelp">帮助</m-header>
+    <!-- <m-header :isHelp="isHelp">帮助</m-header> -->
     <div ref="base" class="base">
       <div class="content">
         <div class="title" @click="titleClick(1)">臻商信用分是什么?<img src="../../assets/right.png" alt=""></div>

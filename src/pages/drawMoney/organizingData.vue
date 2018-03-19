@@ -136,7 +136,7 @@
   import {Toast} from 'mint-ui'
   import mHeader from '@/components/Header'
   import {headAPP} from 'common/js/utils'
-
+  import {zsf} from '../../api/index'
   const root = '/zsf'
   export default {
     components: {
@@ -175,7 +175,7 @@
       }
     },
     created() {
-      headAPP()
+      headAPP();
       this.accountTel = this.$route.query.accountTel;
     },
     methods: {
@@ -301,10 +301,15 @@
 //          return
 //        }
         axios.post(root + '/promoteQuota/calculate', params, config).then(res => {
-          console.log(res.data.code)
+          alert(res.data.code)
           if (res.status == 200 && res.data.code == 1000) {
             this.asset = res.data.data.asset
-            this.$router.push(`/promoteMoney?accountTel=${this.accountTel}`)
+            // this.$router.push(`/promoteMoney?accountTel=${this.accountTel}&title=提额`)
+            jiexin.openWindow({
+                url: document.location.protocol+'//'+window.location.host + zsf() + `/#/promoteMoney?accountTel=${this.accountTel}`,
+                viewid:'promoteMoney',
+                title:'提额'
+              })
           }
           if (res.status == 200 && res.data.code == 1001) {
             Toast('请输入完整的信息')

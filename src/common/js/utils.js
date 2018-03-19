@@ -1,22 +1,32 @@
 export function headAPP(t) {
+
   if (jiexin.isIos()) {
     jiexin.isShowRight = function () {
-      alert(123);
       var aa = {};
-      aa.title = '我的';
-      aa.imageUrl = '';
+      aa.title = '';
+      aa.imageUrl = 'https://qiniujiexino2opublic.51icare.cn/icon_help@3x.png';
       isShowRightButton(aa);
     }
   }
+
   if (jiexin.isAndroid()) {
     jiexin.isShowRight = function () {
-      alert(123);
       var aa = {};
       aa.code = 1;
-      aa.title = '我的';
-      aa.imageUrl = '';
+      aa.title = '';
+      aa.imageUrl = 'https://qiniujiexino2opublic.51icare.cn/icon_help@3x.png';
+      // https://qiniujiexino2opublic.51icare.cn/icon_help@3x.png
       // console.log(JSON.stringify(aa))
       htmlToJava.handleEDunWebViewAction(JSON.stringify(aa));
     }
   }
+
+  jiexin.rightEvent = function(){
+    jiexin.openWindow({
+      url: document.location.protocol+'//'+window.location.host+ '/#/help',
+      viewid:'zsfhelp',
+      title:'帮助中心'
+    })
+  }
+
 }

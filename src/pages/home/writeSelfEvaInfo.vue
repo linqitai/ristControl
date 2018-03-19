@@ -70,6 +70,7 @@
   import {evaluate} from '../../api/api'
   import mHeader from '@/components/Header'
   import {headAPP} from 'common/js/utils'
+  import {zsf} from '../../api/index'
   //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
@@ -138,19 +139,24 @@
       }
     },
     created() {
-      this.accountTel = this.$route.query.accountTel
-      headAPP()
+      this.accountTel = this.$route.query.accountTel;
+      if(this.$route.query.type === 'repeat'){
+        headAPP();
+      }else{
+        headAPP();
+      }
+      
       // 本地存储评分
-      const self = this;
+      let self = this;
       if (window.localStorage) {
-        const objprase = JSON.parse(window.localStorage.getItem("storescore"));
+        let objprase = JSON.parse(window.localStorage.getItem("storescore"));
         if (objprase && objprase.time) {
-          const deg = 360 - this.initialdeg * 2;
-          const eachscore = this.allscore / deg;
-          const nowdate = new Date().getTime();
+          let deg = 360 - this.initialdeg * 2;
+          let eachscore = this.allscore / deg;
+          let nowdate = new Date().getTime();
           this.score = objprase.score;
           this.money = objprase.money;
-          const needtransdeg = this.score / eachscore;
+          let needtransdeg = this.score / eachscore;
           this.transferdeg = 235 + needtransdeg;
           this.selfShow2 = true;// 授信
           this.scoreshow = true;// 分数
@@ -311,21 +317,33 @@
             'Content-Type': 'application/json'
           }
         }
-        const self = this;
+        let self = this;
         axios.post(root + '/selfeval/evaluate', params, config).then(res => {
-          const response = res.data;
+          let response = res.data;
           if (res.status == 200 && response.code == 1000 && response.data.score) {
             this.score = response.data.score.toFixed(0);
             this.money = response.data.quota;//授信money
             this.addAction();
-            this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
+            // this.$router.push(`/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
+            //     &username=${this.username}
+            //     &idcard=${this.idcard}
+            //     &marryStateValue=${this.marryStateValue}
+            //     &objectStateValue=${this.objectStateValue}
+            //     &childrenStateValue=${this.childrenStateValue}
+            //     &pay=${this.pay}
+            //     &from=self&title=信用中心`)
+            jiexin.openWindow({
+              url: document.location.protocol+'//'+window.location.host+ zsf() + `/#/repeatEvaluation?accountTel=${this.accountTel}&score=${this.score}&money=${this.money}
                 &username=${this.username}
                 &idcard=${this.idcard}
                 &marryStateValue=${this.marryStateValue}
                 &objectStateValue=${this.objectStateValue}
                 &childrenStateValue=${this.childrenStateValue}
                 &pay=${this.pay}
-                &from=self`)
+                &from=self`,
+              viewid:'repeatEvaluation',
+              title:'信用中心'
+            })
           }
           else if (res.status == 200 && response.code == 1100) {
             Toast('请输入正确信息')

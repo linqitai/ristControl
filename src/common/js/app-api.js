@@ -1,23 +1,26 @@
 ;
 (function(global, undefined) {
-    var jiexin = {
+
+    // const zsfH5Url = ''
+
+    const jiexin = {
         debug: 0,
         extdata: {},
         isIos: function() {
-            var u = navigator.userAgent;
-            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            const u = navigator.userAgent;
+            const isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
             return isiOS;
         },
         isAndroid: function() {
-            var u = navigator.userAgent;
-            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            const u = navigator.userAgent;
+            const isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
             return isAndroid;
         },
         openWindow: function(options) {
             //title url viewid extdata
             //打开新页面
-            var self = this,
-                optionsStr;
+            const self = this;
+            let optionsStr;
             if (options.extdata) {
                 options.extdata = JSON.stringify(options.extdata);
             }
@@ -31,8 +34,8 @@
             }
         },
         openShare: function(options) {
-            var self = this,
-                optionsStr;
+            const self = this;
+            let optionsStr;
             if (options.extdata) {
                 options.extdata = JSON.stringify(options.extdata);
             }
@@ -46,9 +49,9 @@
             }
         },
         updateBackView: function(viewid) {
-            var self = this;
+            const self = this;
             //修改历史返回界面 viewid
-            var optionsStr = JSON.stringify({ viewid: viewid });
+            const optionsStr = JSON.stringify({ viewid: viewid });
             if (self.isIos()) {
                 updataBackViewController(optionsStr);
             } else if (self.isAndroid()) {
@@ -57,7 +60,7 @@
         },
         back: function(viewid) {
             //返回 可传viewid
-            var self = this;
+            const self = this;
             if (self.isIos()) {
                 if (viewid) {
                     updataBackViewController(JSON.stringify({ viewid: viewid }));
@@ -74,7 +77,7 @@
         },
         addEvent: function(eventName, callback) {
             //添加自定义事件
-            var self = this;
+            const self = this;
             window.addEventListener(eventName, function() {
                 if (callback) {
                     callback(self.extdata);
@@ -83,13 +86,13 @@
         },
         fireEvent: function(eventName, viewid, extdata) {
             //触发自定义事件
-            var self = this;
+            const self = this;
             if (extdata) {
                 extdata = JSON.stringify(extdata);
             } else {
                 extdata = "0";
             }
-            var optionsStr = JSON.stringify({
+            const optionsStr = JSON.stringify({
                 eventName: eventName,
                 viewid: viewid,
                 extdata: extdata
@@ -103,12 +106,12 @@
         },
         returnEvent: function(eventName, extdata) {
             //原生调用返回参数触发方法 
-            var self = this;
+            const self = this;
             if (eventName == 'getSession') {
                 window.getSession(extdata);
                 return;
             }
-            var event = new Event(eventName);
+            const event = new Event(eventName);
             if (extdata.match("^\{(.+:.+,*){1,}\}$")) {
                 extdata = JSON.parse(extdata);
             }
@@ -117,7 +120,7 @@
             
         },
         sessionFail: function() {
-            var self = this;
+            const self = this;
             //登录过期 未登录
             if (self.isIos()) {
                 presentLoginViewController();
@@ -126,7 +129,7 @@
             }
         },
         getSession: function() {
-            var self = this;
+            const self = this;
             if (self.isIos()) {
                 getSessionId();
             } else if (self.isAndroid()) {
@@ -135,8 +138,8 @@
         },
         setFontSize: function() {
             // 移动端自适应
-            var oHtml = document.documentElement;
-            var screenWidth = oHtml.clientWidth;
+            const oHtml = document.documentElement;
+            const screenWidth = oHtml.clientWidth;
             if (screenWidth <= 375) {
                 oHtml.style.fontSize = 10 + 'px';
             } else if (screenWidth >= 750) {
@@ -147,20 +150,20 @@
         },
         getUrlParam: function(name) {
             // 获取url参数
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-            var r = window.location.search.substr(1).match(reg);
+            const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            const r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]);
             return null;
         },
         ringup_popup: function(phoneNum) {
             // 模拟电话弹框
-            var shade = $('<div class="shade"></div>');
-            var ringup = $('<div class="ringup"></div>');
-            var phone = $('<div class="phone"></div>');
-            var phoneNumber = $('<span class="phoneNumber">' + phoneNum + '</span>');
-            var manageBox = $('<div class="manageBox"></div>');
-            var cancel = $('<a href="javascript:;" class="btn cancel">取消</a>');
-            var call = $('<a href="tel:' + phoneNum + '" class="btn call">呼叫</a>');
+            const shade = $('<div class="shade"></div>');
+            const ringup = $('<div class="ringup"></div>');
+            const phone = $('<div class="phone"></div>');
+            const phoneNumber = $('<span class="phoneNumber">' + phoneNum + '</span>');
+            const manageBox = $('<div class="manageBox"></div>');
+            const cancel = $('<a href="javascript:;" class="btn cancel">取消</a>');
+            const call = $('<a href="tel:' + phoneNum + '" class="btn call">呼叫</a>');
             manageBox.append(cancel);
             manageBox.append(call);
             phone.append(phoneNumber);

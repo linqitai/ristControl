@@ -36,16 +36,13 @@
   import {evaluate, query, actionRecord} from '../../api/api'
   import mHeader from '@/components/HeaderBackToApp'
   import {headAPP} from 'common/js/utils'
-//  import {action} from '../../api/index'
-//  const root = '/rz' // 线上
+  import {zsf} from '../../api/index'
+  //  const root = '/rz' // 线上
   const root = '/zsf' // 本地测试，打包后线上
   export default {
     name: 'HelloWorld',
     components: {
       mHeader
-    },
-    created(){
-      headAPP()
     },
     data() {
       return {
@@ -77,6 +74,9 @@
         money: null,
         currentYear: ''
       }
+    },
+    created(){
+      headAPP();
     },
     methods: {
       //点击婚姻状态
@@ -175,7 +175,12 @@
           axios.post(root + '/selfeval/addRecord', params, config).then(res => {
             console.log('axios:' + res.data.code)
             if(res.data.code === 1000){
-              this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}`)
+              // this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&title=自评`);
+              jiexin.openWindow({
+                url: document.location.protocol+'//'+window.location.host + zsf() + `/#/writeSelfEvaInfo?accountTel=${this.accountTel}`,
+                viewid:'writeSelfEvaInfo',
+                title:'自评'
+              })
             } else {
             }
           })

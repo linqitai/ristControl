@@ -126,7 +126,7 @@
 <script>
   import axios from 'axios'
   import {Toast} from 'mint-ui'
-  import {currentBorrowAmount, borrowRecord, recentRepaymentPlan, addRecord} from '../../api/index'
+  import {currentBorrowAmount, borrowRecord, recentRepaymentPlan, addRecord, zsf} from '../../api/index'
   import {getDate, dateAddHorizontal} from 'common/js/times'
   import mHeader from '@/components/HeaderBackToApp'
   import borrowrecord from '@/pages/drawMoney/borrowRecord'
@@ -211,7 +211,7 @@
       }
     },
     created() {
-      headAPP()
+      headAPP();
       this.accountTel = this.$route.query.accountTel;
       this.redPoint();
       this.idcard = this.$route.query.idcard;
@@ -297,7 +297,12 @@
         // this.$router.push(`/borrowRecord?accountTel=${this.accountTel}`)
       },
       lookMore2(){
-        this.$router.push(`/recentPaymoney?accountTel=${this.accountTel}`)
+        // this.$router.push(`/recentPaymoney?accountTel=${this.accountTel}&title=还款计划`)
+        jiexin.openWindow({
+          url: document.location.protocol+'//'+window.location.host+ zsf() + `/#/recentPaymoney?accountTel=${this.accountTel}`,
+          viewid:'recentPaymoney',
+          title:'还款计划'
+        })
       },
       transfer1() {
         this.accountTel = this.$route.query.accountTel;
@@ -336,7 +341,12 @@
           }
           axios.post(root + '/selfeval/reEvaluate', params, config).then(res => {
             if (res.data === true) {
-              this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`)
+              // this.$router.push(`/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat&title=重自评`)
+              jiexin.openWindow({
+                url: document.location.protocol+'//'+window.location.host+ zsf() + `/#/writeSelfEvaInfo?accountTel=${this.accountTel}&type=repeat`,
+                viewid:'writeSelfEvaInfo',
+                title:'重自评'
+              })
             }
             else {
               Toast('24小时内您无法重新自评')
@@ -387,7 +397,13 @@
       goDrawMoney(){
         this.changeRedPoint()
         this.username = this.username
-        this.$router.push(`/promoteMoney?accountTel=${this.accountTel}&atborrowMoney=${this.atborrowMoney}`)
+        // this.$router.push(`/promoteMoney?accountTel=${this.accountTel}&atborrowMoney=${this.atborrowMoney}&title=提额`)
+        jiexin.openWindow({
+          url: document.location.protocol+'//'+window.location.host+ zsf()+ `/#/promoteMoney?accountTel=${this.accountTel}&atborrowMoney=${this.atborrowMoney}`,
+          viewid:'promoteMoney',
+          title:'提额'
+        })
+        
         if (this.accountTel) {
           let params = {
             mobile: this.accountTel,

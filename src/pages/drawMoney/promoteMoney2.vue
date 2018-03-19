@@ -161,7 +161,7 @@
       }
     },
     created() {
-      headAPP()
+      headAPP("提额")
       this.accountTel = this.$route.query.accountTel;
       this.username = this.$route.query.username;
       this.promoteMoneyTotal();
